@@ -1,1 +1,135 @@
-fashition
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+        <%# %a(href="/")
+          = image_tag 'logo.png', height: '40px', width: '150px', alt: 'icon', class: 'pcHeader__headerInner__mainHeader__app'
+        .pcHeader__headerInner__mainHeader__searchBox
+          = text_field_tag '', '', placeholder: 'キーワードから探す', class: 'pcHeader__headerInner__mainHeader__searchBox__box'
+          .pcHeader__headerInner__mainHeader__searchBox__btn
+            %a(href="#")
+              = image_tag 'icon-search 1.png', height: '100%', width: '100%', alt: 'search' %>
+      </div>
+      <div class="pcHeader__headerInner__nav">
+        <div class ="pcHeader__headerInner__nav__listLeft">
+          <%= link_to '#', class:"pcHeader__headerInner__nav__listLeft__first" do %>カテゴリー
+            <ul class = "pcHeader__headerInner__nav__listLeft__first__categories">
+              <li class = "pcHeader__headerInner__nav__listLeft__first__categories__category">大カテゴリー</li>
+            </ul>
+          <% end %>
+          <%= link_to "ブランド", '#', class:"pcHeader__headerInner__nav__listLeft__item" %>
+        </div>
+        <div class = "pcHeader__headerInner__nav__listRight">
+          <%# <% if user_signed_in? %>
+            <%# <%= link_to "マイページ", '#', class:"pcHeader__headerInner__nav__listRight"%>
+            <%# <%= link_to "ユーザー編集", '#', class: "pcHeader__headerInner__nav__listRight" %>
+          <%# <% else %>
+            <%# = link_to "ログイン", new_user_session_path %>
+            <%= link_to "ログイン", '#', class:"pcHeader__headerInner__nav__listLeft__first" %>
+            <%# = link_to "新規会員登録", new_user_registration_path %>
+            <%= link_to "新規会員登録", '#', class:"pcHeader__headerInner__nav__listLeft__item" %>
+          <%# <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="contents">
+  <div class="content">
+    <div class="content__header">
+      <div class="content__header__list">
+      </div>
+    </div>
+    <div class="content__main">
+      <div class="content__main__left">
+        <ul class="content__main__left__side">
+          <li class="content__main__left__side__list">
+            <h2 class="content__main__left__side__list__menu">探す</h2>
+            <ul>
+              <li><%= link_to "コーディネートを探す", '#', class: "content__main__left__side__list__menu__list" %></li>
+              <li><%= link_to "ユーザーを探す", '#', class: "content__main__left__side__list__menu__list" %></li>
+              <li><%= link_to "アイテムを探す", '#', class: "content__main__left__side__list__menu__list" %></li>
+              <li><%= link_to "ブランドを探す", '#', class: "content__main__left__side__list__menu__list" %></li>
+            </ul>
+            <h2 class="content__main__left__side__list__menu">投稿一覧</h2>
+            <ul>
+              <li><%= link_to "ALL", '#', class: "content__main__left__side__list__menu__list" %></li>
+              <li><%= link_to "MEN", '#', class: "content__main__left__side__list__menu__list" %></li>
+              <li><%= link_to "WOMEN", '#', class: "content__main__left__side__list__menu__list" %></li>
+              <li><%= link_to "KIDS", '#', class: "content__main__left__side__list__menu__list" %></li>
+            </ul>
+            <h2 class="content__main__left__side__list__menu">SNS</h2>
+            <ul>
+              <li><a class="fa fa-github" href="https://github.com/takahiro-ueda">　GitHub</a></li>
+              <li><a a class="fa fa-twitter" href="https://twitter.com/home">　Twitter</a></li>
+              <li><a a class="fa fa-wikipedia-w" href="https://www.wantedly.com/users/135157931">　Wantedly</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="content__main__right">
+        <div class="content__main__right__seach">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class = "pcFooter">
+    <div class = "pcFooter__footer">
+      <div class = "pcFooter__footer__content">
+        <div class = "pcFooter__footer__content__left">
+          <ul>
+            <li><%= link_to "製作者概要", '#', class: "pcFooter__footer__content__left__list" %></li>
+            <li><%= link_to "制作概要", '#', class: "pcFooter__footer__content__left__list" %></li>
+            <li><%= link_to "実装機能・課題", '#', class: "pcFooter__footer__content__left__list" %></li>
+          </ul>
+        </div>
+        <div class = "pcFooter__footer__content__center">
+          <ul>
+            <li><%= link_to "コーディネート一覧", '#', class: "pcFooter__footer__content__center__list" %></li>
+            <li><%= link_to "ユーザー一覧", '#', class: "pcFooter__footer__content__center__list" %></li>
+            <li><%= link_to "アイテム一覧", '#', class: "pcFooter__footer__content__center__list" %></li>
+            <li><%= link_to "ブランド一覧", '#', class: "pcFooter__footer__content__center__list" %></li>
+            <li><%= link_to "カテゴリー一覧", '#', class: "pcFooter__footer__content__center__list" %></li>
+          </ul>
+        </div>
+        <div class = "pcFooter__footer__content__right">
+          <ul>
+            <li><%= link_to "コーディネートランキング", '#', class: "pcFooter__footer__content__right__list" %></li>
+            <li><%= link_to "ユーザーランキング", '#', class: "pcFooter__footer__content__right__list" %></li>
+            <li><%= link_to "トレンドキーワード", '#', class: "pcFooter__footer__content__right__list" %></li>
+            <li><%= link_to "髪型別コーデ検索", '#', class: "pcFooter__footer__content__right__list" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class = "pcFooter__footerLogo">
+      服は人を変えられる
+      <%# <%= link_to "お知らせ", '#' %>
+      <%# %a(href="#") %>
+        <%# = image_tag 'logo-white.png', height: '100%', width: '100%', alt: 'logo' %>
+    </div>
+    <p>© Fashion Book</p>
+  </div>
+</footer>
+
+<%# if user_signed_in?
+  = link_to new_item_path, class: "purchaseBtn" do
+    .purchaseBtn
+      %span 出品する
+      .purchaseBtn__icon
+        = image_tag 'icon_camera.png', height: '100%', width: '100%', alt: 'logo'
+- else
+  = link_to new_user_session_path,class: "purchaseBtn" do
+    .purchaseBtn
+      %span 出品する
+      %span.note ※ログインが必要です
+      .purchaseBtn__icon
+        = image_tag 'icon_camera.png', height: '100%', width: '100%', alt: 'logo' %>
