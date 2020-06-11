@@ -9,7 +9,7 @@
     </div>
 
     <div class="content__user__body__right">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= form_with(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <% if @user.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@user.errors.count, "件のエラーにより") %> 保存できませんでした。</h2>
@@ -58,7 +58,7 @@
           </div>
 
           <div class="actions">
-            <%= f.submit "登録" %>
+            <%= f.submit "次へ" %>
           </div>
         </div>
       <% end %>

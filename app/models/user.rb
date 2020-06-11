@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :nickname, presence: true, length: { minimum: 1 ,maximum:20  }
   validates :password, presence: true, length: { minimum: 6 ,maximum:128 }
   validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },uniqueness: true
+
+  has_one :address
 end
