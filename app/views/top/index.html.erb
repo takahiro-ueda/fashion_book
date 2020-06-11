@@ -24,15 +24,13 @@
           <%= link_to "ブランド", '#', class:"pcHeader__headerInner__nav__listLeft__item" %>
         </div>
         <div class = "pcHeader__headerInner__nav__listRight">
-          <%# <% if user_signed_in? %>
-            <%# <%= link_to "マイページ", '#', class:"pcHeader__headerInner__nav__listRight"%>
-            <%# <%= link_to "ユーザー編集", '#', class: "pcHeader__headerInner__nav__listRight" %>
-          <%# <% else %>
-            <%# = link_to "ログイン", new_user_session_path %>
-            <%= link_to "ログイン", '#', class:"pcHeader__headerInner__nav__listLeft__first" %>
-            <%# = link_to "新規会員登録", new_user_registration_path %>
-            <%= link_to "新規会員登録", '#', class:"pcHeader__headerInner__nav__listLeft__item" %>
-          <%# <% end %>
+          <% if user_signed_in? %>
+            <%= link_to "マイページ", '#', class:"pcHeader__headerInner__nav__listRight"%>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path, class:"pcHeader__headerInner__nav__listLeft__first" %>
+            <%= link_to "新規会員登録", new_user_registration_path, class:"pcHeader__headerInner__nav__listLeft__item" %>
+          <% end %>
         </div>
       </div>
     </div>
