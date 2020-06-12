@@ -1,0 +1,108 @@
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+        <%# %a(href="/")
+          = image_tag 'logo.png', height: '40px', width: '150px', alt: 'icon', class: 'pcHeader__headerInner__mainHeader__app'
+        .pcHeader__headerInner__mainHeader__searchBox
+          = text_field_tag '', '', placeholder: 'キーワードから探す', class: 'pcHeader__headerInner__mainHeader__searchBox__box'
+          .pcHeader__headerInner__mainHeader__searchBox__btn
+            %a(href="#")
+              = image_tag 'icon-search 1.png', height: '100%', width: '100%', alt: 'search' %>
+      </div>
+      <div class="pcHeader__headerInner__nav">
+        <div class ="pcHeader__headerInner__nav__listLeft">
+          <%= link_to '#', class:"pcHeader__headerInner__nav__listLeft__first" do %>カテゴリー
+            <ul class = "pcHeader__headerInner__nav__listLeft__first__categories">
+              <li class = "pcHeader__headerInner__nav__listLeft__first__categories__category">大カテゴリー</li>
+            </ul>
+          <% end %>
+          <%= link_to "ブランド", '#', class:"pcHeader__headerInner__nav__listLeft__item" %>
+        </div>
+        <div class = "pcHeader__headerInner__nav__listRight">
+          <% if user_signed_in? %>
+            <%= link_to "マイページ", user_path(current_user.id), class:"pcHeader__headerInner__nav__listRight"%>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path, class:"pcHeader__headerInner__nav__listLeft__first" %>
+            <%= link_to "新規会員登録", new_user_registration_path, class:"pcHeader__headerInner__nav__listLeft__item" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="contents">
+  <div class="content">
+    <div class="content__mypage">
+      <div class="content__mypage__left">
+        <ul class="content__mypage__left__side">
+          <li class="content__mypage__left__side__list">
+            <h2 class="content__mypage__left__side__list__menu">マイページ</h2>
+            <ul>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  コーディネート選択<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  コーディネート登録<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  お気に入り一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  アイテム一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+            <h2 class="content__mypage__left__side__list__menu">設定</h2>
+            <ul>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  プロフィール<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  住所変更<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  メール・パスワード変更<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                  ログアウト<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+            <h2 class="content__mypage__left__side__list__menu">退会</h2>
+            <ul>
+              <li>
+                <%= link_to user_path(@user.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "content__mypage__left__side__list__menu__tag" do %>
+                  退会<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="content__mypage__right">
+        <div class="content__mypage__right__seach">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

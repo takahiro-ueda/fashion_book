@@ -8,4 +8,10 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
   root 'top#index'
+  resources :users, only: [:show, :edit, :update, :destroy] do
+    member do
+      get 'profile'
+      patch 'profile_update'
+    end
+  end
 end
