@@ -1,0 +1,107 @@
+<div class="contents">
+  <div class="content">
+    <div class="content__profile">
+      <div class="content__profile__left">
+        <ul class="content__profile__left__side">
+          <li class="content__profile__left__side__list">
+            <h2 class="content__profile__left__side__list__menu">マイページ</h2>
+            <ul>
+              <li>
+                <%= link_to '#', class: "content__profile__left__side__list__menu__tag" do %>
+                  コーディネート選択<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__profile__left__side__list__menu__tag" do %>
+                  コーディネート登録<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__profile__left__side__list__menu__tag" do %>
+                  お気に入り一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__profile__left__side__list__menu__tag" do %>
+                  アイテム一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+            <h2 class="content__profile__left__side__list__menu">設定</h2>
+            <ul>
+              <li>
+                <%= link_to profile_user_path, class: "content__profile__left__side__list__menu__tag" do %>
+                  プロフィール<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to edit_user_path, class: "content__profile__left__side__list__menu__tag" do %>
+                  住所変更<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to edit_user_registration_path, class: "content__profile__left__side__list__menu__tag" do %>
+                  メール・パスワード変更<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, class: "content__profile__left__side__list__menu__tag" do %>
+                  ログアウト<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+            <h2 class="content__profile__left__side__list__menu">退会</h2>
+            <ul>
+              <li>
+                <%= link_to user_path(@user.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "content__profile__left__side__list__menu__tag" do %>
+                  退会<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="content__profile__right">
+        <div class="content__profile__right__seach">
+          <% @addresses.each do |address| %>
+            <div class="field">
+              <%# <%= render "devise/shared/error_messages", resource: @address %>
+
+              <div class="field__name">
+                <h1>姓名（漢字）</h1><br />
+                <%= @address.family_name %>
+                <%= @address.first_name %>
+              </div>
+
+              <div class="field__kana">
+                <h1>姓名（カナ）</h1><br />
+                <%= @address.family_name_kana %>
+                <%= @address.first_name_kana %>
+              </div>
+
+              <div class="field__zipcode">
+                <h1>郵便番号</h1><br />
+                <%= @address.zip_code %>
+              </div>
+
+              <div class="field__prefecture">
+                <h1>都道府県</h1><br>
+                <%= @prefecture.name %>
+              </div>
+
+              <div class="field__municipality">
+                <h1>市区町村</h1><br />
+                <%= @address.municipality %>
+              </div>
+
+              <div class="field__address">
+                <h1>番地</h1><br />
+                <%= @address.address %>
+              </div>
+            </div>
+          <% end %> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

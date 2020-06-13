@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit,:profile,:profile_update, :destroy]
-  before_action :set_address, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :profile, :profile_update, :destroy]
+  before_action :set_address, only: [:show, :edit, :update, :profile, :profile_update]
 
   def show
   end
@@ -10,8 +10,10 @@ class UsersController < ApplicationController
 
   def update
     if @address.update(address_params)
-      redirect_to edit_user_path(@address)
+      redirect_to user_path(@address)
+      # redirect_to user_path(current_user.id)
     else
+      flash.now[:alert] = '編集に失敗しました。'
       render :edit
     end
   end
@@ -21,10 +23,12 @@ class UsersController < ApplicationController
     redirect_to("/")
   end
 
-  def profile   
+  def profile#(user)
+    @prefecture = @address.prefecture
+    @addresses = Address.all
   end
 
-  def profile_update
+  def profile_update#(user)
     if @user.update(user_params)
       redirect_to user_path
     else

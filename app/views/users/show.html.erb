@@ -68,17 +68,17 @@
             <h2 class="content__mypage__left__side__list__menu">設定</h2>
             <ul>
               <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                <%= link_to profile_user_path, class: "content__mypage__left__side__list__menu__tag" do %>
                   プロフィール<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
               <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                <%= link_to edit_user_path, class: "content__mypage__left__side__list__menu__tag" do %>
                   住所変更<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
               <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                <%= link_to edit_user_registration_path, class: "content__mypage__left__side__list__menu__tag" do %>
                   メール・パスワード変更<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
