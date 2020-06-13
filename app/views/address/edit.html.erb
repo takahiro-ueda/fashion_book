@@ -9,20 +9,9 @@
     </div>
 
     <div class="content__user__body__right">
-      <%= form_for(@address, as: @address, url: addresses_path(@address), html: { method: :put }) do |f| %>
-        <% if @user.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "件のエラーにより") %> 保存できませんでした。</h2>
-
-            <ul>
-              <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+      <%= form_for(@address) do |f| %>
         <div class="field">
-          <%# <%= render "devise/shared/error_messages", resource: @address %>
+          <%= render "devise/shared/error_messages", resource: @address %>
 
           <div class="field__name">
             <%= f.label :姓名（漢字 %>

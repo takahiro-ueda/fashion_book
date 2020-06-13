@@ -9,10 +9,7 @@ Rails.application.routes.draw do
   end
   root 'top#index'
 
-  resources :users, only: [:show, :edit, :update]do
-    member do
-      get 'profile'
-      patch 'profile_update'
-    end
-  end
+  resources :address, only: [:show, :edit, :update, :destroy]
+  resources :users, only: [:show, :edit, :update, :destroy]
+
 end

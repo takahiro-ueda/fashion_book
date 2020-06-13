@@ -30,7 +30,7 @@
             <h2 class="content__profile__left__side__list__menu">設定</h2>
             <ul>
               <li>
-                <%= link_to profile_user_path, class: "content__profile__left__side__list__menu__tag" do %>
+                <%= link_to address_path, class: "content__profile__left__side__list__menu__tag" do %>
                   プロフィール<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
@@ -53,9 +53,9 @@
             <h2 class="content__profile__left__side__list__menu">退会</h2>
             <ul>
               <li>
-                <%= link_to user_path(@user.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "content__profile__left__side__list__menu__tag" do %>
-                  退会<%= fa_icon("angle-right") %>
-                <% end %>
+                <%# <%= link_to user_path(@user.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "content__mypage__left__side__list__menu__tag" do %>
+                  <%# 退会<%= fa_icon("angle-right") %>
+                <%# <% end %>
               </li>
             </ul>
           </li>
