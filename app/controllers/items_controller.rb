@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
     #   render :new and return
     # end
     if @item.save
-      redirect_to root_path
+      redirect_to items_path
     else
       @item.item_images.new
       render :new
