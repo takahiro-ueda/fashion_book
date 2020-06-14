@@ -1,1 +1,86 @@
-アイテム
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="contents">
+  <div class="content">
+    <div class="content__mypage">
+      <div class="content__mypage__left">
+        <ul class="content__mypage__left__side">
+          <li class="content__mypage__left__side__list">
+            <h2 class="content__mypage__left__side__list__menu">アイテム一覧</h2>
+            <ul>
+              <li>
+                <%= link_to new_item_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                  アイテム登録<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+            <h2 class="content__mypage__left__side__list__menu">性別</h2>
+            <h2 class="content__mypage__left__side__list__menu">ブランド</h2>
+            <h2 class="content__mypage__left__side__list__menu">カテゴリー</h2>
+            <h2 class="content__mypage__left__side__list__menu">季節</h2>
+            <h2 class="content__mypage__left__side__list__menu">カラー</h2>
+            <ul>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  コーディネート登録<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  お気に入り一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to items_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                  アイテム一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  プロフィール<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                  住所変更<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to edit_user_registration_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                  メール・パスワード変更<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete, class: "content__mypage__left__side__list__menu__tag" do %>
+                  ログアウト<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+            <h2 class="content__mypage__left__side__list__menu">退会</h2>
+            <ul>
+              <li>
+                <%# <%= link_to user_path(@user.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "content__mypage__left__side__list__menu__tag" do %>
+                  <%# 退会<%= fa_icon("angle-right") %>
+                <%# <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="content__item__right">
+        <div class="content__item__right__seach">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

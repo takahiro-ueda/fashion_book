@@ -13,18 +13,27 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    unless @item.valid?
-      flash.now[:alert] = @item.errors.full_messages
-      @item.item_images.new
-      render :new and return
-    end
+    @item = Item.create(item_params)
+    # unless @item.valid?
+    #   flash.now[:alert] = @item.errors.full_messages
+    #   @item.image
+    #   render :new and return
+    # end
     if @item.save
       redirect_to root_path
     else
       @item.item_images.new
       render :new
     end
+    # respond_to do |format|
+    #   if @item.save
+    #     format.html { redirect_to @item, notice: '投稿が作成されました。' }
+    #     format.json { render :show, status: :created, location: @item }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @item.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def edit
@@ -58,24 +67,19 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(
+      :image,
       :name, 
-      :price, 
       :introduction, 
       :category_id,
-      # :delivery_id,
-      # :payer_id,
-      # :duration_id,
-      # :prefecture_id,
-      # :trade_id,
       :size_id,
-      # :status_id,
       :brand,
+      :season,
       :color_id,
-      :image
+      :price, 
       # :category_parent_id,
       # :category_root_id,
       # item_images_attributes: [:src, :_destroy, :id]
-      ).merge(seller_id: current_user.id)
+      ).merge(user_id: current_user.id)
   end
 
   def set_item

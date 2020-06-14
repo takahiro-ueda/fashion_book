@@ -1,0 +1,52 @@
+<div class="blog__contents">
+  <div class="blog__contents__blog">
+    <div class="blog__contents__blog__list">
+      <h2>新規記事の作成</h2>
+    </div>
+    <div class="field">
+    <%= form_with(model: @item, class: :form, local: true) do |form| %>
+      <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@item.errors.count, "件のエラーにより") %> この投稿は保存できませんでした。</h2>
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="field__image">
+        <%= form.label :image, '画像' %>
+        <%= form.file_field :image, class: :form__image, id: "image-form" %>
+      </div>
+
+      <div class="field__name">
+        <%= form.label :name, '商品名' %>
+        <%= form.text_field :name, placeholder: :商品名40文字まで, class: :form__title %>
+      </div>
+
+      <%# <div class="field__tag__category">
+        <%= form.label :category_id, 'カテゴリ' %>
+        <%# <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "カテゴリを選んでください" }, { class: "field__tag__category__select-box", id: "category_select" } %>
+      <%# </div> %>
+
+      <div class="field__introduction">
+        <%= form.label :introduction, '商品説明' %>
+        <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>
+        <P class="js-text-count"></P>
+      </div>
+
+      <div class="field__introduction">
+        <%= form.label :price, '価格（¥300~9,999,999)' %>
+        <%= form.text_field :price, placeholder: :¥0, class: 'form__text js-text' %>
+        <P class="js-text-count"></P>
+      </div>
+
+      <div class="actions">
+        <%= form.submit '保存', class: :form__btn %>
+      </div>  
+    </div>
+    <% end %>
+  </div>
+</div>
