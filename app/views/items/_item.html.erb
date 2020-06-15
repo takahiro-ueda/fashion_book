@@ -1,17 +1,17 @@
 <div class="blog__content">
   <div class="blog__content__left">
     <div class="blog__content__left__image">
-      <% if @item.image? %>
-        <%= image_tag "#{@item.image.url}", height: '98px', width: '100px' %>
+      <% if item.image.present? %>
+        <%= image_tag "#{item.image }", height: '300px', width: '300px' %>
       <% else %>
-        <%= image_tag "/Unknown.png", height: '98px', width: '100px' %>
+        <%= image_tag "/Unknown.png", height: '300px', width: '300px' %>
       <% end %>
     </div>
   </div>
   <div class="blog__content__right">
     <div class="blog__content__right__tag">
       <div class="blog__content__right__tag__top">
-        <%= link_to item.name, items_path(item.id), class: "blog__content__right__tag__top__title" %>
+        <%= link_to item.name, item_path(item.id), class: "blog__content__right__tag__top__title" %>
         <div class= "blog__content__right__tag__top__category">
           
         </div>

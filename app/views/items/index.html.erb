@@ -16,8 +16,13 @@
       <div class="content__mypage__left">
         <ul class="content__mypage__left__side">
           <li class="content__mypage__left__side__list">
-            <h2 class="content__mypage__left__side__list__menu">アイテム一覧</h2>
+            <h2 class="content__mypage__left__side__list__menu">アイテム</h2>
             <ul>
+              <li>
+                <%= link_to items_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                  アイテム一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
               <li>
                 <%= link_to new_item_path, class: "content__mypage__left__side__list__menu__tag" do %>
                   アイテム登録<%= fa_icon("angle-right") %>

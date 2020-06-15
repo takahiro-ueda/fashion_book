@@ -1,9 +1,9 @@
 class Item < ApplicationRecord
-  # mount_uploader :image, ImageUploader
+  mount_uploader :image, ImageUploader
 
   belongs_to :user, optional: true
 
-  validates :name, :introduction, :price, presence: true
+  validates :name, :introduction, :price, presence: true, unless: :image?
 
   validates :name,
     length: { maximum:40, message: "入力は４０文字までです。"}
