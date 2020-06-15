@@ -12,8 +12,16 @@
         </div>
       <% end %>
     </div>
+    <div class="blog__content__left__image">
+      <% if @item.image.present? %>
+        <%= image_tag "#{@item.image }", height: '300px', width: '300px' %>
+      <% else %>
+        <%= image_tag "/Unknown.png", height: '300px', width: '300px' %>
+      <% end %>
+    </div>
     <div class="blog__contents__lists__postText">
       <%= @item.introduction %>
+      ￥<%= @item.price %>ー
     </div>
   </div>
 </div>

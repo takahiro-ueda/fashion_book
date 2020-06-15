@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
       render :edit and return
     end
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to items_path
     else
       render :edit and return
     end

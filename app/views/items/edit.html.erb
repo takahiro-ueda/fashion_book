@@ -1,0 +1,38 @@
+<div class="blog__contents">
+  <div class="blog__contents__blog">
+    <div class="blog__contents__blog__list">
+      <h2>アイテム編集</h2>
+    </div>
+    <div class="field">
+    <%= form_with model: @item, class: :form, local: true do |form| %>
+
+      <div class="field__image">
+        <%= form.label :image, '画像' %>
+        <%= form.file_field :image %>
+      </div>
+
+      <div class="field__name">
+        <%= form.label :name, 'アイテム名' %>
+        <%= form.text_field :name, placeholder: :アイテム名, class: :form__title %>
+      </div>
+        
+      
+      <div class="field__introduction">
+        <%= form.label :introduction, '商品説明' %>
+        <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>
+        <%# <P class="js-text-count"></P> %>
+      </div>
+
+      <div class="field__price">
+        <%= form.label :price, '価格（¥300~9,999,999)' %>
+        <%= form.text_field :price, placeholder: :¥0, class: 'form__text js-text' %>
+      </div>
+      
+      <div class="actions">
+        <%= form.submit '更新', class: :form__btn %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+</div>
