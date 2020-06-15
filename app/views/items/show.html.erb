@@ -1,0 +1,19 @@
+<div class="blog__contents">
+  <div class="blog__contents__lists">
+    <div class="blog__contents__lists__postTitle">
+      <%= @item.name %>
+    </div>
+    <div class="blog__contents__lists__sublist">
+      <% if user_signed_in? && current_user.id == @item.user_id %>
+        <div class="blog__contents__lists__sublist__postManage">
+          <%= link_to "編集", edit_item_path(@item.id), class: "blog__contents__lists__sublist__postManage__edit" %>
+          <%= link_to "削除", item_path(@item.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "blog__contents__lists__sublist__postManage__delete" %>
+          <%= link_to '戻る', items_path(@item.id), class: "blog__contents__lists__sublist__postManage__back" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="blog__contents__lists__postText">
+      <%= @item.introduction %>
+    </div>
+  </div>
+</div>

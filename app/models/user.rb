@@ -10,4 +10,5 @@ class User < ApplicationRecord
   validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },uniqueness: true
 
   has_one :address
+  has_many :items, dependent: :destroy
 end

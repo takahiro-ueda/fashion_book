@@ -3,7 +3,7 @@ class Item < ApplicationRecord
 
   belongs_to :user, optional: true
 
-
+  validates :name, :introduction, :price, presence: true
 
   validates :name,
     length: { maximum:40, message: "入力は４０文字までです。"}

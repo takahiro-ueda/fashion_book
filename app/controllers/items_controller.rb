@@ -1,10 +1,12 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
   before_action :set_item, only: [:show, :destroy,:edit,:update]
+  before_action :move_to_index, except: [:index, :show]
   # before_action :set_item_images, only: [:edit, :update]
   # before_action :set_category, only: :new
   def index
-    @items = Item.includes(:item_images).order(created_at: "DESC").limit(3)
+    @item = Item.new
+    @items = Item.includes(:user).order(created_at: "DESC").limit(3)
   end
 
   def new
@@ -13,14 +15,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
     # unless @item.valid?
     #   flash.now[:alert] = @item.errors.full_messages
     #   @item.image
     #   render :new and return
     # end
     if @item.save
-      redirect_to items_path
+      redirect_to items_path(id: current_user)
     else
       @item.item_images.new
       render :new
@@ -101,4 +103,8 @@ class ItemsController < ApplicationController
   #   end
   #   # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
   # end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
 end
