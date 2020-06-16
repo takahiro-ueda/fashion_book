@@ -29,6 +29,7 @@
       <div class="field__category">
         <%= form.label :category_id, 'カテゴリ' %>
         <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "category_select-box", id: "category_select" }%>
+        <div class = "product_select-children"></div>
       </div>
 
       <div class="field__introduction">
