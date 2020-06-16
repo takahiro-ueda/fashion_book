@@ -3,7 +3,9 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :destroy,:edit,:update]
   before_action :move_to_index, except: [:index, :show]
   # before_action :set_item_images, only: [:edit, :update]
-  # before_action :set_category, only: :new
+  before_action :set_category, only: :new
+
+
   def index
     @item = Item.new
     @items = Item.includes(:user).order(created_at: "DESC").limit(3)
@@ -24,18 +26,9 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to items_path(id: current_user)
     else
-      @item.item_images.new
+      # @item.item_images.new
       render :new
     end
-    # respond_to do |format|
-    #   if @item.save
-    #     format.html { redirect_to @item, notice: '投稿が作成されました。' }
-    #     format.json { render :show, status: :created, location: @item }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @item.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def edit
@@ -78,8 +71,8 @@ class ItemsController < ApplicationController
       :season,
       :color_id,
       :price, 
-      # :category_parent_id,
-      # :category_root_id,
+      :category_children_id,
+      :category_grandchildren_id,
       # item_images_attributes: [:src, :_destroy, :id]
       ).merge(user_id: current_user.id)
   end
@@ -92,17 +85,27 @@ class ItemsController < ApplicationController
   #   @item_images = @item.item_images
   # end
 
-  # def set_category
-  #   @category = Category.all.order("id ASC").limit(13) # categoryの親を取得
-  #   def category_children  
-  #     @category_children = Category.find(params[:productcategory]).children 
-  #   end
-  #   # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
-  #   def category_grandchildren
-  #     @category_grandchildren = Category.find(params[:productcategory]).children
-  #   end
-  #   # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
-  # end
+  def set_category
+    @category = Category.all.order("id ASC").limit(13) # categoryの親を取得
+    def category_children 
+      respond_to do |format| 
+        format.html
+        format.json do
+          @category_children = Category.find(params[:productcategory]).children 
+        end
+      end 
+    end
+    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
+    def category_grandchildren
+      respond_to do |format| 
+        format.html
+        format.json do
+          @category_grandchildren = Category.find(params[:productcategory]).children
+        end
+      end
+    end
+    # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
+  end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?

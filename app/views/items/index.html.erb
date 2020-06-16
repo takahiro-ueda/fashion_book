@@ -34,51 +34,6 @@
             <h2 class="content__mypage__left__side__list__menu">カテゴリー</h2>
             <h2 class="content__mypage__left__side__list__menu">季節</h2>
             <h2 class="content__mypage__left__side__list__menu">カラー</h2>
-            <ul>
-              <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
-                  コーディネート登録<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
-                  お気に入り一覧<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to items_path, class: "content__mypage__left__side__list__menu__tag" do %>
-                  アイテム一覧<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
-                  プロフィール<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
-                  住所変更<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to edit_user_registration_path, class: "content__mypage__left__side__list__menu__tag" do %>
-                  メール・パスワード変更<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete, class: "content__mypage__left__side__list__menu__tag" do %>
-                  ログアウト<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-            </ul>
-            <h2 class="content__mypage__left__side__list__menu">退会</h2>
-            <ul>
-              <li>
-                <%# <%= link_to user_path(@user.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "content__mypage__left__side__list__menu__tag" do %>
-                  <%# 退会<%= fa_icon("angle-right") %>
-                <%# <% end %>
-              </li>
-            </ul>
           </li>
         </ul>
       </div>

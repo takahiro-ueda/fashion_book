@@ -26,10 +26,10 @@
         <%= form.text_field :name, placeholder: :商品名40文字まで, class: :form__title %>
       </div>
 
-      <%# <div class="field__tag__category">
+      <div class="field__category">
         <%= form.label :category_id, 'カテゴリ' %>
-        <%# <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "カテゴリを選んでください" }, { class: "field__tag__category__select-box", id: "category_select" } %>
-      <%# </div> %>
+        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "category_select-box", id: "category_select" }%>
+      </div>
 
       <div class="field__introduction">
         <%= form.label :introduction, '商品説明' %>
