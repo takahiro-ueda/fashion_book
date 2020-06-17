@@ -41,11 +41,13 @@ ActiveRecord::Schema.define(version: 2020_06_15_115728) do
     t.string "introduction", null: false
     t.string "image"
     t.bigint "category_id", null: false
+    t.bigint "size_id"
     t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["size_id"], name: "index_items_on_size_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -1,9 +1,12 @@
 class Item < ApplicationRecord
-  mount_uploader :image, ImageUploader
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :size
 
   belongs_to :user, optional: true
   belongs_to :category
 
+
+  mount_uploader :image, ImageUploader
   validates :name, :introduction, :category_id, :price, presence: true, unless: :image?
 
   validates :name,

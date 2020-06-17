@@ -32,6 +32,11 @@
         <div class = "product_select-children"></div>
       </div>
 
+      <div class="field__size", id="size_selectbox">
+        <%= form.label :size_id, 'サイズ' %>
+        <%= form.collection_select :size_id, Size.all, :id, :size, {include_blank: "選択してください"}, {class: "size_box"} %>
+      </div>
+
       <div class="field__introduction">
         <%= form.label :introduction, '商品説明' %>
         <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>

@@ -47,6 +47,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @size = @item.size
   end
 
   def destroy
@@ -88,23 +89,15 @@ class ItemsController < ApplicationController
   def set_category
     @category = Category.all.order("id ASC").limit(13) # categoryの親を取得
     def category_children 
-      respond_to do |format| 
-        format.html
-        format.json do
-          @category_children = Category.find(params[:productcategory]).children 
-        end
-      end 
+      @category_children = Category.find(params[:productcategory]).children 
     end
     # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
     def category_grandchildren
-      respond_to do |format| 
-        format.html
-        format.json do
-          @category_grandchildren = Category.find(params[:productcategory]).children
-        end
-      end
+      @category_grandchildren = Category.find(params[:productcategory]).children
     end
     # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
+
+    # @category_parent_array = Category.where(ancestry: nil)
   end
 
   def move_to_index
