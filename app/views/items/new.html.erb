@@ -26,6 +26,12 @@
         <%= form.text_field :name, placeholder: :商品名40文字まで, class: :form__title %>
       </div>
 
+      <div class="field__introduction">
+        <%= form.label :introduction, '商品説明' %>
+        <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>
+        <P class="js-text-count"></P>
+      </div>
+
       <div class="field__category">
         <%= form.label :category_id, 'カテゴリ' %>
         <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "category_select-box", id: "category_select" }%>
@@ -47,10 +53,9 @@
         <%= form.collection_select :season_id, Season.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
       </div>
 
-      <div class="field__introduction">
-        <%= form.label :introduction, '商品説明' %>
-        <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>
-        <P class="js-text-count"></P>
+      <div class="field__color">
+        <%= form.label :color_id, 'カラー' %>
+        <%= form.collection_select :color_id, Color.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
       </div>
 
       <div class="field__introduction">
