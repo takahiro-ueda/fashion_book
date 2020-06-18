@@ -42,6 +42,11 @@
         <%= form.collection_select :brand_id, Brand.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
       </div>
 
+      <div class="field__season">
+        <%= form.label :season_id, '季節' %>
+        <%= form.collection_select :season_id, Season.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
+      </div>
+
       <div class="field__introduction">
         <%= form.label :introduction, '商品説明' %>
         <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>
