@@ -16,14 +16,10 @@ Rails.application.routes.draw do
     collection do # 新規用（new) usr:products/newのため
       get 'category_children', defaults: { format: 'json' }
       get 'category_grandchildren', defaults: { format: 'json' }
-      #サイズ
-      get 'size_category', defaults: { format: 'json' }
     end
     member do # 編集(edit用) usl: products/id/editのため
       get 'category_children', defaults: { format: 'json' }
       get 'category_grandchildren', defaults: { format: 'json' }
-      #サイズ
-      get 'size_category', defaults: { format: 'json' }
     end
   end
 end

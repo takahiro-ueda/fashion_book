@@ -23,6 +23,32 @@
         <%# <P class="js-text-count"></P> %>
       </div>
 
+      <div class="field__category">
+        <%= form.label :category_id, 'カテゴリ' %>
+        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "category_select-box", id: "category_select" }%>
+        <div class = "product_select-children"></div>
+      </div>
+
+      <div class="field__size", id="size_selectbox">
+        <%= form.label :size_id, 'サイズ' %>
+        <%= form.collection_select :size_id, Size.all, :id, :size, {class: "size_box"} %>
+      </div>
+
+      <div class="field__brand">
+        <%= form.label :brand_id, 'ブランド' %>
+        <%= form.collection_select :brand_id, Brand.all, :id, :name, {class: "brand_box"} %>
+      </div>
+
+      <div class="field__season">
+        <%= form.label :season_id, '季節' %>
+        <%= form.collection_select :season_id, Season.all, :id, :name, {class: "brand_box"} %>
+      </div>
+
+      <div class="field__color">
+        <%= form.label :color_id, 'カラー' %>
+        <%= form.collection_select :color_id, Color.all, :id, :name, {class: "brand_box"} %>
+      </div>
+
       <div class="field__price">
         <%= form.label :price, '価格（¥300~9,999,999)' %>
         <%= form.text_field :price, placeholder: :¥0, class: 'form__text js-text' %>

@@ -35,10 +35,11 @@
       <div class="field__category">
         <%= form.label :category_id, 'カテゴリ' %>
         <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "category_select-box", id: "category_select" }%>
-        <div class = "product_select-children"></div>
+        <div class = "product_select-children", id ="children_box"></div>
+        <div class = "product_select-grandchildren", id ="grandchildren_box"></div>
       </div>
 
-      <div class="field__size", id="size_selectbox">
+      <div class="field__size", id="size_box">
         <%= form.label :size_id, 'サイズ' %>
         <%= form.collection_select :size_id, Size.all, :id, :size, {include_blank: "選択してください"}, {class: "size_box"} %>
       </div>
