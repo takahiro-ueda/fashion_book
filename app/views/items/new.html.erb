@@ -37,6 +37,11 @@
         <%= form.collection_select :size_id, Size.all, :id, :size, {include_blank: "選択してください"}, {class: "size_box"} %>
       </div>
 
+      <div class="field__brand">
+        <%= form.label :brand_id, 'ブランド' %>
+        <%= form.collection_select :brand_id, Brand.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
+      </div>
+
       <div class="field__introduction">
         <%= form.label :introduction, '商品説明' %>
         <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>

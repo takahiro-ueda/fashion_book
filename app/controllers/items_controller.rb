@@ -68,7 +68,7 @@ class ItemsController < ApplicationController
       :introduction, 
       :category_id,
       :size_id,
-      :brand,
+      :brand_id,
       :season,
       :color_id,
       :price, 

@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :image
       t.references :category, null: false
       t.references :size, null: true
-      # t.string :brand, null: true
+      t.references :brand, null: true
       # t.integer :season, null: true
       # t.integer :color_id, null: false
       t.integer :price, null: false
