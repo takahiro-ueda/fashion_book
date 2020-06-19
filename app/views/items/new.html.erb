@@ -1,0 +1,86 @@
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="blog__contents">
+  <div class="blog__contents__blog">
+    <div class="blog__contents__blog__list">
+      <h2>新規アイテム登録</h2>
+    </div>
+    <div class="field">
+    <%= form_with(model: @item, class: :form, local: true) do |form| %>
+      <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@item.errors.count, "件のエラーにより") %> この投稿は保存できませんでした。</h2>
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="field__image">
+        <%= form.label :image, '画像' %>
+        <%= form.file_field :image, class: :form__image, id: "image-form" %>
+      </div>
+
+      <div class="field__name">
+        <%= form.label :name, '商品名' %>
+        <%= form.text_field :name, placeholder: :商品名40文字まで, class: :form__title %>
+      </div>
+
+      <div class="field__introduction">
+        <%= form.label :introduction, '商品説明' %>
+        <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>
+        <P class="js-text-count"></P>
+      </div>
+
+      <div class="field__category">
+        <%= form.label :category_id, 'カテゴリ' %>
+        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "category_select-box", id: "category_select" }%>
+        <div class = "product_select-children", id ="children_box"></div>
+        <div class = "product_select-grandchildren", id ="grandchildren_box"></div>
+      </div>
+
+      <div class="field__size", id="size_box">
+        <%= form.label :size_id, 'サイズ' %>
+        <%= form.collection_select :size_id, Size.all, :id, :size, {include_blank: "選択してください"}, {class: "size_box"} %>
+      </div>
+
+      <div class="field__brand">
+        <%= form.label :brand_id, 'ブランド' %>
+        <%= form.collection_select :brand_id, Brand.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
+      </div>
+
+      <div class="field__season">
+        <%= form.label :season_id, '季節' %>
+        <%= form.collection_select :season_id, Season.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
+      </div>
+
+      <div class="field__color">
+        <%= form.label :color_id, 'カラー' %>
+        <%= form.collection_select :color_id, Color.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
+      </div>
+
+      <div class="field__introduction">
+        <%= form.label :price, '価格（¥300~9,999,999)' %>
+        <%= form.text_field :price, placeholder: :¥0, class: 'form__text js-text' %>
+        <P class="js-text-count"></P>
+      </div>
+
+      <div class="actions">
+        <%= form.submit '保存', class: :form__btn %>
+      </div>  
+    </div>
+    <% end %>
+  </div>
+</div>

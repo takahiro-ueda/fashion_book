@@ -1,0 +1,36 @@
+<div class="blog__content">
+  <div class="blog__content__left">
+    <div class="blog__content__left__image">
+      <% if item.image.present? %>
+        <%= image_tag "#{item.image }", height: '300px', width: '300px' %>
+      <% else %>
+        <%= image_tag "/Unknown.png", height: '300px', width: '300px' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="blog__content__right">
+    <div class="blog__content__right__tag">
+      <div class="blog__content__right__tag__top">
+        <%= link_to item.name, item_path(item.id), class: "blog__content__right__tag__top__title" %>
+        <div class= "blog__content__right__tag__top__category">
+          
+        </div>
+      </div>
+      <div class="blog__content__right__tag__bottom">
+        <div class="blog__content__right__tag__bottom__userName">
+          <%= link_to item.user.nickname, user_path(item.user), class: "blog__content__tag__right__bottom__userName__btn" %>
+        </div> 
+        <div class="blog__content__right__tag__center__date">
+          <%= item.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        </div>
+      </div>
+    </div>
+    <div class="blog__content__right__text">
+      <div class="blog__content__right__text__blog">
+        <%= strip_tags(item.introduction.to_s).gsub(/[\n]/,"").strip.truncate(50) %>
+        <%= link_to '続きを読む', item_path(item), class: "blog__content__right__text__blog__number" %>
+      </div>
+    </div>
+  </div>
+  <%# <%= render partial: 'likes/nolike', locals: { post: post, posts: @posts, likes: @likes, like: @like } %>
+</div>

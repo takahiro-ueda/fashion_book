@@ -1,0 +1,48 @@
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="contents">
+  <div class="content">
+    <div class="content__mypage">
+      <div class="content__mypage__left">
+        <ul class="content__mypage__left__side">
+          <li class="content__mypage__left__side__list">
+            <h2 class="content__mypage__left__side__list__menu">アイテム</h2>
+            <ul>
+              <li>
+                <%= link_to items_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                  アイテム一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_item_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                  アイテム登録<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+            <h2 class="content__mypage__left__side__list__menu">性別</h2>
+            <h2 class="content__mypage__left__side__list__menu">ブランド</h2>
+            <h2 class="content__mypage__left__side__list__menu">カテゴリー</h2>
+            <h2 class="content__mypage__left__side__list__menu">季節</h2>
+            <h2 class="content__mypage__left__side__list__menu">カラー</h2>
+          </li>
+        </ul>
+      </div>
+      <div class="content__item__right">
+        <h2>アイテム一覧</h2>
+        <% @items.each do |item| %>
+          <%= render partial: "item", locals: { item: item } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
