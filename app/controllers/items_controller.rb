@@ -32,17 +32,17 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    #カテゴリーデータ取得
-    @grandchild_category = @item.category
-    @child_category = @grandchild_category.parent 
-    @category_parent = @child_category.parent
+    # #カテゴリーデータ取得
+    # @category_grandchildren = @item.category
+    # @category_children = @category_grandchildren.parent 
+    # @category_parent = @category_children.parent
 
-    #カテゴリー一覧を作成
-    @category = Category.find(params[:id])
-    # 紐づく孫カテゴリーの親（子カテゴリー）の一覧を配列で取得
-    @category_children = @item.category.parent.parent.children
-    # 紐づく孫カテゴリーの一覧を配列で取得
-    @category_grandchildren = @item.category.parent.children
+    # #カテゴリー一覧を作成
+    # @category = Category.find(params[:id])
+    # # 紐づく孫カテゴリーの親（子カテゴリー）の一覧を配列で取得
+    # @category_children = @item.category.parent.parent.children
+    # # 紐づく孫カテゴリーの一覧を配列で取得
+    # @category_grandchildren = @item.category.parent.children
   end
 
   def update
@@ -59,6 +59,11 @@ class ItemsController < ApplicationController
 
   def show
     @size = @item.size
+    @brand = @item.brand
+    @season = @item.season
+    @color = @item.color
+    @category = @item.category
+   
   end
 
   def destroy
@@ -81,7 +86,7 @@ class ItemsController < ApplicationController
   private
 
   def set_category  
-    @category_parent_array = Category.where(ancestry: nil)
+    @parents = Category.where(ancestry: nil)
   end
 
   def item_params

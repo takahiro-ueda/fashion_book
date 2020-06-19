@@ -1,3 +1,15 @@
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 <div class="blog__contents">
   <div class="blog__contents__lists">
     <div class="blog__contents__lists__postTitle">
@@ -19,8 +31,37 @@
         <%= image_tag "/Unknown.png", height: '300px', width: '300px' %>
       <% end %>
     </div>
-    <div class="blog__contents__lists__postText">
+    <div class="blog__contents__lists__introduction">
+      <span>【アイテム説明】</span><br>
       <%= @item.introduction %>
+    </div>
+    <div class="blog__contents__lists__category">
+      <span>【カテゴリ】</span>
+      <%= link_to  '/', class: "blog__contents__lists__category" do %>
+        <%= @item.category.root.name %>
+         ＞
+        <%= @item.category.parent.name %>
+         ＞
+        <%= @item.category.name %>
+      <% end %>
+    </div>
+    <div class="blog__contents__lists__brand">
+      <span>【ブランド】</span>
+      <%= @brand.name %>
+    </div>
+    <div class="blog__contents__lists__size">
+      <span>【サイズ】</span>
+      <%= @size.size %>
+    </div>
+    <div class="blog__contents__lists__size">
+      <span>【季節】</span>
+      <%= @season.name %>
+    </div>
+    <div class="blog__contents__lists__color">
+      <span>【カラー】</span>
+      <%= @color.name%>
+    </div>
+    <div class="blog__contents__lists__price">
       ￥<%= @item.price %>ー
     </div>
   </div>

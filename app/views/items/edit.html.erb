@@ -8,28 +8,28 @@
 
       <div class="field__image">
         <%= form.label :image, '画像' %>
-        <%= form.file_field :image %>
+        <%= form.file_field :image, class: :form__image, id: "image-form" %>
       </div>
 
       <div class="field__name">
-        <%= form.label :name, 'アイテム名' %>
-        <%= form.text_field :name, placeholder: :アイテム名, class: :form__title %>
+        <%= form.label :name, '商品名' %>
+        <%= form.text_field :name, placeholder: :商品名40文字まで, class: :form__title %>
       </div>
-        
-      
+
       <div class="field__introduction">
         <%= form.label :introduction, '商品説明' %>
         <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>
-        <%# <P class="js-text-count"></P> %>
+        <P class="js-text-count"></P>
       </div>
 
       <div class="field__category">
         <%= form.label :category_id, 'カテゴリ' %>
         <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "category_select-box", id: "category_select" }%>
-        <div class = "product_select-children"></div>
+        <div class = "product_select-children", id ="children_box"></div>
+        <div class = "product_select-grandchildren", id ="grandchildren_box"></div>
       </div>
 
-      <div class="field__size", id="size_selectbox">
+      <div class="field__size", id="size_box">
         <%= form.label :size_id, 'サイズ' %>
         <%= form.collection_select :size_id, Size.all, :id, :size, {class: "size_box"} %>
       </div>
@@ -49,7 +49,7 @@
         <%= form.collection_select :color_id, Color.all, :id, :name, {class: "brand_box"} %>
       </div>
 
-      <div class="field__price">
+      <div class="field__introduction">
         <%= form.label :price, '価格（¥300~9,999,999)' %>
         <%= form.text_field :price, placeholder: :¥0, class: 'form__text js-text' %>
       </div>
