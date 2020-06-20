@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_135901) do
+ActiveRecord::Schema.define(version: 2020_06_19_144918) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
@@ -36,12 +36,21 @@ ActiveRecord::Schema.define(version: 2020_06_19_135901) do
     t.index ["name"], name: "index_categories_on_name"
   end
 
+  create_table "category_sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "items_size_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_sizes_on_category_id"
+    t.index ["items_size_id"], name: "index_category_sizes_on_items_size_id"
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "introduction", null: false
     t.string "image"
     t.bigint "category_id", null: false
-    t.bigint "size_id"
+    t.bigint "items_size_id"
     t.bigint "brand_id"
     t.bigint "season_id"
     t.bigint "color_id", null: false
@@ -52,8 +61,17 @@ ActiveRecord::Schema.define(version: 2020_06_19_135901) do
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["color_id"], name: "index_items_on_color_id"
+    t.index ["items_size_id"], name: "index_items_on_items_size_id"
     t.index ["season_id"], name: "index_items_on_season_id"
-    t.index ["size_id"], name: "index_items_on_size_id"
+  end
+
+  create_table "items_sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "size", null: false
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_items_sizes_on_ancestry"
+    t.index ["size"], name: "index_items_sizes_on_size"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -73,4 +91,6 @@ ActiveRecord::Schema.define(version: 2020_06_19_135901) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "category_sizes", "categories"
+  add_foreign_key "category_sizes", "items_sizes"
 end
