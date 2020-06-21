@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_144918) do
+ActiveRecord::Schema.define(version: 2020_06_21_054248) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
@@ -67,9 +67,9 @@ ActiveRecord::Schema.define(version: 2020_06_19_144918) do
 
   create_table "items_sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "size", null: false
-    t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
     t.index ["ancestry"], name: "index_items_sizes_on_ancestry"
     t.index ["size"], name: "index_items_sizes_on_size"
   end
