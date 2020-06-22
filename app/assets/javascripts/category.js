@@ -139,7 +139,7 @@ $(function(){
         $('#size_wrapper').remove(); //孫が変更された時、サイズ欄以下を削除する
         // $('#brand_wrapper').remove();
         $('.size_box').val('');
-        $('#size_box').css('display', 'none');
+        $('#size_box').css('display', 'block');
         if (sizes.length != 0) {
         var insertHTML = '';
         sizes.forEach(function(size){
