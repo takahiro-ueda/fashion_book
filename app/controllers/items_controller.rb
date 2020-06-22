@@ -14,16 +14,10 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     # @item.item_images.new
-    # #セレクトボックスの初期値設定
-    # @parent = ["---"]
-    # #データベースから、親カテゴリーのみ抽出し、配列化
-    # Category.where(ancestry: nil).each do |parent|
-    #     @parent << parent.name
-    # end
   end
 
   def create
-    # @item = Item.new(item_params)
+    @item = Item.new(item_params)
     category = Category.find(item_params[:category_id])
     @item = category.items.create(item_params)
     # unless @item.valid?
@@ -87,24 +81,34 @@ class ItemsController < ApplicationController
   private
 
   def set_category  
-    @parents = Category.where(ancestry: nil)
+    # @parents = Category.where(ancestry: nil)
     def category_children 
-      @category_children = Category.find(params[:productcategory]).children
+      respond_to do |format| 
+        format.html
+        format.json do
+          @category_children = Category.find(params[:parent_name]).children
+        end
+      end
     end
     # Ajax通信で送られてきたデータをparamsで受け取り､childrenで子を取得
     def category_grandchildren
-      @category_grandchildren = Category.find(params[:productcategory]).children
+      respond_to do |format| 
+        format.html
+        format.json do
+          @category_grandchildren = Category.find("#{params[:child_id]}").children
+        end
+      end
     end
     # Ajax通信で送られてきたデータをparamsで受け取り､childrenで孫を取得｡（実際には子カテゴリーの子になる｡childrenは子を取得するメソッド)
   
     # 孫カテゴリーが選択された後に動くアクション
     def category_size
-      @category_grandchildren = Category.find(params[:productcategory]).children #孫カテゴリーを取得
-      if related_size_parent = @category_grandchildren.size[0] #孫カテゴリーと紐付くサイズ（親）があれば取得
+      selected_grandchild = Category.find("#{params[:grandchild_id]}").children #孫カテゴリーを取得
+      if related_size_parent = selected_grandchild.items_sizes[0] #孫カテゴリーと紐付くサイズ（親）があれば取得
         @sizes = related_size_parent.children #紐づいたサイズ（親）の子供の配列を取得
       else
-        @category_grandchildren = Category.find(params[:productcategory]).parent #孫カテゴリーの親を取得
-        if related_size_parent = @category_grandchildren.size[0] #孫カテゴリーの親と紐付くサイズ（親）があれば取得
+        selected_grandchild = Category.find("#{params[:grandchild_id]}").parent #孫カテゴリーの親を取得
+        if related_size_parent = selected_grandchild.items_sizes[0] #孫カテゴリーの親と紐付くサイズ（親）があれば取得
           @sizes = related_size_parent.children #紐づいたサイズ（親）の子供の配列を取得
         end
       end

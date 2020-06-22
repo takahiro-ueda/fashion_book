@@ -3,7 +3,7 @@ $(function(){
     var html = `<option value="${category.id}">${category.name}</option>`;
     return html;
   }
-  function appendSizeOption(items_size){ // サイズセレクトボックスのオプションを作成
+  function appendSizeOption(size){ // サイズセレクトボックスのオプションを作成
     var html = `<option value="${size.id}">${size.size}</option>`;
     return html;
   }
@@ -37,8 +37,8 @@ $(function(){
     $('#grandchildren_box').append(grandchildrenSelectHtml);
   }
   function appendSizeBox(insertHTML){ // サイズ・ブランド入力欄の表示作成
-    var items_sizeSelectHtml = '';
-    items_sizeSelectHtml = `<div class='product-select-wrapper' id= 'size_wrapper'>
+    var sizeSelectHtml = '';
+    sizeSelectHtml = `<div class='product-select-wrapper' id= 'size_wrapper'>
                         <div class='product_category-select'>
                           <select class="category_select-box" id="size_category" name="item[category_id]">
                             <option value="---">---</option>
@@ -59,7 +59,7 @@ $(function(){
       $.ajax({
         url: 'category_children',
         type: 'GET',
-        data: { productcategory: productcategory },
+        data: { parent_name: productcategory },
         dataType: 'json'
       })
       .done(function(children){  // 送られてきたデータをchildrenに代入
@@ -73,11 +73,11 @@ $(function(){
           insertHTML += appendOption(child); 
         });
         appendChidrenBox(insertHTML); 
-        $(document).on('change', '#category_select', function(){
-  // 通信成功時に親の選択肢を変えたらイベント発火｡子と孫を削除｡selectのidにかけるのではなく､親要素にかけないと残ってしまう
-          $('#children_wrapper').remove(); 
-          $('#grandchildren_wrapper').remove();
-        })
+  //       $(document).on('change', '#category_select', function(){
+  // // 通信成功時に親の選択肢を変えたらイベント発火｡子と孫を削除｡selectのidにかけるのではなく､親要素にかけないと残ってしまう
+  //         $('#children_wrapper').remove(); 
+  //         $('#grandchildren_wrapper').remove();
+  //       })
       })
       .fail(function(){
         alert('カテゴリー取得に失敗しました');
@@ -95,7 +95,7 @@ $(function(){
     $.ajax ({
       url: 'category_grandchildren',
       type: 'GET',
-      data: { productcategory: productcategory },
+      data: { child_id: productcategory },
       dataType: 'json'
     })
     .done(function(grandchildren){
@@ -108,9 +108,9 @@ $(function(){
         });
         appendgrandChidrenBox(insertHTML); 
          
-        $(document).on('change', '#child_category',function(){
-          $('#grandchildren_wrapper').remove();
-          })
+        // $(document).on('change', '#child_category',function(){
+        //   $('#grandchildren_wrapper').remove();
+        //   })
         }) 
         .fail(function(){
           alert('カテゴリー取得に失敗しました');
@@ -129,24 +129,27 @@ $(function(){
       $.ajax({
         url: 'category_size',
         type: 'GET',
-        data: { productcategory: productcategory },
-        dataType: 'json'
+        data: { grandchild_id: productcategory },
+        dataType: 'json',
+        success: function(data){ 
+          console.log(data); 
+         } 
       })
       .done(function(sizes){
-        // $('#size_wrapper').remove(); //孫が変更された時、サイズ欄以下を削除する
+        $('#size_wrapper').remove(); //孫が変更された時、サイズ欄以下を削除する
         // $('#brand_wrapper').remove();
-        // $('.size_box').val('');
-        // $('#size_box').css('display', 'none');
+        $('.size_box').val('');
+        $('#size_box').css('display', 'none');
         if (sizes.length != 0) {
         var insertHTML = '';
         sizes.forEach(function(size){
           insertHTML += appendSizeOption(size);
           });
           appendSizeBox(insertHTML); 
-          $(document).on('change', '#grandchild_category',function(){
-            $('#size_wrapper').remove(); //孫が変更された時、サイズ欄以下を削除する
-            // $('#brand_wrapper').remove();
-          })
+          // $(document).on('change', '#grandchild_category',function(){
+          //   $('#size_wrapper').remove(); //孫が変更された時、サイズ欄以下を削除する
+          //   // $('#brand_wrapper').remove();
+          // })
         }
       }) 
       .fail(function(){
@@ -155,68 +158,19 @@ $(function(){
     } else {
       console.log('サイズ取得失敗')
       // $('#size_wrapper').remove(); //孫カテゴリーが初期値になった時、サイズ欄以下を削除する
-      // $('.size_box').val('');
-      // $('#size_box').css('display', 'none');
+      $('.size_box').val('');
+      $('#size_box').css('display', 'none');
+    }
+  });
+  //孫カテゴリー選択によるイベント発火
+  $(document).on('change', '#grandchildren_box', function() {
+    var productcategory = $('#grandchildren_category option:selected').data('category');
+    if (productcategory != "") {
+      $('.size_box').val('');
+      $('#size_box').css('display', 'block');
+    } else {
+      $('.size_box').val('');
+      $('#size_box').css('display', 'none');
     }
   });
 });
-// $(function(){
-//   // サイズセレクトボックスのオプションを作成
-//   function appendSizeOption(size){
-//     var html = `<option value="${size.id}">${size.size}</option>`;
-//     return html;
-//   }
-//   // サイズ・ブランド入力欄の表示作成
-//   function appendSizeBox(insertHTML){
-//     var sizeSelectHtml = '';
-//     sizeSelectHtml = `<div class='product-select-wrapper' id= 'size_wrapper'>
-//                         <div class='product_category-select'>
-//                           <select class="category_select-box" id="size_category" name="item[category_id]">
-//                             <option value="---">---</option>
-//                             ${insertHTML} 
-//                           </select>
-//                         </div>
-//                         <div class= 'product_select-grandchildren'>
-//                         </div>
-//                       </div>`;          
-//     $('#size_box').append(sizeSelectHtml);
-//   }
-//   // 孫カテゴリー選択後のイベント
-//   $(document).on('change', '#grandchild_category', function(){
-//     // var productcategory = $('#grandchild_category option:selected').data('category'); 
-//     var productcategory = document.getElementById('grandchild_category').value;
-//     if (productcategory != "---"){ //孫カテゴリーが初期値でないことを確認
-//       $('.size_box').val('');
-//       $('#size_box').css('display', 'none');
-//       $.ajax({
-//         url: 'category_size',
-//         type: 'GET',
-//         data: { productcategory: productcategory },
-//         dataType: 'json'
-//       })
-//       .done(function(sizes){
-//         $('#size_wrapper').remove(); //孫が変更された時、サイズ欄以下を削除する
-//         // $('#brand_wrapper').remove();
-//         // if (sizes.length != 0) {
-//           var insertHTML = '';
-//           sizes.forEach(function(size){
-//           insertHTML += appendSizeOption(size);
-//           });
-//           appendSizeBox(insertHTML); 
-          
-//           $(document).on('change', '#grandchild_category',function(){
-//             $('#size_wrapper').remove(); //孫が変更された時、サイズ欄以下を削除する
-//             // $('#brand_wrapper').remove();
-//           })
-//         // }
-//       }) 
-//       .fail(function(){
-//         alert('サイズ取得に失敗しました');
-//       })
-//     } else {
-//       $('.size_box').val('');
-//       $('#size_box').css('display', 'none');
-//       $('#size_wrapper').remove(); //孫カテゴリーが初期値になった時、サイズ欄以下を削除する
-//     }
-//   });
-// });
