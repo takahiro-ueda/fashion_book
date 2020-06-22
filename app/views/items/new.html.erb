@@ -52,8 +52,8 @@
       </div>
 
       <div class="field__size", id="size_box">
-        <%= form.label :size_id, 'サイズ' %>
-        <%= form.collection_select :size_id, Size.all, :id, :size, {include_blank: "選択してください"}, {class: "size_box"} %>
+        <%= form.label :items_size_id, 'サイズ' %>
+        <%= form.collection_select :items_size_id, ItemsSize.all, :id, :size, {include_blank: "選択してください"}, {class: "size_box"} %>
       </div>
 
       <div class="field__brand">
