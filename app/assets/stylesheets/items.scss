@@ -1,3 +1,435 @@
-// Place all the styles related to the items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+  box-sizing: border-box;
+}
+@mixin list-btn {
+  min-height: 48px;
+  display: block;
+  padding: 16px 26px 16px 16px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fff;
+  position: relative;
+  text-decoration: none;
+}
+@mixin list-icon {
+  font-size: 20px;
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  color: #ccc;
+}
+// body{
+//   background-color: #f6f6f6;
+  // min-width: 900px;
+  // background:rgba(255,255,255,0.7);
+  // background-image: url(https://www.canva.com/ja_jp/learn/wp-content/uploads/sites/10/2020/03/zoom-backgrounds-banner.png);
+  // .blog__header{
+  //   height: 56px;
+  //   width: 100%;
+  //   padding: 0 100px;
+  //   background-color: lightgreen;
+  //   color: #fff;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   position: flex;
+  //   &__title{
+  //     font-size: 35px;
+  //     line-height: 56px;
+  //     // font-family: 'Londrina Shadow', cursive;
+  //     font-family: 'Montserrat Subrayada', sans-serif;
+  //     &__text{
+  //       text-decoration: none;
+  //       color: #fff;
+  //     }
+  //   }
+  //   &__right{
+  //     line-height: 56px;
+  //     a {
+  //       text-decoration: none;
+  //       color: #fff;
+  //     }
+  //     &--btn{
+  //       margin-left:15px;
+  //     }
+  //   }
+  // }
+.header {
+  padding: 0 60px;
+  list-style: none;
+  border-bottom: 1px solid #f6f6f6;
+  &__item {
+    max-width: 1040px;
+    width: 100%;
+    // min-height: 82px;
+    margin: 0 auto;
+    
+    &__show {
+      display: flex;
+      justify-content: space-between;
+      &__title {
+        margin-right: 30px;
+        border-radius: 4px;
+        display: flex;
+        a {
+          color:black;
+          text-decoration: none;
+        }
+        &__main {
+          font-family: 'Caveat', cursive;
+          font-size: 30px;
+          line-height: 50px;
+        }
+        &__sub {
+          font-family: 'Amatic SC', cursive;
+          font-size: 12px;
+          margin-left: 20px;
+          line-height: 50px;
+        }
+      }
+      &__lists {
+        display: flex;
+        font-size: 14px;
+        margin-bottom: 10px;
+        a{
+          color: #333;
+          text-decoration: none;
+          background-position: center right;
+          background-repeat: no-repeat;
+          background-size: 18px;
+        }
+        a:hover {
+          text-decoration:underline;
+        }
+        &__list {
+          display: flex;
+          margin-left: auto;
+          width: 100%;
+          
+          &__edit, &__delete, &__back {
+            display: block;
+            font-size: 20px;
+            color: #ffffff;
+            padding: 0 10px;
+            margin-right: 10px;
+            line-height: 50px;
+            
+          }
+        }
+      }
+    }
+  }
+}
+.breadcrumbs {
+  font-size: 15px;
+  margin: 10px 0 20px 15px;
+}
+.contents{
+  width: 100%;
+  margin: 30px auto 0;
+  background-color: #fff;
+  height: 100%;
+  width: 80%;
+  overflow: scroll;
+  // &__seach {
+  //   display: flex;
+  //   width: 100%;
+  //   border-bottom: solid 0.1px #e0e0e0;
+  //   h2 {
+  //     text-align: center;
+  //     width: 30%;
+  //   }
+  //   &__postTitle {
+  //     text-align: center;
+  //     width: 30%;
+  //     font-size: 24px;
+  //     font-weight: bold;
+  //     padding-top: 20px;
+  //   }
+  //   &__form {
+  //     display: flex;
+  //     height: 30px;
+  //     margin: 20px 0 10px;
+  //     width: 70%;
+  //     line-height: 30px;
+  //     position: relative;
+  //     &__input {
+  //       display: flex;
+  //       height: 30px;
+  //       width: 250px;
+  //       position: absolute;
+  //       right: 100px;
+  //     }
+  //     &__btn {
+  //       display: flex;
+  //       height: 30px;
+  //       width: 40px;
+  //       margin-left: 15px;
+  //       position: absolute;
+  //       right: 40px;
+  //       padding-left: 4px;
+  //     }
+  //   }
+  // }
+  // .blog__content{
+  //   width: 100%;
+  //   margin: 10px 0 20px;
+  //   padding: 10px;
+  //   border-bottom: 1px solid #f6f6f6;
+  //   display: flex;
+  //   &__left{
+  //     margin-right: 20px;
+  //     width: 100px;
+  //     &__image{
+  //       border: solid 1px;
+  //     }
+  //   }
+  //   &__right{
+  //     width: calc(100% - 100px);
+  //     height: 50px;
+  //     position: relative;
+  //     &__tag {
+  //       display: flex;
+  //       &__top{
+  //         font-size: 20px;
+  //         font-weight: bold;
+  //         &__title{
+  //           text-decoration: none;
+  //           color: #000000;
+  //         }
+  //         &__category {
+  //           font-size: 12px;
+  //         }
+  //       }
+  //       &__bottom{
+  //         font-size: 15px;
+  //         color: #999;
+  //         display: flex;
+  //         margin-left: 20px;
+  //         &__userName{
+  //           display: flex;
+  //           width: 100px;
+  //           margin: 0 auto;
+  //           a {
+  //             text-decoration: none;
+  //             color: black;
+  //             &:hover {
+  //               color: skyblue;
+  //             }
+  //           }
+  //           &__btn{
+  //             width: 100px;
+  //           }
+  //         }
+  //         &__date{
+  //           width: 200px;
+  //           display: flex;
+  //           margin-left: 30px;
+  //         }
+  //       }
+  //     }
+  //     &__text {
+  //       height: 40px;
+        
+  //       &__blog {
+  //         .trix-content {
+  //           font-size: 15px;
+  //         }
+  //       }
+  //     }
+  //   } 
+  // }
+  // &__blog {
+  //   &__list {
+  //     border-bottom: 1px solid #f6f6f6;
+  //     padding-left: 50px;
+  //   }
+  //   .field {
+  //     margin: 10px 50px;
+  //     font-size: 24px;
+  //     &__tag {
+  //       height: 80px;
+  //       margin-bottom: 20px;
+  //       display: flex;
+  //       &__title {
+  //         margin-right: 60px;
+  //       }
+  //       &__category {
+  //         &__select-box {
+  //           height: 40px;
+  //         }
+  //       }
+  //     }
+  //     &__image {
+  //       margin-bottom: 30px;
+  //     }
+  //     &__blog {
+  //       margin-bottom: 60px;
+  //     }
+  //   }
+  // }
+  //show
+  &__item {
+    width: 100%;
+    padding: 20px 60px;
+    background-color: #e0e0e0;
+    &__show {
+      height: 1000px;
+      max-width: 1040px;
+      width: 100%;
+      display: flex;
+      margin: 0 auto;
+      &__left {
+        display: flex;
+        width: 50%;
+        
+        &__image {
+          height: 500px; 
+          width: 90%;
+        }
+      }
+      &__right {
+        width: 100%;
+        padding-right: 10px;
+        height: 100%;
+        width: 50%;
+        // overflow: scroll;
+        &__top {
+          background: #fff;
+          border-radius: 3px;
+          border: 1px #ddd solid;
+          padding: 20px 0 23px 23px;
+          margin-bottom: 20px;
+          &__brand, &__name {
+            margin-bottom: 20px;
+          }
+          &__price {
+            font-size: 30px;
+          }
+        }
+        &__low {
+          background: #fff;
+          border-radius: 3px;
+          border: 1px #ddd solid;
+          padding: 20px 0 23px 23px;
+          &__introduction {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+          }
+          &__category, &__size, &__season, &__color {
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+//   &__lists {
+//     &__postTitle{
+//       font-size: 24px;
+//       font-weight: bold;
+//       text-align: center;
+//       padding-top: 20px;
+//     }  
+//     &__sublist {
+//       display: flex;
+//       padding-top: 20px;
+//       justify-content: space-between;
+//       &__postCategory {
+//         font-size: 15px;
+//         margin-left: 40px;
+//       }
+//       &__postDate{
+//         font-size: 15px;
+//         color: #999;
+//         margin-left: 40px;
+//       }
+//       &__postAuthor{
+//         font-size: 15px;
+//         color: #999;
+//         margin-left: 40px;
+//       }
+//       &__postManage{
+//         display: flex;
+//         margin-left: 50px;
+//         &__edit, &__delete, &__back {
+//           display: block;
+//           border-radius: 5px;
+//           color: #ffffff;
+//           background-color: lightgreen;
+//           padding: 0 10px;
+//           text-decoration: none;
+//           margin-right: 10px;
+//         }
+//       }
+//     }
+//     &__like {
+//       padding-top: 20px;
+//       margin-left: 40px;
+//     }
+//     &__postText{
+//       margin: 20px 30px;
+//       margin-left: 60px;
+//     }
+//   }
+  
+//   .post {
+//     display: flex;
+//     justify-content: center;
+//     margin-top: 10px;
+//     &__icon-back {
+//       display: block;
+//       width: 56px;/*幅*/
+//       height: 56px;/*高さ*/
+//       margin: 0 0 20px 60px;
+//       background: #03a9f4;/*背景色*/
+//       text-align: center;/*中央寄せ*/
+//       border-radius: 50%;/*角丸く*/
+//       transition: .3s;/*滑らかな動きに*/
+//       box-shadow: 0 2px 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);/*影*/
+//       &:hover {/*ホバー時*/
+//         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+//       }
+//       & i {/*中央のアイコン*/
+//         color: white;
+//         line-height: 56px;/*＝幅と高さ*/
+//         font-size: 18px;/*サイズ*/
+//       }
+//     }
+//   }
+// }
+// .form{
+//   width: 100%;
+//   height: 100%;
+//   // margin: 0 auto;
+//   padding-top: 30px;
+//   &__title{
+//     display: block;
+//     width: 400px;
+//     height: 40px;
+    
+//   }
+//   &__text{
+//     display: block;
+//     width: 100%;
+//     height: 100%;
+//     margin-top: 15px;
+//     padding: 0;
+//     padding-left: 30px;
+//   }
+//   .js-text-count {
+//     float:right;
+//     height: 50px;
+//     margin-top: 15px;
+//   }
+//   &__btn{
+//     display: block;
+//     width: 30%;
+//     margin: 15px auto 0;
+//     margin-bottom: 40px;
+//   }
+// }
+// .user{
+//   padding: 15px 30px;
+// }
+
