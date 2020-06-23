@@ -40,41 +40,40 @@
 
       <div class="contents__item__new__introduction">
         <%= form.label :introduction, '商品説明' %>
-        <%= form.text_field :introduction, placeholder: :'商品説明(600文字以内) (日付、素材、重さなど)', class: 'contents__item__new__introduction__select js-text' %>
+        <%= form.text_field :introduction, placeholder: :'商品説明(600文字以内) (日付、素材、重さなど)', class: 'form__introduction js-text' %>
         <P class="js-text-count"></P>
       </div>
 
       <div class="contents__item__new__category">
         <%= form.label :category_id, 'カテゴリ' %>
-        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "contents__item__new__category__select", id: "category_select" }%>
+        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "form__category", id: "category_select" }%>
         <div class = "product_select-children", id ="children_box"></div>
         <div class = "product_select-grandchildren", id ="grandchildren_box"></div>
       </div>
 
       <div class="contents__item__new__size", id="size_box">
         <%= form.label :items_size_id, 'サイズ' %>
-        <%= form.collection_select :items_size_id, ItemsSize.all, :id, :size, {include_blank: "選択してください"}, {class: "contents__item__new__size__select"} %>
+        <%= form.collection_select :items_size_id, ItemsSize.all, :id, :size, {include_blank: "選択してください"}, {class: "form__size"} %>
       </div>
 
       <div class="contents__item__new__brand">
         <%= form.label :brand_id, 'ブランド' %>
-        <%= form.collection_select :brand_id, Brand.all, :id, :name, {prompt: "選択してください"}, {class: "contents__item__new__brand__select"} %>
+        <%= form.collection_select :brand_id, Brand.all, :id, :name, {prompt: "選択してください"}, {class: "form__brand"} %>
       </div>
 
       <div class="contents__item__new__season">
         <%= form.label :season_id, '季節' %>
-        <%= form.collection_select :season_id, Season.all, :id, :name, {prompt: "選択してください"}, {class: "contents__item__new__season__select"} %>
+        <%= form.collection_select :season_id, Season.all, :id, :name, {prompt: "選択してください"}, {class: "form__season"} %>
       </div>
 
       <div class="contents__item__new__color">
         <%= form.label :color_id, 'カラー' %>
-        <%= form.collection_select :color_id, Color.all, :id, :name, {prompt: "選択してください"}, {class: "contents__item__new__color__select"} %>
+        <%= form.collection_select :color_id, Color.all, :id, :name, {prompt: "選択してください"}, {class: "form__color"} %>
       </div>
 
       <div class="contents__item__new__price">
         <%= form.label :price, '価格（¥300~9,999,999)' %>
-        <%= form.text_field :price, placeholder: :¥0, class: 'contents__item__new__price__select' %>
-        <P class="js-text-count"></P>
+        <%= form.text_field :price, placeholder: :¥0, class: 'form__price' %>
       </div>
 
       <div class="contents__item__new__actions">
