@@ -1,21 +1,21 @@
 <header>
-  <div class ="pcHeader">
-    <div class="pcHeader__headerInner">
-      <div class="pcHeader__headerInner__mainHeader">
-        <div class="pcHeader__headerInner__mainHeader__title">
-          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
-          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+  <div class ="header">
+    <div class="header__item">
+      <div class="header__item__show">
+        <div class="header__item__show__title">
+          <%= link_to "Fashion Book", '/', class: "header__item__show__title__main" %>
+          <div class="header__item__show__title__sub">毎日の服選びをおしゃれで楽に</div>
         </div>
       </div>
     </div>
   </div>
 </header>
-<div class="blog__contents">
-  <div class="blog__contents__blog">
-    <div class="blog__contents__blog__list">
+<div class="contents">
+  <div class="contents__item">
+    <div class="contents__item__title">
       <h2>新規アイテム登録</h2>
     </div>
-    <div class="field">
+    <div class="contents__item__new">
     <%= form_with(model: @item, class: :form, local: true) do |form| %>
       <% if @item.errors.any? %>
         <div id="error_explanation">
@@ -28,59 +28,60 @@
         </div>
       <% end %>
     
-      <div class="field__image">
+      <div class="contents__item__new__image">
         <%= form.label :image, '画像' %>
-        <%= form.file_field :image, class: :form__image, id: "image-form" %>
+        <%= form.file_field :image, class: :contents__item__new__image__select, id: "image-form" %>
       </div>
 
-      <div class="field__name">
+      <div class="contents__item__new__name">
         <%= form.label :name, '商品名' %>
-        <%= form.text_field :name, placeholder: :商品名40文字まで, class: :form__title %>
+        <%= form.text_field :name, placeholder: :商品名40文字まで, class: :contents__item__new__name__select %>
       </div>
 
-      <div class="field__introduction">
+      <div class="contents__item__new__introduction">
         <%= form.label :introduction, '商品説明' %>
-        <%= form.text_field :introduction, placeholder: :商品説明, class: 'form__text js-text' %>
+        <%= form.text_field :introduction, placeholder: :商品説明, class: 'contents__item__new__introduction__select js-text' %>
         <P class="js-text-count"></P>
       </div>
 
-      <div class="field__category">
+      <div class="contents__item__new__category">
         <%= form.label :category_id, 'カテゴリ' %>
-        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "category_select-box", id: "category_select" }%>
+        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "contents__item__new__category__select", id: "category_select" }%>
         <div class = "product_select-children", id ="children_box"></div>
         <div class = "product_select-grandchildren", id ="grandchildren_box"></div>
       </div>
 
-      <div class="field__size", id="size_box">
+      <div class="contents__item__new__size", id="size_box">
         <%= form.label :items_size_id, 'サイズ' %>
-        <%= form.collection_select :items_size_id, ItemsSize.all, :id, :size, {include_blank: "選択してください"}, {class: "size_box"} %>
+        <%= form.collection_select :items_size_id, ItemsSize.all, :id, :size, {include_blank: "選択してください"}, {class: "contents__item__new__size__select"} %>
       </div>
 
-      <div class="field__brand">
+      <div class="contents__item__new__brand">
         <%= form.label :brand_id, 'ブランド' %>
-        <%= form.collection_select :brand_id, Brand.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
+        <%= form.collection_select :brand_id, Brand.all, :id, :name, {prompt: "選択してください"}, {class: "contents__item__new__brand__select"} %>
       </div>
 
-      <div class="field__season">
+      <div class="contents__item__new__season">
         <%= form.label :season_id, '季節' %>
-        <%= form.collection_select :season_id, Season.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
+        <%= form.collection_select :season_id, Season.all, :id, :name, {prompt: "選択してください"}, {class: "contents__item__new__season__select"} %>
       </div>
 
-      <div class="field__color">
+      <div class="contents__item__new__color">
         <%= form.label :color_id, 'カラー' %>
-        <%= form.collection_select :color_id, Color.all, :id, :name, {prompt: "選択してください"}, {class: "brand_box"} %>
+        <%= form.collection_select :color_id, Color.all, :id, :name, {prompt: "選択してください"}, {class: "contents__item__new__color__select"} %>
       </div>
 
-      <div class="field__introduction">
+      <div class="contents__item__new__price">
         <%= form.label :price, '価格（¥300~9,999,999)' %>
-        <%= form.text_field :price, placeholder: :¥0, class: 'form__text js-text' %>
+        <%= form.text_field :price, placeholder: :¥0, class: 'contents__item__new__price__select' %>
         <P class="js-text-count"></P>
       </div>
 
-      <div class="actions">
-        <%= form.submit '保存', class: :form__btn %>
+      <div class="contents__item__new__actions">
+        <%= form.submit '保存', class: :contents__item__new__actions__btn %>
       </div>  
     </div>
     <% end %>
   </div>
 </div>
+<%= render partial: 'top/footer' %>
