@@ -154,7 +154,38 @@
       width: 100%;
       display: flex;
       margin: 0 auto;
-      &__image, &__name, &__introduction, &__size, &__brand, &__season, &__color, &__price {
+      &__image {
+        margin: 0 auto;
+        background-color: white;
+        border-bottom: solid 1px #f8f8f8;
+        padding: 10px 40px;
+        width: 910px;
+        &__select {
+          width: 100%;
+          height: 45px;
+          margin-bottom: 1%;
+          padding: 10px;
+          border-radius: 5px;
+          background-color: white;
+        }
+      }
+      &__introduction {
+        margin: 0 auto;
+        background-color: white;
+        border-bottom: solid 1px #f8f8f8;
+        padding: 10px 40px;
+        width: 910px;
+        &__select {
+          width: 100%;
+          height: 45px;
+          margin-bottom: 1%;
+          padding: 10px;
+          border: solid 1px #ccc;
+          border-radius: 5px;
+          background-color: white;
+        }
+      }
+      &__name, &__size, &__brand, &__season, &__color, &__price {
         margin: 0 auto;
         background-color: white;
         border-bottom: solid 1px #f8f8f8;
