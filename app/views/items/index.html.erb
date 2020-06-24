@@ -11,38 +11,48 @@
   </div>
 </header>
 <div class="contents">
-  <div class="content">
-    <div class="content__mypage">
-      <div class="content__mypage__left">
-        <ul class="content__mypage__left__side">
-          <li class="content__mypage__left__side__list">
-            <h2 class="content__mypage__left__side__list__menu">アイテム</h2>
+  <div class="contents__item">
+    <div class="contents__item__index">
+      <div class="contents__item__index__left">
+        <ul class="contents__item__index__left__side">
+          <li class="contents__item__index__left__side__list">
+            <h2 class="contents__item__index__left__side__list__menu">アイテム</h2>
             <ul>
               <li>
-                <%= link_to items_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                <%= link_to user_path(current_user.id), class: "contents__item__index__left__side__list__menu__tag" do %>
+                  マイページ<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to items_path, class: "contents__item__index__left__side__list__menu__tag" do %>
                   アイテム一覧<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
               <li>
-                <%= link_to new_item_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                <%= link_to new_item_path, class: "contents__item__index__left__side__list__menu__tag" do %>
                   アイテム登録<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
             </ul>
-            <h2 class="content__mypage__left__side__list__menu">性別</h2>
-            <h2 class="content__mypage__left__side__list__menu">ブランド</h2>
-            <h2 class="content__mypage__left__side__list__menu">カテゴリー</h2>
-            <h2 class="content__mypage__left__side__list__menu">季節</h2>
-            <h2 class="content__mypage__left__side__list__menu">カラー</h2>
+            <h2 class="contents__item__index__left__side__list__menu">性別</h2>
+            <h2 class="contents__item__index__left__side__list__menu">ブランド</h2>
+            <h2 class="contents__item__index__left__side__list__menu">カテゴリー</h2>
+            <h2 class="contents__item__index__left__side__list__menu">季節</h2>
+            <h2 class="contents__item__index__left__side__list__menu">カラー</h2>
           </li>
         </ul>
       </div>
-      <div class="content__item__right">
-        <h2>アイテム一覧</h2>
-        <% @items.each do |item| %>
-          <%= render partial: "item", locals: { item: item } %>
-        <% end %>
+      <div class="contents__item__index__right">
+        <div class="contents__item__index__right__seach">
+          <h2>アイテム一覧</h2>
+        </div>
+        <div class="contents__item__index__right__list">
+          <% @items.each do |item| %>
+            <%= render partial: "item", locals: { item: @item, item: item } %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<%= render partial: 'top/footer' %>

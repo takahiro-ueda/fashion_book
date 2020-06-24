@@ -1,5 +1,8 @@
 * {
   box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+
 }
 @mixin image {
   width: 200px;
@@ -24,41 +27,6 @@
   right: 16px;
   color: #ccc;
 }
-// body{
-//   background-color: #f6f6f6;
-  // min-width: 900px;
-  // background:rgba(255,255,255,0.7);
-  // background-image: url(https://www.canva.com/ja_jp/learn/wp-content/uploads/sites/10/2020/03/zoom-backgrounds-banner.png);
-  // .blog__header{
-  //   height: 56px;
-  //   width: 100%;
-  //   padding: 0 100px;
-  //   background-color: lightgreen;
-  //   color: #fff;
-  //   display: flex;
-  //   justify-content: space-between;
-  //   position: flex;
-  //   &__title{
-  //     font-size: 35px;
-  //     line-height: 56px;
-  //     // font-family: 'Londrina Shadow', cursive;
-  //     font-family: 'Montserrat Subrayada', sans-serif;
-  //     &__text{
-  //       text-decoration: none;
-  //       color: #fff;
-  //     }
-  //   }
-  //   &__right{
-  //     line-height: 56px;
-  //     a {
-  //       text-decoration: none;
-  //       color: #fff;
-  //     }
-  //     &--btn{
-  //       margin-left:15px;
-  //     }
-  //   }
-  // }
 .header {
   padding: 0 60px;
   list-style: none;
@@ -140,14 +108,171 @@
   &__item {
     width: 100%;
     padding: 20px 60px;
-    background-color: #e0e0e0;
-    //new
+    // background-color: #e0e0e0;
     &__title {
       h2 {
         text-align: center;
         width: 30%;
       }
     }
+    //index
+    &__index {  
+      height: 1000px;
+      max-width: 1040px;
+      width: 100%;
+      display: flex;
+      margin: 0 auto;
+      background-color: white;
+      &__left {
+        display: flex;
+        width: 15%;
+        border-right: 1px solid #e0e0e0;
+        &__side {
+          // margin: 0 auto;
+          display: flex;
+          &__list {
+            list-style: none;
+            a {
+              color: black;
+              text-decoration: none;
+            }
+            &__menu {
+              font-size: 20px;
+              margin-bottom: 10px;
+              border-bottom: solid 1px #e0e0e0;
+              &__tag {
+                width: 100%;
+              }
+            }
+            ul {
+              margin-bottom: 40px;
+            }
+            li {
+              display: flex;
+              font-size: 15px;
+              margin-bottom: 10px;
+              border: solid 0.1px #e0e0e0;
+              margin: 1px 0;
+            }
+            a {
+              @include list-btn;
+            }
+            a:hover {
+              background: #f9f9f9; 
+            }
+            i {
+              @include list-icon;
+            }
+            a:hover i {
+              transition: all ease-out .3s;
+              transform: translate(70%, 0);
+              color: #111;
+            }
+            p {
+              display: flex;
+              font-size: 15px;
+              margin-bottom: 10px;
+              a {
+                color: black;
+                position: relative;
+                display: inline-block;
+                text-decoration: none;
+              }
+              // a::after {
+              //   position: absolute;
+              //   bottom: -4px;
+              //   left: 0;
+              //   content: '';
+              //   width: 100%;
+              //   height: 2px;
+              //   background: lightgreen;
+              //   transform: scale(0, 1);
+              //   transform-origin: center top;
+              //   transition: transform .3s;
+              // }
+              // a:hover::after {
+              //   transform: scale(1, 1);
+              // }
+            }
+          }
+        }
+      }
+      &__right {
+        width : 100%;
+        padding-right: 10px;
+        height: 100%;
+        width: 85%;
+        overflow: scroll;
+        &__seach {
+          display: flex;
+          width: 100%;
+          // border-bottom: solid 0.1px #e0e0e0;
+          h2 {
+            text-align: center;
+            width: 30%;
+          }
+        //   &__form {
+        //     display: flex;
+        //     height: 30px;
+        //     margin: 20px 0 10px;
+        //     width: 70%;
+        //     line-height: 30px;
+        //     position: relative;
+        //     &__input {
+        //       display: flex;
+        //       height: 30px;
+        //       width: 250px;
+        //       position: absolute;
+        //       right: 100px;
+        //     }
+        //     &__btn {
+        //       display: flex;
+        //       height: 30px;
+        //       width: 40px;
+        //       margin-left: 15px;
+        //       position: absolute;
+        //       right: 40px;
+        //       padding-left: 4px;
+        //     }
+        //   }
+        }
+        &__list {
+          display: flex;
+          flex-wrap: wrap;
+          width : 100%;
+          &__tag {
+            width : calc(100%/3);
+            margin: 10px 0 10px;
+            padding: 5px;
+            border-bottom: 1px solid #f6f6f6;
+            &__image{
+              height: 280px;
+              border: 0.5px solid #ddd;
+              position: relative;
+              &__price{
+                color:white;
+                background-color: lightskyblue;
+                width: 25%;
+                text-align: center;
+                position: absolute;
+                bottom: 5px;
+                left: 5px;
+              }
+            }
+            &__low {
+              border: 0.1px solid #ddd;
+              &__brand {
+
+              }
+              &__name {
+
+              }
+            }
+          }
+        }
+      }
+    }  
+    //new
     &__new {
       height: 1100px;
       max-width: 1040px;
@@ -357,112 +482,3 @@
     border: none;
   }
 }
-//   &__lists {
-//     &__postTitle{
-//       font-size: 24px;
-//       font-weight: bold;
-//       text-align: center;
-//       padding-top: 20px;
-//     }  
-//     &__sublist {
-//       display: flex;
-//       padding-top: 20px;
-//       justify-content: space-between;
-//       &__postCategory {
-//         font-size: 15px;
-//         margin-left: 40px;
-//       }
-//       &__postDate{
-//         font-size: 15px;
-//         color: #999;
-//         margin-left: 40px;
-//       }
-//       &__postAuthor{
-//         font-size: 15px;
-//         color: #999;
-//         margin-left: 40px;
-//       }
-//       &__postManage{
-//         display: flex;
-//         margin-left: 50px;
-//         &__edit, &__delete, &__back {
-//           display: block;
-//           border-radius: 5px;
-//           color: #ffffff;
-//           background-color: lightgreen;
-//           padding: 0 10px;
-//           text-decoration: none;
-//           margin-right: 10px;
-//         }
-//       }
-//     }
-//     &__like {
-//       padding-top: 20px;
-//       margin-left: 40px;
-//     }
-//     &__postText{
-//       margin: 20px 30px;
-//       margin-left: 60px;
-//     }
-//   }
-  
-//   .post {
-//     display: flex;
-//     justify-content: center;
-//     margin-top: 10px;
-//     &__icon-back {
-//       display: block;
-//       width: 56px;/*幅*/
-//       height: 56px;/*高さ*/
-//       margin: 0 0 20px 60px;
-//       background: #03a9f4;/*背景色*/
-//       text-align: center;/*中央寄せ*/
-//       border-radius: 50%;/*角丸く*/
-//       transition: .3s;/*滑らかな動きに*/
-//       box-shadow: 0 2px 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);/*影*/
-//       &:hover {/*ホバー時*/
-//         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
-//       }
-//       & i {/*中央のアイコン*/
-//         color: white;
-//         line-height: 56px;/*＝幅と高さ*/
-//         font-size: 18px;/*サイズ*/
-//       }
-//     }
-//   }
-// }
-// .form{
-//   width: 100%;
-//   height: 100%;
-//   // margin: 0 auto;
-//   padding-top: 30px;
-//   &__title{
-//     display: block;
-//     width: 400px;
-//     height: 40px;
-    
-//   }
-//   &__text{
-//     display: block;
-//     width: 100%;
-//     height: 100%;
-//     margin-top: 15px;
-//     padding: 0;
-//     padding-left: 30px;
-//   }
-//   .js-text-count {
-//     float:right;
-//     height: 50px;
-//     margin-top: 15px;
-//   }
-//   &__btn{
-//     display: block;
-//     width: 30%;
-//     margin: 15px auto 0;
-//     margin-bottom: 40px;
-//   }
-// }
-// .user{
-//   padding: 15px 30px;
-// }
-
