@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
 
   def index
     @item = Item.new
-    @items = Item.includes(:user).order(created_at: "DESC").limit(3)
+    @items = Item.includes(:user).order(created_at: "DESC").limit(9)
   end
 
   def new

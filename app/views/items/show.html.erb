@@ -1,68 +1,81 @@
 <header>
-  <div class ="pcHeader">
-    <div class="pcHeader__headerInner">
-      <div class="pcHeader__headerInner__mainHeader">
-        <div class="pcHeader__headerInner__mainHeader__title">
-          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
-          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+  <div class ="header">
+    <div class="header__item">
+      <div class="header__item__show">
+        <div class="header__item__show__title">
+          <%= link_to "Fashion Book", '/', class: "header__item__show__title__main" %>
+          <div class="header__item__show__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+        <div class = "header__item__show__lists">
+          <% if user_signed_in? && current_user.id == @item.user_id %>
+            <div class="header__item__show__lists__list">
+              <%= link_to "編集", edit_item_path(@item.id), class: "header__item__show__lists__list__edit" %>
+              <%= link_to "削除", item_path(@item.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "header__item__show__lists__list__delete" %>
+              <%= link_to '戻る', items_path(@item.id), class: "header__item__show__lists__list__back" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </header>
-<div class="blog__contents">
-  <div class="blog__contents__lists">
-    <div class="blog__contents__lists__postTitle">
-      <%= @item.name %>
-    </div>
-    <div class="blog__contents__lists__sublist">
-      <% if user_signed_in? && current_user.id == @item.user_id %>
-        <div class="blog__contents__lists__sublist__postManage">
-          <%= link_to "編集", edit_item_path(@item.id), class: "blog__contents__lists__sublist__postManage__edit" %>
-          <%= link_to "削除", item_path(@item.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "blog__contents__lists__sublist__postManage__delete" %>
-          <%= link_to '戻る', items_path(@item.id), class: "blog__contents__lists__sublist__postManage__back" %>
+<div class="contents">
+  <div class="contents__item">
+    <div class="contents__item__show">
+      <div class="contents__item__show__left">
+        <div class="contents__item__show__left__image">
+          <% if @item.image.present? %>
+            <%= image_tag "#{@item.image }", height: '95%', width: '95%' %>
+          <% else %>
+            <%= image_tag "/Unknown.png", height: '95%', width: '95%' %>
+          <% end %>
         </div>
-      <% end %>
-    </div>
-    <div class="blog__content__left__image">
-      <% if @item.image.present? %>
-        <%= image_tag "#{@item.image }", height: '300px', width: '300px' %>
-      <% else %>
-        <%= image_tag "/Unknown.png", height: '300px', width: '300px' %>
-      <% end %>
-    </div>
-    <div class="blog__contents__lists__introduction">
-      <span>【アイテム説明】</span><br>
-      <%= @item.introduction %>
-    </div>
-    <div class="blog__contents__lists__category">
-      <span>【カテゴリ】</span>
-      <%= link_to  '/', class: "blog__contents__lists__category" do %>
-        <%= @item.category.root.name %>
-         ＞
-        <%= @item.category.parent.name %>
-         ＞
-        <%= @item.category.name %>
-      <% end %>
-    </div>
-    <div class="blog__contents__lists__brand">
-      <span>【ブランド】</span>
-      <%= @brand.name %>
-    </div>
-    <div class="blog__contents__lists__size">
-      <span>【サイズ】</span>
-      <%= @item.items_size_id %>
-    </div>
-    <div class="blog__contents__lists__size">
-      <span>【季節】</span>
-      <%= @season.name %>
-    </div>
-    <div class="blog__contents__lists__color">
-      <span>【カラー】</span>
-      <%= @color.name%>
-    </div>
-    <div class="blog__contents__lists__price">
-      ￥<%= @item.price %>ー
+      </div>
+      <div class="contents__item__show__right">
+        <div class="contents__item__show__right__top">
+          <div class="contents__item__show__right__top__brand">
+            <span>ブランド：</span>
+            <%= @brand.name %>
+          </div>
+          <div class="contents__item__show__right__top__name">
+            <%= @item.name %>
+          </div>
+          <div class="contents__item__show__right__top__price">
+            ￥<%= @item.price %>
+          </div>
+        </div>
+        <div class="contents__item__show__right__low">
+          <div class="contents__item__show__right__low__introduction">
+            <span>【アイテム説明】</span><br>
+            <%= @item.introduction %>
+          </div>
+          <span>【アイテム詳細】</span>
+          <div class="contents__item__show__right__low__category">
+            <span>カテゴリ：</span>
+            <%= link_to  '/', class: "blog__contents__item__category" do %>
+              <%= @item.category.root.name %>
+              ＞
+              <%= @item.category.parent.name %>
+              ＞
+              <%= @item.category.name %>
+            <% end %>
+          </div>
+          
+          <div class="contents__item__show__right__low__size">
+            <span>サイズ：</span>
+            <%= @item.items_size.size %>
+          </div>
+          <div class="contents__item__show__right__low__season">
+            <span>季節：</span>
+            <%= @season.name %>
+          </div>
+          <div class="contents__item__show__right__low__color">
+            <span>カラー：</span>
+            <%= @color.name%>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<%= render partial: 'top/footer' %>
