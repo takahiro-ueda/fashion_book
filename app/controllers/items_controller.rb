@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, except: [:index, :new, :create]
   before_action :set_item, only: [:show, :destroy,:edit,:update]
+  before_action :set_size, except: [:index, :new, :create]
+  before_action :set_size, only: [:show, :destroy,:edit,:update]
   before_action :move_to_index, except: [:index, :show]
   # before_action :set_item_images, only: [:edit, :update]
   before_action :set_category, only: :new
@@ -19,12 +22,13 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     category = Category.find(item_params[:category_id])
+    # itemssize = ItemsSize.find(size_params[:items_size_id])
     @item = category.items.create(item_params)
-    # unless @item.valid?
-    #   flash.now[:alert] = @item.errors.full_messages
-    #   @item.image
-    #   render :new and return
-    # end
+    unless @item.valid?
+      flash.now[:alert] = @item.errors.full_messages
+      @item.image
+      render :new and return
+    end
     if @item.save
       redirect_to items_path(id: current_user)
     else
@@ -82,6 +86,7 @@ class ItemsController < ApplicationController
 
   def set_category  
     # @parents = Category.where(ancestry: nil)
+    # @category = Category.all.order("id ASC").limit(8) # categoryの親を取得
     def category_children 
       respond_to do |format| 
         format.html
@@ -131,6 +136,10 @@ class ItemsController < ApplicationController
       :category_size_id
       # item_images_attributes: [:src, :_destroy, :id]
       ).merge(user_id: current_user.id)
+  end
+
+  def set_size
+    @size = ItemsSize.find(params[:id])
   end
 
   def set_item

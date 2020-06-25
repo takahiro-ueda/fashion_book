@@ -36,7 +36,7 @@
 
       <div class="contents__item__edit__category">
         <%= form.label :category_id, 'カテゴリ' %>
-        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "form__category", id: "category_select" }%>
+        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(8), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "form__category", id: "category_select" }%>
         <div class = "product_select-children", id ="children_box"></div>
         <div class = "product_select-grandchildren", id ="grandchildren_box"></div>
       </div>
