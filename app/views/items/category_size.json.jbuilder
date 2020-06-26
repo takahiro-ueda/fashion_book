@@ -1,4 +1,4 @@
-json.array! @sizes do |size|
-  json.id size.id
-  json.size size.size
+json.array! @category_size do |items_size|
+  json.id items_sizes.id
+  json.size items_sizes.size
 end

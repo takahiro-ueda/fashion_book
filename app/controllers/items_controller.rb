@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, except: [:index, :new, :create]
   before_action :set_item, only: [:show, :destroy,:edit,:update]
+  # before_action :set_size, except: [:index, :new, :create]
+  # before_action :set_size, only: [:show, :destroy,:edit,:update]
   before_action :move_to_index, except: [:index, :show]
   # before_action :set_item_images, only: [:edit, :update]
   before_action :set_category, only: :new
@@ -9,22 +12,30 @@ class ItemsController < ApplicationController
   def index
     @item = Item.new
     @items = Item.includes(:user).order(created_at: "DESC").limit(9)
+    
   end
 
   def new
     @item = Item.new
     # @item.item_images.new
+    #セレクトボックスの初期値設定
+    @category_parent_array = ["---"]
+    #データベースから、親カテゴリーのみ抽出し、配列化
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
   end
 
   def create
     @item = Item.new(item_params)
     category = Category.find(item_params[:category_id])
+    # size = ItemsSize.find(size_params[:category_size_id])
     @item = category.items.create(item_params)
-    # unless @item.valid?
-    #   flash.now[:alert] = @item.errors.full_messages
-    #   @item.image
-    #   render :new and return
-    # end
+    unless @item.valid?
+      flash.now[:alert] = @item.errors.full_messages
+      @item.image
+      render :new and return
+    end
     if @item.save
       redirect_to items_path(id: current_user)
     else
@@ -82,6 +93,7 @@ class ItemsController < ApplicationController
 
   def set_category  
     # @parents = Category.where(ancestry: nil)
+    # @category = Category.all.order("id ASC").limit(8) # categoryの親を取得
     def category_children 
       respond_to do |format| 
         format.html
@@ -103,13 +115,13 @@ class ItemsController < ApplicationController
   
     # 孫カテゴリーが選択された後に動くアクション
     def category_size
-      selected_grandchild = Category.find("#{params[:grandchild_id]}").children #孫カテゴリーを取得
-      if related_size_parent = selected_grandchild.items_sizes[0] #孫カテゴリーと紐付くサイズ（親）があれば取得
-        @sizes = related_size_parent.children #紐づいたサイズ（親）の子供の配列を取得
+      @category_grandchildren = Category.find("#{params[:grandchild_id]}").children #孫カテゴリーを取得
+      if related_size_parent = @category_grandchildren.items_sizes[0] #孫カテゴリーと紐付くサイズ（親）があれば取得
+        @category_size = related_size_parent.children #紐づいたサイズ（親）の子供の配列を取得
       else
-        selected_grandchild = Category.find("#{params[:grandchild_id]}").parent #孫カテゴリーの親を取得
-        if related_size_parent = selected_grandchild.items_sizes[0] #孫カテゴリーの親と紐付くサイズ（親）があれば取得
-          @sizes = related_size_parent.children #紐づいたサイズ（親）の子供の配列を取得
+        @category_grandchildren = Category.find("#{params[:grandchild_id]}").parent #孫カテゴリーの親を取得
+        if related_size_parent = @category_grandchildren.items_sizes[0] #孫カテゴリーの親と紐付くサイズ（親）があれば取得
+          @category_size = related_size_parent.children #紐づいたサイズ（親）の子供の配列を取得
         end
       end
     end
@@ -128,10 +140,18 @@ class ItemsController < ApplicationController
       :price, 
       :category_children_id,
       :category_grandchildren_id,
-      :category_size_id
+      # :category_size_id
       # item_images_attributes: [:src, :_destroy, :id]
       ).merge(user_id: current_user.id)
   end
+
+  # def size_params
+  #   params.require(:items_size).permit(:category_id, :items_size_id)
+  # end
+
+  # def set_size
+  #   @size = ItemsSize.find(params[:id])
+  # end
 
   def set_item
     @item = Item.find(params[:id])

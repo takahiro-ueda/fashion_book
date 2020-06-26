@@ -1,9 +1,9 @@
 <div class="contents__item__index__right__list__tag">
   <div class="contents__item__index__right__list__tag__image">
     <% if item.image.present? %>
-      <%= image_tag "#{item.image }", height: '280px' %>
+      <%= image_tag "#{item.image }", height: "280px" %>
     <% else %>
-      <%= image_tag "/Unknown.png", height: '280px' %>
+      <%=image_tag "/Unknown.png", height: "280px" %>
     <% end %>
     <div class="contents__item__index__right__list__tag__image__price">
       ￥<%= item.price %>
@@ -14,9 +14,7 @@
       <span>ブランド：</span>
       <%= item.brand.name %>
     </div>
-    <div class="contents__item__index__right__list__tag__low__name">
-      <%= item.name %>
-    </div>
+    <%= link_to item.name, item_path(item.id), class: "contents__item__index__right__list__tag__low__name" %>
   </div>
 </div>
   

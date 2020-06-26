@@ -35,7 +35,7 @@
 
       <div class="contents__item__new__name">
         <%= form.label :name, '商品名' %>
-        <%= form.text_field :name, placeholder: :商品名40文字まで, class: :contents__item__new__name__select %>
+        <%= form.text_field :name, placeholder: :商品名40文字まで, class: :form__name %>
       </div>
 
       <div class="contents__item__new__introduction">
@@ -46,7 +46,7 @@
 
       <div class="contents__item__new__category">
         <%= form.label :category_id, 'カテゴリ' %>
-        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(13), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "form__category", id: "category_select" }%>
+        <%= form.collection_select :category_id, Category.all.order("id ASC").limit(8), :id, :name, { prompt: "カテゴリを選んでください" }, { class: "form__category", id: "category_select" }%>
         <div class = "product_select-children", id ="children_box"></div>
         <div class = "product_select-grandchildren", id ="grandchildren_box"></div>
       </div>
