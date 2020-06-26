@@ -345,7 +345,13 @@ baby_5 = baby_clothes.children.create(size: "95cm")
 
 category_size = CategorySize.create({category_id: women_tops.children.ids,items_size_id:clothes.id})
 category_size = CategorySize.create({category_id: women_jacket.children.ids,items_size_id:clothes.id})
-category_size = CategorySize.create({category_id: women_pants.children.ids,items_size_id:clothes.id})
-category_size = CategorySize.create({category_id: women_skirt.children.ids,items_size_id:clothes.id})
 category_size = CategorySize.create({category_id: women_onepiece.children.ids,items_size_id:clothes.id})
+category_size = CategorySize.create({category_id: women_overalls.children.ids,items_size_id:clothes.id})
+category_size = CategorySize.create({category_id: women_suits.children.ids,items_size_id:clothes.id})
+category_size = CategorySize.create({category_id: women_skirt.children.ids,items_size_id:skirt.id})
+category_size = CategorySize.create({category_id: women_pants.children.ids,items_size_id:clothes.id})
+category_size = CategorySize.create({category_id: women_shoes.children.ids,items_size_id:clothes.id})
+
 category_size = CategorySize.create({category_id: women_other.children.ids,items_size_id:clothes.id})
+
+

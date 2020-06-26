@@ -13,12 +13,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update, :destroy]
 
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    collection do # 新規用（new) usr:products/newのため
+    collection do # 新規用（new) usr:items/newのため
       get 'category_children', defaults: { format: 'json' }
       get 'category_grandchildren', defaults: { format: 'json' }
       get 'category_size', defaults: { format: 'json' }
     end
-    member do # 編集(edit用) usl: products/id/editのため
+    member do # 編集(edit用) usl: items/id/editのため
       get 'category_children', defaults: { format: 'json' }
       get 'category_grandchildren', defaults: { format: 'json' }
       get 'category_size', defaults: { format: 'json' }
