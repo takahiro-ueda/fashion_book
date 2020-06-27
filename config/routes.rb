@@ -26,4 +26,8 @@ Rails.application.routes.draw do
     resources :categories, only: [:show]
   end
 
+  resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    resources :coordinates
+  end
+
 end

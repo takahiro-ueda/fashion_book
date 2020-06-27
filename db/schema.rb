@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_054248) do
+ActiveRecord::Schema.define(version: 2020_06_26_141822) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 2020_06_21_054248) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_category_sizes_on_category_id"
     t.index ["items_size_id"], name: "index_category_sizes_on_items_size_id"
+  end
+
+  create_table "coordinates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image"
+    t.text "introduction", null: false
+    t.integer "sex", default: 1, null: false
+    t.integer "height", null: false
+    t.integer "age", null: false
+    t.integer "month", null: false
+    t.integer "hairstyle", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_coordinates_on_user_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -93,4 +107,5 @@ ActiveRecord::Schema.define(version: 2020_06_21_054248) do
   add_foreign_key "addresses", "users"
   add_foreign_key "category_sizes", "categories"
   add_foreign_key "category_sizes", "items_sizes"
+  add_foreign_key "coordinates", "users"
 end
