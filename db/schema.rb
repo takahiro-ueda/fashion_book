@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_06_26_141822) do
   create_table "coordinates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
     t.text "introduction", null: false
-    t.integer "sex", default: 1, null: false
+    t.bigint "gender_id", null: false
     t.integer "height", null: false
     t.integer "age", null: false
     t.integer "month", null: false
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_06_26_141822) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["gender_id"], name: "index_coordinates_on_gender_id"
     t.index ["user_id"], name: "index_coordinates_on_user_id"
   end
 

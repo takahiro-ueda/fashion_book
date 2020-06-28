@@ -15,10 +15,14 @@
  */
 
 
-@import "reset";
+// @import "reset";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "top";
+@import "items";
+@import "users";
+@import "coordinates";
+@import "categories";
 
 // #size_box{
 //   display: none;

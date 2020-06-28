@@ -1,0 +1,55 @@
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="contents">
+  <div class="contents__coordinate">
+    <div class="contents__coordinate__index">
+      <div class="contents__coordinate__index__left">
+        <ul class="contents__coordinate__index__left__side">
+          <li class="contents__coordinate__index__left__side__list">
+            <h2 class="contents__coordinate__index__left__side__list__menu">コーディネート</h2>
+            <ul>
+              <li>
+                <%= link_to user_path(current_user.id), class: "contents__coordinate__index__left__side__list__menu__tag" do %>
+                  マイページ<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to coordinates_path, class: "contents__coordinate__index__left__side__list__menu__tag" do %>
+                  コーディネート一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_coordinate_path, class: "contents__coordinate__index__left__side__list__menu__tag" do %>
+                  コーディネート登録<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+            <h2 class="contents__coordinate__index__left__side__list__menu">月</h2>
+            <h2 class="contents__coordinate__index__left__side__list__menu">カラー</h2>
+          </li>
+        </ul>
+      </div>
+      <div class="contents__coordinate__index__right">
+        <div class="contents__coordinate__index__right__seach">
+          <h2>コーディネート一覧</h2>
+        </div>
+        <div class="contents__coordinate__index__right__list">
+          <% @coordinates.each do |coordinate| %>
+            <%= render partial: "coordinate", locals: { coordinate: @coordinate, coordinate: coordinate } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: 'top/footer' %>

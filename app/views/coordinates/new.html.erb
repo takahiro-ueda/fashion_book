@@ -1,0 +1,75 @@
+<header>
+  <div class ="header">
+    <div class="header__item">
+      <div class="header__item__show">
+        <div class="header__item__show__title">
+          <%= link_to "Fashion Book", '/', class: "header__item__show__title__main" %>
+          <div class="header__item__show__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="contents">
+  <div class="contents__coordinate">
+    <div class="contents__coordinate__title">
+      <h2>コーディネート登録</h2>
+    </div>
+    <div class="contents__coordinate__new">
+    <%= form_with(model: @coordinate, class: :form, local: true) do |form| %>
+      <% if @coordinate.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@coordinate.errors.count, "件のエラーにより") %> この投稿は保存できませんでした。</h2>
+          <ul>
+            <% @coordinate.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="contents__coordinate__new__image">
+        <%= form.label :image, 'コーディネート画像' %>
+        <%= form.file_field :image, class: :contents__coordinate__new__image__select, id: "image-form" %>
+        <div id="file"></div>
+      </div>
+
+      <div class="contents__coordinate__new__introduction">
+        <%= form.label :introduction, 'コーディネート詳細' %>
+        <%= form.text_area :introduction, placeholder: :'コーディネート紹介文(2000文字以内)', class: 'form__introduction2 js-text' %>
+        <P class="js_text_count"></P>
+      </div>
+
+      <div class="contents__coordinate__new__gender">
+        <%= form.label :gender_id, '性別' %>
+        <%= form.collection_select :gender_id, Gender.all, :id, :name, {prompt: "選択してください"}, {class: "form__gender"} %>
+      </div>
+
+      <div class="contents__coordinate__new__height">
+        <%= form.label :height_id, '身長' %>
+        <%= form.collection_select :height_id, Height.all, :id, :name, {prompt: "選択してください"}, {class: "form__height"} %>
+      </div>
+
+      <div class="contents__coordinate__new__age">
+        <%= form.label :age_id, '年齢' %>
+        <%= form.collection_select :age_id, Age.all, :id, :name, {prompt: "選択してください"}, {class: "form__age"} %>
+      </div>
+
+      <div class="contents__coordinate__new__month">
+        <%= form.label :month_id, '投稿月' %>
+        <%= form.collection_select :month_id, Month.all, :id, :name, {prompt: "選択してください"}, {class: "form__month"} %>
+      </div>
+
+      <div class="contents__coordinate__new__hairstyle">
+        <%= form.label :hairstyle_id, '髪型' %>
+        <%= form.collection_select :hairstyle_id, Hairstyle.all, :id, :name, {prompt: "選択してください"}, {class: "form__hairstyle"} %>
+      </div>
+
+      <div class="contents__coordinate__new__actions">
+        <%= form.submit '投稿', class: :form__btn %>
+      </div>  
+    </div>
+    <% end %>
+  </div>
+</div>
+<%= render partial: 'top/footer' %>
