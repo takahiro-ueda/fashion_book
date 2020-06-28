@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_06_26_141822) do
 
   create_table "coordinates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image"
+    t.string "name", null: false
     t.text "introduction", null: false
     t.bigint "gender_id", null: false
     t.bigint "height_id", null: false

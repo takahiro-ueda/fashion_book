@@ -34,6 +34,11 @@
         <div id="file"></div>
       </div>
 
+      <div class="contents__coordinate__new__name">
+        <%= form.label :name, 'コーディネート名' %>
+        <%= form.text_area :name, placeholder: :コーディネート名50文字まで, class: :form__name2 %>
+      </div>
+
       <div class="contents__coordinate__new__introduction">
         <%= form.label :introduction, 'コーディネート詳細' %>
         <%= form.text_area :introduction, placeholder: :'コーディネート紹介文(2000文字以内)', class: 'form__introduction2 js-text' %>

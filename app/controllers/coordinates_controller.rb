@@ -68,6 +68,7 @@ class CoordinatesController < ApplicationController
   def coordinate_params
     params.require(:coordinate).permit(
       :image, 
+      :name,
       :introduction, 
       :gender_id,
       :height_id,

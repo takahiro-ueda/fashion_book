@@ -10,4 +10,8 @@ class Coordinate < ApplicationRecord
   has_many :items
 
   mount_uploader :image, ImageUploader
+  validates :name,
+    length: { maximum:50, message: "入力は５０文字までです。"}
+  validates :introduction,
+    length: { maximum:2000, message: "入力は２０００文字までです。"}
 end
