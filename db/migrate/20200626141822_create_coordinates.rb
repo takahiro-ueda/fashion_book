@@ -4,10 +4,10 @@ class CreateCoordinates < ActiveRecord::Migration[5.2]
       t.string :image
       t.text :introduction, null: false
       t.references :gender, null: false
-      t.integer :height, null: false
-      t.integer :age, null: false
-      t.integer :month, null: false
-      t.integer :hairstyle, null: false
+      t.references :height, null: false
+      t.references :age, null: false
+      t.references :month, null: false
+      t.references :hairstyle, null: false
       t.references :user,       null: false, foreign_key: true
 
       t.timestamps

@@ -6,4 +6,8 @@ class Coordinate < ApplicationRecord
   belongs_to_active_hash :month
   belongs_to_active_hash :hairstyle
 
+  belongs_to :user, optional: true
+  has_many :items
+
+  mount_uploader :image, ImageUploader
 end

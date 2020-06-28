@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :category
   belongs_to :items_size
-
+  belongs_to :coordinate
 
   mount_uploader :image, ImageUploader
   validates :name, :introduction, :category_id, :brand_id, :price, presence: true, unless: :image?

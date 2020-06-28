@@ -46,8 +46,8 @@ class CoordinatesController < ApplicationController
   end
 
   def show
-    @sex = @coordinate.sex
-    @height = @coordinate.hegiht
+    @gender = @coordinate.gender
+    @height = @coordinate.height
     @age = @coordinate.age
     @month = @coordinate.month
     @hairstyle = @coordinate.hairstyle
@@ -69,16 +69,16 @@ class CoordinatesController < ApplicationController
     params.require(:coordinate).permit(
       :image, 
       :introduction, 
-      :sex,
-      :height,
-      :age,
-      :month,
-      :hairstyle, 
+      :gender_id,
+      :height_id,
+      :age_id,
+      :month_id,
+      :hairstyle_id, 
       # item_images_attributes: [:src, :_destroy, :id]
       ).merge(user_id: current_user.id)
   end
 
-  def set_item
+  def set_coordinate
     @coordinate = Coordinate.find(params[:id])
   end
 

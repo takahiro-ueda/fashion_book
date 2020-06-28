@@ -49,14 +49,18 @@ ActiveRecord::Schema.define(version: 2020_06_26_141822) do
     t.string "image"
     t.text "introduction", null: false
     t.bigint "gender_id", null: false
-    t.integer "height", null: false
-    t.integer "age", null: false
-    t.integer "month", null: false
-    t.integer "hairstyle", null: false
+    t.bigint "height_id", null: false
+    t.bigint "age_id", null: false
+    t.bigint "month_id", null: false
+    t.bigint "hairstyle_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["age_id"], name: "index_coordinates_on_age_id"
     t.index ["gender_id"], name: "index_coordinates_on_gender_id"
+    t.index ["hairstyle_id"], name: "index_coordinates_on_hairstyle_id"
+    t.index ["height_id"], name: "index_coordinates_on_height_id"
+    t.index ["month_id"], name: "index_coordinates_on_month_id"
     t.index ["user_id"], name: "index_coordinates_on_user_id"
   end
 

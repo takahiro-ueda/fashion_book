@@ -234,10 +234,10 @@
               height: 280px;
               border: 0.5px solid #ddd;
               position: relative;
-              &__price{
+              &__time{
                 color:white;
                 background-color: lightskyblue;
-                width: 25%;
+                width: 40%;
                 text-align: center;
                 position: absolute;
                 bottom: 5px;
@@ -246,14 +246,14 @@
             }
             &__low {
               border: 0.1px solid #ddd;
-              &__brand {
-
-              }
-              &__name {
+              &__nickname {
                 color: skyblue;
               }
               :hover {
                 color: black;
+              }
+              &__height {
+
               }
             }
           }
