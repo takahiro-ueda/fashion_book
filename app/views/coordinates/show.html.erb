@@ -1,0 +1,66 @@
+<header>
+  <div class ="header">
+    <div class="header__item">
+      <div class="header__item__show">
+        <div class="header__item__show__title">
+          <%= link_to "Fashion Book", '/', class: "header__item__show__title__main" %>
+          <div class="header__item__show__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+        <div class = "header__item__show__lists">
+          <% if user_signed_in? && current_user.id == @coordinate.user_id %>
+            <div class="header__item__show__lists__list">
+              <%= link_to "編集", edit_coordinate_path(@coordinate.id), class: "header__item__show__lists__list__edit" %>
+              <%= link_to "削除", coordinate_path(@coordinate.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "header__item__show__lists__list__delete" %>
+              <%= link_to '戻る', coordinates_path(@coordinate.id), class: "header__item__show__lists__list__back" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="contents">
+  <div class="contents__coordinate">
+    <div class="contents__coordinate__show">
+      <div class="contents__coordinate__show__left">
+        <div class="contents__coordinate__show__left__image">
+          <% if @coordinate.image.present? %>
+            <%= image_tag "#{@coordinate.image }", height: '95%', width: '95%' %>
+          <% else %>
+            <%= image_tag "/Unknown.png", height: '95%', width: '95%' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="contents__coordinate__show__right">
+        <div class="contents__coordinate__show__right__top">
+          <div class="contents__coordinate__show__right__top__name">
+            <span>【コーディネート】</span><br>
+            <%= @coordinate.name %>
+          </div>
+          <div class="contents__coordinate__show__right__top__model">
+            <span>モデル情報:</span><br>
+            <div class="contents__coordinate__show__right__top__model__height">
+              <%= @coordinate.height.name %> /
+            </div>
+            <div class="contents__coordinate__show__right__top__model__gender">
+              <%= @coordinate.gender.name %> /
+            </div>
+            <div class="contents__coordinate__show__right__top__model__hairstyle">
+              <%= @coordinate.hairstyle.name %>
+            </div>
+          </div>
+        </div>
+        <div class="contents__coordinate__show__right__low">
+          <div class="contents__coordinate__show__right__low__introduction">
+            <span>【コーディネート詳細】</span><br>
+            <%= @coordinate.introduction %>
+          </div>
+          <div class="contents__coordinate__show__right__low__time">
+            <%= @coordinate.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: 'top/footer' %>

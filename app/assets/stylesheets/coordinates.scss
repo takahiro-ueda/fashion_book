@@ -36,7 +36,6 @@
     width: 100%;
     // min-height: 82px;
     margin: 0 auto;
-    
     &__show {
       display: flex;
       justify-content: space-between;
@@ -62,7 +61,7 @@
       }
       &__lists {
         display: flex;
-        font-size: 14px;
+        font-size: 12px;
         margin-bottom: 10px;
         a{
           color: #333;
@@ -283,11 +282,8 @@
         }
         &__icon {
           text-align: center;
-          &--preview {
+          &--preview, &--delete {
 
-          }
-          &--delete {
-            
           }
         }
       }
@@ -358,9 +354,9 @@
       margin: 0 auto;
       &__left {
         display: flex;
-        width: 50%;
+        width: 60%;
         &__image {
-          height: 500px; 
+          height: 750px; 
           width: 90%;
         }
       }
@@ -368,18 +364,27 @@
         width: 100%;
         padding-right: 10px;
         height: 100%;
-        width: 50%;
+        width: 40%;
         &__top {
           background: #fff;
           border-radius: 3px;
           border: 1px #ddd solid;
           padding: 20px 0 23px 23px;
           margin-bottom: 20px;
-          &__brand, &__name {
+          &__name {
             margin-bottom: 20px;
           }
-          &__price {
-            font-size: 30px;
+          &__model {
+            display: flex;
+            font-size: 15px;
+            margin: 0 auto;
+            &__height, &__gender {
+              padding-top: 3px;
+              margin-left: 10px;
+            }
+            &__hairstyle {
+              margin-left: 10px;
+            }
           }
         }
         &__low {
@@ -391,9 +396,9 @@
             padding-bottom: 20px;
             border-bottom: 1px solid #e0e0e0;
           }
-          &__category, &__size, &__season, &__color {
-            margin-top: 10px;
-            margin-bottom: 10px;
+          &__time {
+            margin-top: 20px;
+            // margin-bottom: 10px;
           }
         }
       }
