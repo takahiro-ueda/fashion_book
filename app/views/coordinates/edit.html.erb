@@ -9,7 +9,7 @@
         <div class = "header__item__show__lists">
           <% if user_signed_in? && current_user.id == @coordinate.user_id %>
             <div class="header__item__show__lists__list">
-              <%= link_to '戻る', coordinates_path(@coordinate.id), class: "header__item__show__lists__list__back" %>
+              <%= link_to '戻る', coordinate_path(@coordinate.id), class: "header__item__show__lists__list__back" %>
             </div>
           <% end %>
         </div>
