@@ -51,6 +51,9 @@ class CoordinatesController < ApplicationController
     @age = @coordinate.age
     @month = @coordinate.month
     @hairstyle = @coordinate.hairstyle
+    @comment = Comment.new
+    #新着順で表示
+    @comments = @coordinate.comments.includes(:user).order(created_at: :desc)
   end
 
   def destroy

@@ -25,9 +25,27 @@
       <div class="contents__coordinate__show__left">
         <div class="contents__coordinate__show__left__image">
           <% if @coordinate.image.present? %>
-            <%= image_tag "#{@coordinate.image }", height: '95%', width: '95%' %>
+            <%= image_tag "#{@coordinate.image }", height: '100%', width: '95%' %>
           <% else %>
-            <%= image_tag "/Unknown.png", height: '95%', width: '95%' %>
+            <%= image_tag "/Unknown.png", height: '100%', width: '95%' %>
+          <% end %>
+        </div>
+        <div class="contents__coordinate__show__left__comment">
+          <ul>
+            <li class="contents__coordinate__show__left__comment__create">
+              <h3 class="text-left title">コメント一覧</h3>
+            </li>
+            <div id="comments_area", class="contents__coordinate__show__left__comment__area">
+              <%= render partial: 'comments/index', locals: { comments: @comments, coordinate: @coordinate, coordinates: @coordinates } %>
+            </div>
+          </ul>
+          <% if user_signed_in? %>
+            <div class="contents__coordinate__show__left__comment__create">
+              <h3 class="contents__coordinate__show__left__text-left"><%= @coordinate.user.nickname %>さんへのコメント</h3>
+              <div class="contents__coordinate__show__left__comment__create__text">
+                <%= render partial: 'comments/form', locals: { comment: @comment, coordinate: @coordinate } %>
+              </div>
+            </div>
           <% end %>
         </div>
       </div>

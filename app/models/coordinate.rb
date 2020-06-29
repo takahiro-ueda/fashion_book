@@ -8,6 +8,7 @@ class Coordinate < ApplicationRecord
 
   belongs_to :user, optional: true
   has_many :items
+  has_many :comments, dependent: :destroy
 
   mount_uploader :image, ImageUploader
   validates :name,

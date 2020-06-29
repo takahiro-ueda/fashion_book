@@ -26,6 +26,9 @@ Rails.application.routes.draw do
     resources :categories, only: [:show]
   end
 
-  resources :coordinates, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :coordinates, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    # resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+  end
 
 end
