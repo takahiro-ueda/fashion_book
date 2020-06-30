@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   resources :coordinates, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    # resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
 

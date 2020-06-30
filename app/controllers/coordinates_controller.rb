@@ -7,7 +7,9 @@ class CoordinatesController < ApplicationController
   def index
     @coordinate = Coordinate.new
     @coordinates = Coordinate.includes(:user).order(created_at: "DESC").limit(9)
-    
+    @likes = Like.where(user_id: current_user)
+    @like = 0
+    @likes = Like.where(coordinate_id: params[:id])
   end
 
   def new
@@ -54,6 +56,8 @@ class CoordinatesController < ApplicationController
     @comment = Comment.new
     #新着順で表示
     @comments = @coordinate.comments.includes(:user).order(created_at: :desc)
+    @like = 0
+    @likes = Like.where(coordinate_id: params[:id])
   end
 
   def destroy

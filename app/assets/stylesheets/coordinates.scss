@@ -193,13 +193,13 @@
           // border-bottom: solid 0.1px #e0e0e0;
           h2 {
             text-align: center;
-            width: 30%;
+            width: 40%;
           }
         //   &__form {
         //     display: flex;
         //     height: 30px;
         //     margin: 20px 0 10px;
-        //     width: 70%;
+        //     width: 60%;
         //     line-height: 30px;
         //     position: relative;
         //     &__input {
@@ -241,6 +241,18 @@
                 position: absolute;
                 bottom: 5px;
                 left: 5px;
+              }
+            }
+            &__middle {
+              display: flex;
+              justify-content: space-around;
+              border-left: 0.5px solid #ddd;
+              border-right: 0.5px solid #ddd;
+              height: 30px;
+              line-height: 30px;
+              &__okini, &__like {
+                color: skyblue;
+                text-decoration: none;
               }
             }
             &__low {
@@ -357,12 +369,48 @@
       max-width: 1040px;
       width: 100%;
       display: flex;
-      margin: 0 auto;
+      // margin: 0 auto;
       &__left {
         width: 60%;
         &__image {
           height: 650px; 
           width: 90%;
+        }
+        &__like {
+          height: 70px;
+          width: 85.5%;
+          // line-height: 70px;
+          display: flex;
+          justify-content: space-between;
+          border: 1px solid #e0e0e0; 
+          padding-top: 10px;
+          padding-bottom: 10px;
+          a {
+            text-decoration: none;
+          }
+          &__okini {
+            width: 30%;
+            line-height: 48px;
+            border: 1px #ddd solid;
+            margin: 0 20px;
+            text-align: center;
+            font-size: 18px;
+            color: skyblue;
+          }
+          &__mark {
+            width: 40%;
+            line-height: 48px;
+            font-size: 25px;
+            &__heart {
+              width: 100%;
+              line-height: 48px;
+              &__count {
+                a {
+                  text-decoration: none;
+                }
+              }
+            }
+          }
         }
       }
       &__right {
@@ -370,6 +418,7 @@
         padding-right: 10px;
         height: 100%;
         width: 40%;
+        // word-break: break-all;
         &__top {
           background: #fff;
           border-radius: 3px;
@@ -384,7 +433,7 @@
             font-size: 15px;
             margin: 0 auto;
             &__height, &__gender {
-              padding-top: 3px;
+              // padding-top: 3px;
               margin-left: 10px;
             }
             &__hairstyle {
@@ -400,6 +449,8 @@
           &__introduction {
             padding-bottom: 20px;
             border-bottom: 1px solid #e0e0e0;
+            word-wrap: break-word;
+            white-space: pre-line;
           }
           &__time {
             margin-top: 20px;

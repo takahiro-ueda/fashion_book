@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_140803) do
+ActiveRecord::Schema.define(version: 2020_06_29_141804) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_140803) do
     t.bigint "age_id", null: false
     t.bigint "month_id", null: false
     t.bigint "hairstyle_id", null: false
+    t.integer "likes_count"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -104,6 +105,15 @@ ActiveRecord::Schema.define(version: 2020_06_28_140803) do
     t.index ["size"], name: "index_items_sizes_on_size"
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "coordinate_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coordinate_id"], name: "index_likes_on_coordinate_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
@@ -126,4 +136,6 @@ ActiveRecord::Schema.define(version: 2020_06_28_140803) do
   add_foreign_key "comments", "coordinates"
   add_foreign_key "comments", "users"
   add_foreign_key "coordinates", "users"
+  add_foreign_key "likes", "coordinates"
+  add_foreign_key "likes", "users"
 end
