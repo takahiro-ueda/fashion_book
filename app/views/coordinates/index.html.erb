@@ -16,13 +16,8 @@
       <div class="contents__coordinate__index__left">
         <ul class="contents__coordinate__index__left__side">
           <li class="contents__coordinate__index__left__side__list">
-            <h2 class="contents__coordinate__index__left__side__list__menu">コーディネート</h2>
+            <%= link_to 'マイページ', user_path(current_user.id), class: "contents__coordinate__index__left__side__list__menu" %>
             <ul>
-              <li>
-                <%= link_to user_path(current_user.id), class: "contents__coordinate__index__left__side__list__menu__tag" do %>
-                  マイページ<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
               <li>
                 <%= link_to coordinates_path, class: "contents__coordinate__index__left__side__list__menu__tag" do %>
                   コーディネート一覧<%= fa_icon("angle-right") %>

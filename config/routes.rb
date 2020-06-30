@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   resources :coordinates, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
+
+    member do
+      get 'history', to: 'coordinates#history'
+    end
   end
 
 end

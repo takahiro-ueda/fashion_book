@@ -5,11 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :address
+  
   has_many :items, dependent: :destroy
+
   has_many :coordinates, dependent: :destroy
+
   has_many :comments, dependent: :destroy
+
   has_many :likes, dependent: :destroy
   has_many :like_coordinates, through: :likes, source: :coordinate
+
+  has_many :browsing_histories, dependent: :destroy
 
   validates :nickname, :birth_date, :sex, presence: true
   validates :nickname, presence: true, length: { minimum: 1 ,maximum:20  }

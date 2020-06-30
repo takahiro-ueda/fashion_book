@@ -1,8 +1,8 @@
 class CoordinatesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :history]
   before_action :set_coordinate, except: [:index, :new, :create]
-  before_action :set_coordinate, only: [:show, :destroy,:edit,:update]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :set_coordinate, only: [:show, :destroy, :edit, :update, :history]
+  before_action :move_to_index, except: [:index, :show, :history]
 
   def index
     @coordinate = Coordinate.new
@@ -58,6 +58,19 @@ class CoordinatesController < ApplicationController
     @comments = @coordinate.comments.includes(:user).order(created_at: :desc)
     @like = 0
     @likes = Like.where(coordinate_id: params[:id])
+
+    new_history = @coordinate.browsing_histories.new
+    new_history.user_id = current_user.id
+    if current_user.browsing_histories.exists?(coordinate_id: "#{params[:id]}")
+      old_history = current_user.browsing_histories.find_by(coordinate_id: "#{params[:id]}")
+      old_history.destroy
+    end
+    new_history.save
+    histories_stock_limit = 9
+    histories = current_user.browsing_histories.all
+    if histories.count > histories_stock_limit
+      histories[0].destroy
+    end
   end
 
   def destroy
@@ -67,6 +80,10 @@ class CoordinatesController < ApplicationController
       flash.now[:alert] = '削除に失敗しました。'
       render :edit
     end
+  end
+
+  def history
+    @histories = BrowsingHistory.all
   end
 
 

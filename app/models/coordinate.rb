@@ -15,6 +15,8 @@ class Coordinate < ApplicationRecord
     likes.find_by(user_id: user_id)
   end
 
+  has_many :browsing_histories, dependent: :destroy
+
   mount_uploader :image, ImageUploader
   validates :name,
     length: { maximum:50, message: "入力は５０文字までです。"}
