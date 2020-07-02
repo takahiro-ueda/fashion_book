@@ -10,7 +10,10 @@
     </div>
   </div>
   <div class="contents__coordinate__index__right__list__tag__middle">
-    <%= link_to "お気に入り", "/", class: "contents__coordinate__index__right__list__tag__middle__okini" %>
+    <div class="contents__coordinate__index__right__list__tag__middle__okini">
+      <%= link_to "お気に入り", coordinate_path(coordinate.id), class: "contents__coordinate__index__right__list__tag__middle__okini" %>
+      <%= Bookmark.where(coordinate_id: coordinate[:id]).count %>
+    </div> 
     <div class="contents__coordinate__index__right__list__tag__middle__like">
       <%= link_to image_tag('/iconmonstr-heart-thin.png', height:'15px', width:'15px'), coordinate_path(coordinate.id) %>
       <%= Like.where(coordinate_id: coordinate[:id]).count %>

@@ -15,6 +15,12 @@ class Coordinate < ApplicationRecord
     likes.find_by(user_id: user_id)
   end
 
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_users, through: :bookmarks, source: :user
+  def bookmark_user(user_id)
+    bookmarks.find_by(user_id: user_id)
+  end
+
   has_many :browsing_histories, dependent: :destroy
 
   mount_uploader :image, ImageUploader

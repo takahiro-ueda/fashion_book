@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_065235) do
+ActiveRecord::Schema.define(version: 2020_07_01_001724) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2020_06_30_065235) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "coordinate_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coordinate_id"], name: "index_bookmarks_on_coordinate_id"
+    t.index ["user_id", "coordinate_id"], name: "index_bookmarks_on_user_id_and_coordinate_id", unique: true
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "browsing_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -74,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_065235) do
     t.bigint "month_id", null: false
     t.bigint "hairstyle_id", null: false
     t.integer "likes_count"
+    t.integer "bookmarks_count"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -140,6 +151,8 @@ ActiveRecord::Schema.define(version: 2020_06_30_065235) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "bookmarks", "coordinates"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "browsing_histories", "coordinates"
   add_foreign_key "browsing_histories", "users"
   add_foreign_key "category_sizes", "categories"

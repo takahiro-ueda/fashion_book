@@ -389,13 +389,28 @@
             text-decoration: none;
           }
           &__okini {
-            width: 30%;
+            width: 40%;
             line-height: 48px;
             border: 1px #ddd solid;
             margin: 0 20px;
-            text-align: center;
             font-size: 18px;
             color: skyblue;
+            margin: 0 auto;
+            &__bookmark {
+              width: auto;
+	            height: auto;
+              display: flex;
+              justify-content: space-around;
+              :hover {
+                color: black;
+              }
+              &__mark {
+                display: block;
+              }
+              &__count {
+                margin-left: 10px;
+              }
+            }
           }
           &__mark {
             width: 40%;

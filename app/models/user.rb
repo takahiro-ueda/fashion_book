@@ -7,13 +7,12 @@ class User < ApplicationRecord
   has_one :address
   
   has_many :items, dependent: :destroy
-
-  has_many :coordinates, dependent: :destroy
-
   has_many :comments, dependent: :destroy
-
+  has_many :coordinates, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_coordinates, through: :likes, source: :coordinate
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_coordinates, through: :bookmarks, source: :coordinate
 
   has_many :browsing_histories, dependent: :destroy
 

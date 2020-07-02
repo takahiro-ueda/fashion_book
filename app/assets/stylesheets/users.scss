@@ -131,7 +131,9 @@
         }
         //閲覧履歴
         &__history {
-
+          display: flex;
+          flex-wrap: wrap;
+          width : 100%;
         }
       }
     }  

@@ -31,7 +31,7 @@
           <% end %>
         </div>
         <div class="contents__coordinate__show__left__like">
-          <%= link_to "お気に入り", "/", class: "contents__coordinate__show__left__like__okini" %>
+          <%= render partial: 'bookmarks/bookmark', locals: { post: @coordinate, posts: @coordinates, bookmarks: @bookmarks, bookmark: @bookmark } %> 
           <%= render partial: 'likes/like', locals: { post: @coordinate, posts: @coordinates, likes: @likes, like: @like } %> 
         </div>
         <div class="contents__coordinate__show__left__comment">

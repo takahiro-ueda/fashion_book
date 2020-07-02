@@ -1,15 +1,14 @@
 class CoordinatesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :history]
+  before_action :authenticate_user!, except: [:index, :show, :history, :bookmark]
   before_action :set_coordinate, except: [:index, :new, :create]
-  before_action :set_coordinate, only: [:show, :destroy, :edit, :update, :history]
-  before_action :move_to_index, except: [:index, :show, :history]
+  before_action :set_coordinate, only: [:show, :destroy, :edit, :update, :history, :bookmark]
+  before_action :move_to_index, except: [:index, :show, :history, :bookmark]
 
   def index
     @coordinate = Coordinate.new
     @coordinates = Coordinate.includes(:user).order(created_at: "DESC").limit(9)
     @likes = Like.where(user_id: current_user)
-    @like = 0
-    @likes = Like.where(coordinate_id: params[:id])
+    @bookmarks = Bookmark.where(user_id: current_user)
   end
 
   def new
@@ -58,6 +57,8 @@ class CoordinatesController < ApplicationController
     @comments = @coordinate.comments.includes(:user).order(created_at: :desc)
     @like = 0
     @likes = Like.where(coordinate_id: params[:id])
+    @bookmark = 0
+    @bookmarks = Bookmark.where(coordinate_id: params[:id])
 
     new_history = @coordinate.browsing_histories.new
     new_history.user_id = current_user.id
@@ -83,9 +84,8 @@ class CoordinatesController < ApplicationController
   end
 
   def history
-    @histories = BrowsingHistory.all
+    @histories = BrowsingHistory.includes(:user).order(created_at: "DESC")
   end
-
 
   private
 

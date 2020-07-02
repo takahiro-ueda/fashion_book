@@ -11,17 +11,17 @@
           <%# <%= attachment_image_tag comment.user, :profile_image, fallback: "no_image.jpg", class:"comment-image", size: "40x40" %>  
         </div>
         <div class="contents__coordinate__show__left__comment__area__container__box__text">
-          <p><%= link_to "#{comment.user.nickname}", user_path(comment.user.id) %></p>
-            <span class="contents__coordinate__show__left__comment__area__container__box__text__date pull-right">
-              <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-            </span>
-            <% if comment.user == current_user %>
-              <%= link_to coordinate_comment_path(comment.coordinate_id, comment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか?' }, class: "contents__coordinate__show__left__comment__area__container__box__text__destroy" do %>
-                <%= link_to coordinate_comment_path(comment.coordinate_id, comment.id), method: :delete, remote: true, class: "contents__coordinate__show__left__comment__area__container__box__text__destroy" do %> 
-                  <i class="fa fa-trash" style="color: black;"></i>
-                <% end %>
+          <%= link_to "#{comment.user.nickname}", user_path(comment.user.id), class: "contents__coordinate__show__left__comment__area__container__box__text__name" %>
+          <span class="contents__coordinate__show__left__comment__area__container__box__text__date pull-right">
+            <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          </span>
+          <% if comment.user == current_user %>
+            <%= link_to coordinate_comment_path(comment.coordinate_id, comment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか?' }, class: "contents__coordinate__show__left__comment__area__container__box__text__destroy" do %>
+              <%= link_to coordinate_comment_path(comment.coordinate_id, comment.id), method: :delete, remote: true, class: "contents__coordinate__show__left__comment__area__container__box__text__destroy" do %> 
+                <i class="fa fa-trash" style="color: black;"></i>
               <% end %>
             <% end %>
+          <% end %>
         </div>
         <div class="contents__coordinate__show__left__comment__area__container__box__entry">
           <%= comment.content %>

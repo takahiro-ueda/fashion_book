@@ -55,7 +55,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                <%= link_to coordinate_bookmark_path(@user.coordinates.ids), class: "content__mypage__left__side__list__menu__tag" do %>
                   お気に入り一覧<%= fa_icon("angle-right") %>
                 <% end %>
               </li>

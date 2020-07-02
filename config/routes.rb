@@ -29,10 +29,13 @@ Rails.application.routes.draw do
   resources :coordinates, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
-
+    resources :bookmarks, only: [:create, :destroy] do
+      member do
+        get 'show', to: 'bookmarks#show'
+      end
+    end
     member do
       get 'history', to: 'coordinates#history'
     end
   end
-
 end

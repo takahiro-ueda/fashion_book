@@ -10,6 +10,7 @@ class CreateCoordinates < ActiveRecord::Migration[5.2]
       t.references :month, null: false
       t.references :hairstyle, null: false
       t.integer :likes_count
+      t.integer :bookmarks_count
       t.references :user,       null: false, foreign_key: true
 
       t.timestamps
