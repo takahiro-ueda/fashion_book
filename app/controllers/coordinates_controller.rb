@@ -1,8 +1,8 @@
 class CoordinatesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :history, :bookmark]
+  before_action :authenticate_user!, except: [:index, :show, :history]
   before_action :set_coordinate, except: [:index, :new, :create]
-  before_action :set_coordinate, only: [:show, :destroy, :edit, :update, :history, :bookmark]
-  before_action :move_to_index, except: [:index, :show, :history, :bookmark]
+  before_action :set_coordinate, only: [:show, :destroy, :edit, :update]
+  before_action :move_to_index, except: [:index, :show, :history]
 
   def index
     @coordinate = Coordinate.new
@@ -84,7 +84,13 @@ class CoordinatesController < ApplicationController
   end
 
   def history
-    @histories = BrowsingHistory.includes(:user).order(created_at: "DESC")
+    # @user = User.find(params[:id])
+    @histories = BrowsingHistory.includes(:user, :coordinate).order(created_at: "DESC")
+    @coordinates = Coordinate.includes(:user).order(created_at: "DESC").limit(9)
+    # @coordinate = Coordinate.all
+    # @histories = BrowsingHistory.all
+    # @likes = Like.where(user_id: current_user)
+    # @bookmarks = Bookmark.where(user_id: current_user)
   end
 
   private
@@ -99,17 +105,12 @@ class CoordinatesController < ApplicationController
       :age_id,
       :month_id,
       :hairstyle_id, 
-      # item_images_attributes: [:src, :_destroy, :id]
       ).merge(user_id: current_user.id)
   end
 
   def set_coordinate
     @coordinate = Coordinate.find(params[:id])
   end
-
-  # def set_item_images
-  #   @item_images = @item.item_images
-  # end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?

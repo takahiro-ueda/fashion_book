@@ -26,16 +26,16 @@ Rails.application.routes.draw do
     resources :categories, only: [:show]
   end
 
-  resources :coordinates, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+  resources :coordinates do
+    collection do
+      get 'history', to: 'coordinates#history'
+    end
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     resources :bookmarks, only: [:create, :destroy] do
-      member do
-        get 'show', to: 'bookmarks#show'
+      collection do
+        get 'index', to: 'bookmarks#index'
       end
-    end
-    member do
-      get 'history', to: 'coordinates#history'
     end
   end
 end

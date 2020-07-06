@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    # @item.category_size.build
     # @item.item_images.new
     #セレクトボックスの初期値設定
     @category_parent_array = ["---"]

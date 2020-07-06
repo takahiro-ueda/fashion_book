@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # @coordinate = Coordinate.find(params[:id])
   end
 
   private

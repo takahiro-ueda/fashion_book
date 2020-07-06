@@ -1,5 +1,14 @@
 class BookmarksController < ApplicationController
-  before_action :set_coordinate, only: [:create, :destroy, :show]
+  before_action :set_coordinate, only: [:create, :destroy]
+
+  def index
+    @bookmark = Bookmark.new
+    @bookmarks = Bookmark.includes(:user, :coordinate).order(created_at: "DESC").limit(9)
+    # @coordinates = Coordinate.includes(:user, :coordinat)
+    # @likes = Like.where(user_id: current_user)
+    # @histories = BrowsingHistory.all
+    # @users = @bookmark.user_id
+  end
 
   def create
     @bookmark = Bookmark.create(user_id: current_user.id, coordinate_id: params[:coordinate_id])
@@ -13,10 +22,6 @@ class BookmarksController < ApplicationController
     @bookmarks = Bookmark.where(coordinate_id: params[:coordinate_id])
     @coordinate.reload
   end
-
-  def show
-    @bookmarks = current_user.bookmark_coordinates.includes(:user)
-  end
   
   private
 
@@ -25,6 +30,6 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_params
-    params.require(:bookmark).permit(:coordinate_id, :user_id)
+    params.require(:bookmark).permit(:coordinate_id, :user_id).merge(user_id: current_user.id)
   end
 end

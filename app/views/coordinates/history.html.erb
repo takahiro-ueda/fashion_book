@@ -29,7 +29,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to coordinate_bookmark_path(@coordinate.id), class: "content__mypage__left__side__list__menu__tag" do %>
+                <%= link_to coordinate_bookmarks_path(@coordinate), method: :get, class: "content__mypage__left__side__list__menu__tag" do %>
                   お気に入り一覧<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
@@ -38,36 +38,10 @@
                   アイテム一覧<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
-            </ul>
-            <h2 class="content__mypage__left__side__list__menu">設定</h2>
-            <ul>
               <li>
-                <%= link_to address_path, class: "content__mypage__left__side__list__menu__tag" do %>
-                  プロフィール<%= fa_icon("angle-right") %>
+                <%= link_to history_coordinate_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                  閲覧履歴<%= fa_icon("angle-right") %>
                 <% end %>
-              </li>
-              <li>
-                <%= link_to edit_address_path, class: "content__mypage__left__side__list__menu__tag" do %>
-                  住所変更<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to edit_user_registration_path, class: "content__mypage__left__side__list__menu__tag" do %>
-                  メール・パスワード変更<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete, class: "content__mypage__left__side__list__menu__tag" do %>
-                  ログアウト<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-            </ul>
-            <h2 class="content__mypage__left__side__list__menu">退会</h2>
-            <ul>
-              <li>
-                <%# <%= link_to user_path(@user.id), method: :delete, data: { confirm: '本当に削除しますか?' }, class: "content__mypage__left__side__list__menu__tag" do %>
-                  <%# 退会<%= fa_icon("angle-right") %>
-                <%# <% end %>
               </li>
             </ul>
           </li>
@@ -79,33 +53,33 @@
         </div>
         <div class="content__mypage__right__history">
           <% if @histories.present? %>
-            <% @histories.each do |history| %>
-              <%# <%= render partial: "coordinate", locals: { coordinate: @coordinate, coordinates: @coordinates, histories: @histories } %>
-              <div class="contents__coordinate__index__right__list__tag">
-                <div class="contents__coordinate__index__right__list__tag__image">
+            <% @histories.each do |browsing_histories| %>
+              <%# <%= render partial: "coordinates/history", locals: { coordinate: @coordinate, coordinates: @coordinates, histories: @histories } %>
+              <div class="content__mypage__right__history__list">
+                <div class="content__mypage__right__history__list__image">
                   <% if @coordinate.image.present? %>
                     <%= image_tag "#{@coordinate.image }", height: "280px" %>
                   <% else %>
-                    <%=image_tag "/Unknown.png", height: "280px" %>
+                    <%= image_tag "/Unknown.png", height: "280px" %>
                   <% end %>
-                  <div class="contents__coordinate__index__right__list__tag__image__time">
+                  <div class="content__mypage__right__history__list__image__time">
                     <%= @coordinate.created_at.strftime('%Y/%m/%d') %>
                   </div>
                 </div>
-                <div class="contents__coordinate__index__right__list__tag__middle">
-                  <div class="contents__coordinate__index__right__list__tag__middle__okini">
-                    <%= link_to "お気に入り", coordinate_path(@coordinate.id), class: "contents__coordinate__index__right__list__tag__middle__okini" %>
+                <div class="content__mypage__right__history__list__middle">
+                  <div class="content__mypage__right__history__list__middle__okini">
+                    <%= link_to "お気に入り", coordinate_path(@coordinate.id), class: "content__mypage__right__history__list__middle__okini" %>
                     <%= Bookmark.where(coordinate_id: @coordinate[:id]).count %>
                   </div> 
-                  <div class="contents__coordinate__index__right__list__tag__middle__like">
+                  <div class="content__mypage__right__history__list__middle__like">
                     <%= link_to image_tag('/iconmonstr-heart-thin.png', height:'15px', width:'15px'), coordinate_path(@coordinate.id) %>
                     <%= Like.where(coordinate_id: @coordinate[:id]).count %>
                   </div>
                 </div>
-                <div class="contents__coordinate__index__right__list__tag__low">
+                <div class="content__mypage__right__history__list__low">
                   <span>ユーザーネーム：</span>
-                  <%= link_to @coordinate.user.nickname, coordinate_path(@coordinate.id), class: "contents__coordinate__index__right__list__tag__low__nickname" %>
-                  <div class="contents__coordinate__index__right__list__tag__low__height">
+                  <%= link_to @coordinate.user.nickname, coordinate_path(@coordinate.id), class: "content__mypage__right__history__list__low__nickname" %>
+                  <div class="content__mypage__right__history__list__low__height">
                     <%= @coordinate.height.name %>
                   </div>
                 </div>
