@@ -1,29 +1,29 @@
 <div class="content__mypage__right__borad__list">
   <div class="content__mypage__right__borad__list__image">
-    <% if @coordinates.image.present? %>
-      <%= image_tag "#{@coordinate.image }", height: "280px" %>
+    <% if bookmark.coordinate.image.present? %>
+      <%= image_tag "#{bookmark.coordinate.image }", height: "280px" %>
     <% else %>
       <%=image_tag "/Unknown.png", height: "280px" %>
     <% end %>
     <div class="content__mypage__right__borad__list__image__time">
-      <%= @coordinate.created_at.strftime('%Y/%m/%d') %>
+      <%= bookmark.coordinate.created_at.strftime('%Y/%m/%d') %>
     </div>
   </div>
   <div class="content__mypage__right__borad__list__middle">
     <div class="content__mypage__right__borad__list__middle__okini">
-      <%= link_to "お気に入り", coordinate_path(@coordinate.id), class: "content__mypage__right__borad__list__middle__okini" %>
-      <%= Bookmark.where(coordinate_id: @coordinate[:id]).count %>
+      <%= link_to "お気に入り", coordinate_path(bookmark.coordinate.id), class: "content__mypage__right__borad__list__middle__okini" %>
+      <%= Bookmark.where(coordinate_id: bookmark.coordinate[:id]).count %>
     </div> 
     <div class="content__mypage__right__borad__list__middle__like">
-      <%= link_to image_tag('/iconmonstr-heart-thin.png', height:'15px', width:'15px'), coordinate_path(@coordinate.id) %>
-      <%= Like.where(coordinate_id: @coordinate[:id]).count %>
+      <%= link_to image_tag('/iconmonstr-heart-thin.png', height:'15px', width:'15px'), coordinate_path(bookmark.coordinate.id) %>
+      <%= Like.where(coordinate_id: bookmark.coordinate[:id]).count %>
     </div>
   </div>
   <div class="content__mypage__right__borad__list__low">
     <span>ユーザーネーム：</span>
-    <%= link_to @coordinate.user.nickname, coordinate_path(@coordinate.id), class: "content__mypage__right__borad__list__low__nickname" %>
+    <%= link_to bookmark.coordinate.user.nickname, coordinate_path(bookmark.coordinate.id), class: "content__mypage__right__borad__list__low__nickname" %>
     <div class="content__mypage__right__borad__list__low__height">
-      <%= @coordinate.height.name %>
+      <%= bookmark.coordinate.height.name %>
     </div>
   </div>
 </div>

@@ -22,6 +22,7 @@ class Coordinate < ApplicationRecord
   end
 
   has_many :browsing_histories, dependent: :destroy
+  has_many :history_users, through: :browsing_histories, source: :user
 
   mount_uploader :image, ImageUploader
   validates :name,

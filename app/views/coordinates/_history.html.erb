@@ -1,30 +1,29 @@
-
 <div class="content__mypage__right__history__list">
   <div class="content__mypage__right__history__list__image">
-    <% if @coordinate.image.present? %>
-      <%= image_tag "#{@coordinate.image }", height: "280px" %>
+    <% if history.coordinate.image.present? %>
+      <%= image_tag "#{history.coordinate.image }", height: "280px" %>
     <% else %>
       <%= image_tag "/Unknown.png", height: "280px" %>
     <% end %>
     <div class="content__mypage__right__history__list__image__time">
-      <%= @coordinate.created_at.strftime('%Y/%m/%d') %>
+      <%= history.coordinate.created_at.strftime('%Y/%m/%d') %>
     </div>
   </div>
   <div class="content__mypage__right__history__list__middle">
     <div class="content__mypage__right__history__list__middle__okini">
-      <%= link_to "お気に入り", coordinate_path(@coordinate.id), class: "content__mypage__right__history__list__middle__okini" %>
-      <%= Bookmark.where(coordinate_id: @coordinate[:id]).count %>
+      <%= link_to "お気に入り", coordinate_path(history.coordinate.id), class: "content__mypage__right__history__list__middle__okini" %>
+      <%= Bookmark.where(coordinate_id: history.coordinate[:id]).count %>
     </div> 
     <div class="content__mypage__right__history__list__middle__like">
-      <%= link_to image_tag('/iconmonstr-heart-thin.png', height:'15px', width:'15px'), coordinate_path(@coordinate.id) %>
-      <%= Like.where(coordinate_id: @coordinate[:id]).count %>
+      <%= link_to image_tag('/iconmonstr-heart-thin.png', height:'15px', width:'15px'), coordinate_path(history.coordinate.id) %>
+      <%= Like.where(coordinate_id: history.coordinate[:id]).count %>
     </div>
   </div>
   <div class="content__mypage__right__history__list__low">
     <span>ユーザーネーム：</span>
-    <%= link_to @coordinate.user.nickname, coordinate_path(@coordinate.id), class: "content__mypage__right__history__list__low__nickname" %>
+    <%= link_to history.coordinate.user.nickname, coordinate_path(history.coordinate.id), class: "content__mypage__right__history__list__low__nickname" %>
     <div class="content__mypage__right__history__list__low__height">
-      <%= @coordinate.height.name %>
+      <%= history.coordinate.height.name %>
     </div>
   </div>
 </div>

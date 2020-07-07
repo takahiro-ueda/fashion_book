@@ -3,11 +3,7 @@ class BookmarksController < ApplicationController
 
   def index
     @bookmark = Bookmark.new
-    @bookmarks = Bookmark.includes(:user, :coordinate).order(created_at: "DESC").limit(9)
-    # @coordinates = Coordinate.includes(:user, :coordinat)
-    # @likes = Like.where(user_id: current_user)
-    # @histories = BrowsingHistory.all
-    # @users = @bookmark.user_id
+    @bookmarks = Bookmark.includes(:coordinate, coordinate: :user).order(created_at: "DESC").limit(9)
   end
 
   def create

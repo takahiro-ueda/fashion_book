@@ -54,7 +54,7 @@
         <div class="content__mypage__right__borad">
           <% if @bookmarks.present? %>
             <% @bookmarks.each do |bookmark| %>
-              <%= render partial: "bookmarks/borad", locals: { coordinate: @coordinate, coordinates: @coordinates, bookmark: @bookmark, bookmarks: @bookmarks } %>
+              <%= render partial: "borad", locals: { coordinate: @coordinate, coordinates: @coordinates, bookmark: bookmark, bookmarks: @bookmarks } %>
             <% end %>
           <% else %>
             <div class="contents__coordinate__index__right__borad__no">お気に入りに追加したコーディネートはありません</div>
