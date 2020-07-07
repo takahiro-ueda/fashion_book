@@ -1,9 +1,9 @@
 <div class="content__mypage__right__borad__list">
   <div class="content__mypage__right__borad__list__image">
     <% if bookmark.coordinate.image.present? %>
-      <%= image_tag "#{bookmark.coordinate.image }", height: "280px" %>
+      <%= link_to image_tag("#{bookmark.coordinate.image }", height: "280px"), coordinate_path(bookmark.coordinate.id) %>
     <% else %>
-      <%=image_tag "/Unknown.png", height: "280px" %>
+      <%= link_to image_tag("/Unknown.png", height: "280px"), coordinate_path(bookmark.coordinate.id) %>
     <% end %>
     <div class="content__mypage__right__borad__list__image__time">
       <%= bookmark.coordinate.created_at.strftime('%Y/%m/%d') %>

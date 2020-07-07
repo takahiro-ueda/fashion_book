@@ -84,14 +84,8 @@ class CoordinatesController < ApplicationController
   end
 
   def history
-    # @coordinate = Coordinate.where(params[:coordinate_id])
     @histories = BrowsingHistory.includes(:coordinate, coordinate: :user).order(created_at: "DESC")
-    # @coordinates = Coordinate.includes(:user).order(created_at: "DESC").limit(9)
-    # @bookmarks = Bookmark.includes(:coordinate, coordinate: :user).order(created_at: "DESC").limit(9)
     @coordinate = Coordinate.all
-    # @histories = BrowsingHistory.all
-    # @likes = Like.where(user_id: current_user)
-    # @bookmarks = Bookmark.where(user_id: current_user)
   end
 
   private

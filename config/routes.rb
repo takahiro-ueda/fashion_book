@@ -32,10 +32,6 @@ Rails.application.routes.draw do
     end
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
-    resources :bookmarks, only: [:create, :destroy] do
-      collection do
-        get 'index', to: 'bookmarks#index'
-      end
-    end
+    resources :bookmarks, only: [:index, :create, :destroy]
   end
 end
