@@ -18,6 +18,9 @@ class CoordinatesController < ApplicationController
 
   def create
     @coordinate = Coordinate.new(coordinate_params)
+    if user_signed_in?
+      @coordinate.user_id = current_user.id
+    end
     unless @coordinate.valid?
       flash.now[:alert] = @coordinate.errors.full_messages
       @coordinate.image
