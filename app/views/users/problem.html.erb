@@ -1,0 +1,62 @@
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="content">
+  <div class="content__problem">
+    <div class="content__problem__left">
+      <h2> 実装機能・課題 </h2>
+      <div class="content__problem__left__list">
+      【更新日時】2020/7/10現在<br>
+      </div>
+      <%= link_to "戻る", :back, class: "content__problem__left__back" %>
+    </div>
+
+    <div class="content__problem__right">
+      <div class="content__problem__right__list">
+        【実装機能】<br>
+        <必須><br>
+        ・管理ユーザ登録・編集・削除機能、管理ユーザログイン機能<br>
+        ・住所変更、メールパスワード変更、ログアウト機能<br>
+        ・アイテム登録・編集・削除機能<br>
+        ・コーディネーション登録・編集・削除機能<br>
+        ・カテゴリ機能（３階層）、文字数カウント機能、お気に入り機能<br>
+        ・画像アップロード表示、非同期コメント機能、非同期いいね機能<br>
+        ・もっと見る機能(投稿部分)、もっと見る機能(コメント部分)<br>
+        <br>
+        <br>
+        【未実行】<br>
+          ・単体テスト、機能テスト、統合テスト<br>
+          ・公開・非公開機能、検索機能、ランキング機能<br>
+          ・パンくず機能、slick導入でスライド<br>
+          ・ランダム機能（画像）、ページネーション機能<br>
+        <br>
+        <br>
+        【課題】<br/>
+          ・コメント部分のユーザー別表示<br>
+          <span>理由：コメントしたユーザーが分かり易い様にする</span><br>
+          ・アイテム部分で非同期でサイズを選択<br>
+          <span>理由：カテゴリによってサイズが変わる方が使いやすい為</span><br>
+          ・編集での画像・カテゴリ部分の問題を解消<br>
+          <span>理由：viewで表示されていない為</span><br>
+          ・カラム表示ごとにview作成<br>
+          <span>理由：要素ごとに表示することで探しやすくする</span><br>
+          ・ユーザーごとにマイページ表示<br>
+          <span>理由：マイページが共有されている為</span><br>
+          ・コーディネートでアイテム取得<br>
+          <span>理由：コーディネートでどのようなアイテムを使用しているか明確にする為</span><br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: 'top/footer' %>
