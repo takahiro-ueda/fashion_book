@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_054248) do
+ActiveRecord::Schema.define(version: 2020_07_01_001724) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "family_name", null: false
@@ -25,6 +25,25 @@ ActiveRecord::Schema.define(version: 2020_06_21_054248) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "coordinate_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coordinate_id"], name: "index_bookmarks_on_coordinate_id"
+    t.index ["user_id", "coordinate_id"], name: "index_bookmarks_on_user_id_and_coordinate_id", unique: true
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "browsing_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "coordinate_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coordinate_id"], name: "index_browsing_histories_on_coordinate_id"
+    t.index ["user_id"], name: "index_browsing_histories_on_user_id"
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -43,6 +62,38 @@ ActiveRecord::Schema.define(version: 2020_06_21_054248) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_category_sizes_on_category_id"
     t.index ["items_size_id"], name: "index_category_sizes_on_items_size_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "user_id", null: false
+    t.bigint "coordinate_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coordinate_id"], name: "index_comments_on_coordinate_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "coordinates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image"
+    t.string "name", null: false
+    t.text "introduction", null: false
+    t.bigint "gender_id", null: false
+    t.bigint "height_id", null: false
+    t.bigint "age_id", null: false
+    t.bigint "month_id", null: false
+    t.bigint "hairstyle_id", null: false
+    t.integer "likes_count"
+    t.integer "bookmarks_count"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["age_id"], name: "index_coordinates_on_age_id"
+    t.index ["gender_id"], name: "index_coordinates_on_gender_id"
+    t.index ["hairstyle_id"], name: "index_coordinates_on_hairstyle_id"
+    t.index ["height_id"], name: "index_coordinates_on_height_id"
+    t.index ["month_id"], name: "index_coordinates_on_month_id"
+    t.index ["user_id"], name: "index_coordinates_on_user_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -74,6 +125,15 @@ ActiveRecord::Schema.define(version: 2020_06_21_054248) do
     t.index ["size"], name: "index_items_sizes_on_size"
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "coordinate_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coordinate_id"], name: "index_likes_on_coordinate_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
@@ -91,6 +151,15 @@ ActiveRecord::Schema.define(version: 2020_06_21_054248) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "bookmarks", "coordinates"
+  add_foreign_key "bookmarks", "users"
+  add_foreign_key "browsing_histories", "coordinates"
+  add_foreign_key "browsing_histories", "users"
   add_foreign_key "category_sizes", "categories"
   add_foreign_key "category_sizes", "items_sizes"
+  add_foreign_key "comments", "coordinates"
+  add_foreign_key "comments", "users"
+  add_foreign_key "coordinates", "users"
+  add_foreign_key "likes", "coordinates"
+  add_foreign_key "likes", "users"
 end

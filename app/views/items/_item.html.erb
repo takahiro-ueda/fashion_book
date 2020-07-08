@@ -1,9 +1,9 @@
 <div class="contents__item__index__right__list__tag">
   <div class="contents__item__index__right__list__tag__image">
     <% if item.image.present? %>
-      <%= image_tag "#{item.image }", height: "280px" %>
+      <%= link_to image_tag("#{item.image }", height: "280px"), item_path(item.id) %>
     <% else %>
-      <%=image_tag "/Unknown.png", height: "280px" %>
+      <%= link_to image_tag("/Unknown.png", height: "280px"), item_path(item.id) %>
     <% end %>
     <div class="contents__item__index__right__list__tag__image__price">
       ￥<%= item.price %>

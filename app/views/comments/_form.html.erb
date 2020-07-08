@@ -1,0 +1,9 @@
+<!-- コメント入力フォーム ------------------------------------------------------------>
+<% if current_user %>
+  <%= form_with(model: [@coordinate, @comment], local: true, class: "contents__coordinate__show__left__comment__create__text__new", id: "new_comment") do |f| %>
+    <%= f.text_area :content, placeholder: "コメントする", rows: "2", class: "contents__coordinate__show__left__comment__create__text__new__box" %>
+    <%= f.submit "送信", class: "contents__coordinate__show__left__comment__create__text__new__submit" %>
+  <% end %>
+<% else %>
+  <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+<% end %>

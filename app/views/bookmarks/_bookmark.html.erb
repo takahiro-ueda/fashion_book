@@ -1,0 +1,27 @@
+<div class="contents__coordinate__show__left__like__okini">
+  <% if user_signed_in? %>
+    <% if @coordinate.bookmark_user(current_user.id) %>
+      <%= link_to coordinate_bookmark_path(current_user, @bookmark, coordinate_id: @coordinate.id), method: "DELETE", class:"contents__coordinate__show__left__like__okini__bookmark", id: "bookmark-button", remote:true do %>
+        <%# <i class="fa fa-heart like-btn" ></i> %>
+        <div class="contents__coordinate__show__left__like__okini__bookmark__mark" >お気に入り</div>
+        <span class="contents__coordinate__show__left__like__okini__bookmark__count">
+          <%= @bookmarks.where(coordinate_id: @coordinate.id).count %>
+        </span>
+      <% end %>
+    <% else %>
+      <%= link_to coordinate_bookmarks_path(current_user, coordinate_id: @coordinate.id), method: "POST", class:"contents__coordinate__show__left__like__okini__bookmark", id: "bookmark-button", remote:true do %>
+        <div class="contents__coordinate__show__left__like__okini__bookmark__mark" >お気に入り</div>
+        <span class="contents__coordinate__show__left__like__okini__bookmark__count">
+          <%= @bookmarks.where(coordinate_id: @coordinate.id).count %>
+        </span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="contents__coordinate__show__left__like__okini__bookmark">
+      <div class="contents__coordinate__show__left__like__okini__bookmark__mark" >お気に入り</div>
+      <span class="contents__coordinate__show__left__like__okini__bookmark__count">
+        <%= @bookmarks.where(coordinate_id: @coordinate.id).count %>
+      </span>
+    </div>
+  <% end %>
+</div>

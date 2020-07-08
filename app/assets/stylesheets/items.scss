@@ -289,12 +289,20 @@
         padding: 10px 40px;
         width: 100%;
       }
-      &__name, &__size, &__brand, &__season, &__color, &__price {
+      &__name, &__brand, &__season, &__color, &__price {
         margin: 0 auto;
         background-color: white;
         border-bottom: solid 1px #f8f8f8;
         padding: 10px 40px;
         width: 100%;
+      }
+      &__size {
+        margin: 0 auto;
+        background-color: white;
+        border-bottom: solid 1px #f8f8f8;
+        padding: 10px 40px;
+        width: 100%;
+        display: none;
       }
       &__category {
         margin: 0 auto;
@@ -444,9 +452,9 @@
   height: 100%;
   // margin: 0 auto;
   padding-top: 30px;
-  &__name, &__introduction, &__category, &__size, &__brand, &__season, &__color, &__price {
+  &__introduction {
     width: 100%;
-    height: 45px;
+    height: 100px;
     margin-bottom: 1%;
     padding: 10px;
     border: solid 1px #ccc;
@@ -457,6 +465,15 @@
     float:right;
     height: 20px;
     // margin-top: 10px;
+  }
+  &__name, &__category, &__size, &__brand, &__season, &__color, &__price {
+    width: 100%;
+    height: 45px;
+    margin-bottom: 1%;
+    padding: 10px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    background-color: white;
   }
   &__btn{
     background-color: #3CCACE;

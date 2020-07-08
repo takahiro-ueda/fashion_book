@@ -26,4 +26,12 @@ Rails.application.routes.draw do
     resources :categories, only: [:show]
   end
 
+  resources :coordinates do
+    collection do
+      get 'history', to: 'coordinates#history'
+    end
+    resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
+    resources :bookmarks, only: [:index, :create, :destroy]
+  end
 end

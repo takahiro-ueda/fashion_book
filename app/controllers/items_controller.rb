@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    # @item.category_size.build
     # @item.item_images.new
     #セレクトボックスの初期値設定
     @category_parent_array = ["---"]
@@ -28,6 +29,9 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    if user_signed_in?
+      @item.user_id = current_user.id
+    end
     category = Category.find(item_params[:category_id])
     # size = ItemsSize.find(size_params[:category_size_id])
     @item = category.items.create(item_params)

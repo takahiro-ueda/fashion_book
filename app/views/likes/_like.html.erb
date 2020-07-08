@@ -1,0 +1,26 @@
+<div class="contents__coordinate__show__left__like__mark">
+  <% if user_signed_in? %>
+    <% if @coordinate.like_user(current_user.id) %>
+      <%= link_to coordinate_like_path(current_user, @like, coordinate_id: @coordinate.id), method: "DELETE", class:"contents__coordinate__show__left__like__mark__heart", id: "like-button", remote:true do %>
+        <i class="fa fa-heart like-btn" ></i>
+        <span class="contents__coordinate__show__left__like__mark__count">
+          <%= @likes.where(coordinate_id: @coordinate.id).count %>
+        </span>
+      <% end %>
+    <% else %>
+      <%= link_to coordinate_likes_path(current_user, coordinate_id: @coordinate.id), method: "POST", class:"contents__coordinate__show__left__like__mark__heart", id: "like-button", remote:true do %>
+        <i class="fa fa-heart unlike-btn"></i>
+        <span class="contents__coordinate__show__left__like__mark__count">
+          <%= @likes.where(coordinate_id: @coordinate.id).count %>
+        </span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="contents__coordinate__show__left__like__mark__heart">
+      <i class="fa fa-heart unlike-btn"></i>
+      <span class="contents__coordinate__show__left__like__mark__count">
+        <%= @likes.where(coordinate_id: @coordinate.id).count %>
+      </span>
+    </div>
+  <% end %>
+</div>

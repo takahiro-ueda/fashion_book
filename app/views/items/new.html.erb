@@ -17,16 +17,7 @@
     </div>
     <div class="contents__item__new">
     <%= form_with(model: @item, class: :form, local: true) do |form| %>
-      <% if @item.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@item.errors.count, "件のエラーにより") %> この投稿は保存できませんでした。</h2>
-          <ul>
-            <% @item.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= render "devise/shared/error_messages", resource: @item %>
     
       <div class="contents__item__new__image">
         <%= form.label :image, '画像' %>
@@ -40,7 +31,7 @@
 
       <div class="contents__item__new__introduction">
         <%= form.label :introduction, '商品説明' %>
-        <%= form.text_field :introduction, placeholder: :'商品説明(600文字以内) (日付、素材、重さなど)', class: 'form__introduction js-text' %>
+        <%= form.text_area :introduction, placeholder: :'商品説明(600文字以内) (日付、素材、重さなど)', class: 'form__introduction js-text' %>
         <P class="js-text-count"></P>
       </div>
 

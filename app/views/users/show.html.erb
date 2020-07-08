@@ -50,18 +50,23 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                <%= link_to coordinates_path, class: "content__mypage__left__side__list__menu__tag" do %>
                   コーディネート一覧<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
               <li>
-                <%= link_to '#', class: "content__mypage__left__side__list__menu__tag" do %>
+                <%= link_to coordinate_bookmarks_path(@user.coordinates), method: :get, class: "content__mypage__left__side__list__menu__tag" do %>
                   お気に入り一覧<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
               <li>
                 <%= link_to items_path, class: "content__mypage__left__side__list__menu__tag" do %>
                   アイテム一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to history_coordinates_path, class: "content__mypage__left__side__list__menu__tag" do %>
+                  閲覧履歴<%= fa_icon("angle-right") %>
                 <% end %>
               </li>
             </ul>
@@ -101,6 +106,7 @@
       </div>
       <div class="content__mypage__right">
         <div class="content__mypage__right__seach">
+        <h2>マイページ</h2>
         </div>
       </div>
     </div>
