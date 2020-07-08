@@ -10,7 +10,13 @@ Rails.application.routes.draw do
   root 'top#index'
 
   resources :address, only: [:show, :edit, :update, :destroy]
-  resources :users, only: [:show, :edit, :update, :destroy]
+  resources :users, only: [:show, :edit, :update, :destroy] do
+    collection do
+      get 'profile', to: 'users#profile'
+      get 'overview', to: 'users#overview'
+      get 'problem', to: 'users#problem'
+    end
+  end
 
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do # 新規用（new) usr:items/newのため

@@ -1,0 +1,85 @@
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+        <%# %a(href="/")
+          = image_tag 'logo.png', height: '40px', width: '150px', alt: 'icon', class: 'pcHeader__headerInner__mainHeader__app'
+        .pcHeader__headerInner__mainHeader__searchBox
+          = text_field_tag '', '', placeholder: 'キーワードから探す', class: 'pcHeader__headerInner__mainHeader__searchBox__box'
+          .pcHeader__headerInner__mainHeader__searchBox__btn
+            %a(href="#")
+              = image_tag 'icon-search 1.png', height: '100%', width: '100%', alt: 'search' %>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="content">
+  <div class="content__profile">
+    <div class="content__profile__left">
+      <h2> 作成者概要 </h2>
+      <img src="/line_743968890967290.jpg", class="content__profile__left__image">
+      <div class="content__profile__left__field">
+        <%= form_with html: { method: :put } do |f| %>
+          <div class="field">
+
+            <div class="field__nickname">
+              <%= f.label :nickname, '名前' %>
+              : 植田孝啓（うえだたかひろ）
+            </div>
+          
+            <div class="field__age">
+              <%= f.label :age, '年齢' %>
+              : 1996/04/25　(24歳)
+            </div>
+
+            <div class="field__sex">
+              <%= f.label :sex, '性別' %>
+              : 男性
+            </div>
+
+            <div class="field__prefecture">
+              <%= f.label :prefecture, '都道府県' %>
+              : 大阪府
+            </div>
+            
+          </div>
+        <% end %>
+      </div>
+      <%= link_to "戻る", :back, class: "content__profile__left__back" %>
+    </div>
+
+    <div class="content__profile__right">
+      <div class="content__profile__right__list">
+      <%= form_with html: { method: :put } do |f| %>
+        <%= f.label :profile, '自己紹介' %><br />
+          前職は大阪の信用金庫で2月から未経験でテックキャンプに通っている駆け出しエンジニアです！<br />
+          テックキャンプではHTML&CSS,Ruby,Ruby on Railsを中心に学びました。<br />
+          <br />
+          【今やっていること】<br/>
+          ・転職サイトを活用して企業勉強（業務内容は？職場環境は？）<br />
+          ・就職活動<br />
+          ・スクールで学習した言語を活用してアプリ・ホームページ開発<br />
+          <br />
+          【テックキャンプでの学習経験】<br />
+          ・HTML・CSS・Ruby・Ruby on Rails・JavaScript・jQuery・SQL・Git・ GitHub
+          Haml・SCSS・AWS　等の技術を用いたアプリケーション開発<br />
+          ・共同開発の経験（テックキャンプでのチーム開発）<br />
+          ・各種プログラミング言語の基礎知識の強化（テックキャンプ・progate,書籍など）<br/>
+          <br>
+          アプリに関する今後行いたいこと→<%= link_to "制作概要へ", overview_users_path %><br>
+          <br />
+          【学生時代に打ち込んだこと】<br/>
+          中学校から陸上競技を始め、陸上競技で全国大会出場を目標に掲げて練習に取り組んでいました。結果は大学３年生のときに悲願の全国大会出場を達成しました。その要因は練習効率を高めるために練習の距離やタイムだけでなく、疲労度と強度も数値化してグラフ化する取り組みを行ったことだと思います。<br/>
+          グラフの内容は疲労度と練習強度に関しては私の感覚や練習状況を踏まえて10段階に分けて考え折れ線グラフで表示。練習距離は縦線グラフで表示することで具体的に可視化することができ、大会に向けての調整や練習メニューを立てる参考になりました。<br/>
+          グラフを作成するようになってからタイムでいいますと10キロで2分短縮することができ、怪我のリスクが軽減されました。
+          目標を設定し、達成するために自分に何が足らなくてどうしたら良いのかを考え実行する力、失敗をしながら努力し続けることが重要だと経験から学びました！
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render partial: 'top/footer' %>
