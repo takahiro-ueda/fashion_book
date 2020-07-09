@@ -183,3 +183,513 @@
     }  
   }
 }
+.content {
+  width: 100vw;
+  height: 100%;
+  // &__image {
+  //   position: relative;
+  //   box-sizing: border-box;
+  // }
+  &__user {
+    width: 100%;
+    padding: 50px;
+    padding-top: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+    background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
+    background-size: cover;
+    position: absolute;
+    top: -20px;
+    // left: -20px;
+    // right: -20px;
+    bottom: -20px;
+    a{
+      text-decoration: none;
+    }
+    &__top {
+      width: 100%;
+      height: 30px;
+      margin: 10px 30px;
+    }
+
+    //新規ユーザー
+    &__body {
+      display: flex;
+      margin: 0 45px;
+      background:rgba(255,255,255,0.45);
+      padding-top: 20px;
+      // padding-left: 50px;
+      &__left {
+        float: left;
+        width: 40%;
+        position: relative;
+        margin-top: 50px;
+        &:after {
+          clear: both;
+          content: "";
+          display: block;
+        }
+        h2 {
+          margin-bottom: 10px;
+          letter-spacing: 3px;
+          font-size: 40px;
+          font-weight: 200;
+          padding-left: 90px;
+          &:after {
+            content: '';
+            display: block;
+            width: 180px;
+            margin-top: 5px;
+            border-bottom: 1px solid #38aef0;
+          }
+        }
+      }
+      &__right {
+        float: right;
+        width: 60%;
+        position: relative;
+        .field {
+          font-family: 'Exo', sans-serif;
+          a {
+            color: black;
+          }
+          &__nickname, &__email, &__password, &__password__confirmation {
+            padding-left: 10px;
+            margin-bottom: 20px;
+            width: 420px;
+            &__text {
+              height: 40px;
+              width: 100%;
+              background: transparent;
+              border: 2px solid rgba(0,0,0,0.6);
+              border-radius: 2px;
+              font-size: 15px;
+              font-weight: 400;
+              padding: 4px;
+              outline: none;
+            }
+          }
+          &__age, &__sex {
+            padding-left: 10px;
+            margin-bottom: 20px;
+            width: 420px;
+            &__text {
+              height: 40px;
+              width: 100%;
+              background: transparent;
+              border: 2px solid rgba(0,0,0,0.6);
+              border-radius: 2px;
+              font-size: 15px;
+              font-weight: 400;
+              padding: 4px;
+              outline: black;
+            }
+          }
+          input[type='submit'] {
+            float: left;
+            margin: 20px 20px 20px 0;
+            color: #a18d6c;
+            background: #fff;
+            font-family: 'Exo', sans-serif;
+            height: 50px;
+            width: 200px;
+            font-size: 20px;
+            &:hover{
+              opacity: 0.8;
+            }
+            &:active{
+              opacity: 0.6;
+            }
+          }
+        }
+        .session {
+          height: 70px;
+          line-height: 90px;
+          margin-right: 30px;
+          a {
+            color: #a18d6c;
+          }
+          &__new {
+            padding: 15px 60px;
+            font-size: 20px;
+            background: #fff;
+            font-family: 'Exo', sans-serif;
+            width: 40px;
+            border: 1.5px solid black;
+            &:hover{
+              opacity: 0.8;
+            }
+            &:active{
+              opacity: 0.6;
+            }
+          }
+        }
+      }
+    }
+
+    //ログイン
+    &__log {
+      display: flex;
+      margin: 0 45px;
+      background:rgba(255,255,255,0.45);
+      padding-top: 40px;
+      &__left {
+        float: left;
+        width: 40%;
+        position: relative;
+        &:after {
+          clear: both;
+          content: "";
+          display: block;
+        }
+        h2 {
+          margin-bottom: 10px;
+          letter-spacing: 3px;
+          font-size: 40px;
+          font-weight: 200;
+          padding-left: 90px;
+          &:after {
+            content: '';
+            display: block;
+            width: 180px;
+            margin-top: 5px;
+            border-bottom: 1px solid #38aef0;
+          }
+        }
+        h5 {
+          margin-bottom: 20px;
+          font-size: 20px;
+          font-weight: 200;
+        }
+        input[type='submit'] {
+          float: left;
+          margin-top: 20px;
+          color: #fff;
+          height: 50px;
+          width: 250px;
+          font-size: 20px;
+        }
+      }
+      &__right {
+        float: right;
+        width: 60%;
+        position: relative;
+        .field {
+          margin-bottom: 10px;
+          margin-right: 30px;
+          // .field-label {
+          //   padding: 10px 0;
+          //   letter-spacing: 1px;
+          //   font-size: 14px;
+          //   font-weight: 200;
+          //   i {
+          //     font-size: 11px;
+          //     width: 429px;
+          //     height: 48px;
+          //     padding: 10px;
+          //   }
+          // }
+          // .field__list  {
+          //   input, select {
+          //     width: 100%;
+          //     letter-spacing: 1px;
+          //     font-size: 20px;
+          //   }
+          // }
+          &__email, &__password {
+            padding-left: 10px;
+            margin-bottom: 20px;
+            width: 420px;
+            &__text {
+              height: 40px;
+              width: 100%;
+              background: transparent;
+              border: 2px solid rgba(0,0,0,0.6);
+              border-radius: 2px;
+              font-size: 15px;
+              font-weight: 400;
+              padding: 4px;
+              outline: none;
+            }
+          }
+        }
+      }
+      input[type='submit'] {
+        float: left;
+        margin: 20px 20px 20px 0;
+        color: #a18d6c;
+        background: #fff;
+        font-family: 'Exo', sans-serif;
+        height: 50px;
+        width: 200px;
+        font-size: 20px;
+        &:hover{
+          opacity: 0.8;
+        }
+        &:active{
+          opacity: 0.6;
+        }
+      }
+      .registration {
+        height: 70px;
+        line-height: 90px;
+        margin-right: 30px;
+        margin-bottom: 150px;
+        a {
+          color: #a18d6c;
+        }
+        &__new {
+          padding: 15px 60px;
+          font-size: 20px;
+          background: #fff;
+          font-family: 'Exo', sans-serif;
+          width: 40px;
+          border: 1.5px solid black;
+          &:hover{
+            opacity: 0.8;
+          }
+          &:active{
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+
+    //編集
+    &__edit {
+      display: flex;
+      margin: 0 45px;
+      background:rgba(255,255,255,0.45);
+      padding-top: 20px;
+      // padding-left: 50px;
+      &__left {
+        float: left;
+        width: 40%;
+        position: relative;
+        margin-top: 50px;
+        &:after {
+          clear: both;
+          content: "";
+          display: block;
+        }
+        h2 {
+          margin-bottom: 10px;
+          letter-spacing: 3px;
+          font-size: 40px;
+          font-weight: 200;
+          padding-left: 30px;
+          &:after {
+            content: '';
+            display: block;
+            width: 250px;
+            margin-top: 5px;
+            border-bottom: 1px solid #38aef0;
+          }
+        }
+      }
+      &__right {
+        float: right;
+        width: 60%;
+        position: relative;
+        .field {
+          font-family: 'Exo', sans-serif;
+          &__nickname, &__email, &__password, &__password__confirmation, &__current__password {
+            padding-left: 10px;
+            margin-bottom: 20px;
+            width: 450px;
+            &__text {
+              height: 40px;
+              width: 100%;
+              background: transparent;
+              border: 2px solid rgba(0,0,0,0.6);
+              border-radius: 2px;
+              font-size: 15px;
+              font-weight: 400;
+              padding: 4px;
+              outline: none;
+            }
+          }
+          &__age, &__sex {
+            padding-left: 10px;
+            margin-bottom: 20px;
+            width: 450px;
+            &__text {
+              height: 40px;
+              width: 100%;
+              background: transparent;
+              border: 2px solid rgba(0,0,0,0.6);
+              border-radius: 2px;
+              font-size: 15px;
+              font-weight: 400;
+              padding: 4px;
+              outline: black;
+            }
+          }
+          input[type='submit'] {
+            float: left;
+            margin: 20px 20px 20px 0;
+            color: #a18d6c;
+            background: #fff;
+            font-family: 'Exo', sans-serif;
+            height: 50px;
+            width: 200px;
+            font-size: 20px;
+            &:hover{
+              opacity: 0.8;
+            }
+            &:active{
+              opacity: 0.6;
+            }
+          }
+        }
+        &__back {
+          height: 70px;
+          line-height: 90px;
+          margin-right: 30px;
+          &__edit {
+            padding: 13px 79px;
+            font-size: 20px;
+            background: #fff;
+            font-family: 'Exo', sans-serif;
+            width: 40px;
+            border: 1.5px solid black;
+            color: #a18d6c;
+            &:hover{
+              opacity: 0.8;
+              color: #a18d6c;
+            }
+            &:active{
+              opacity: 0.6;
+            }
+          }
+        }
+      }
+    }
+
+    //パスワード
+    &__password {
+      display: flex;
+      margin: 0 45px;
+      background:rgba(255,255,255,0.45);
+      padding-top: 40px;
+      &__left {
+        float: left;
+        width: 40%;
+        position: relative;
+        &:after {
+          clear: both;
+          content: "";
+          display: block;
+        }
+        h2 {
+          margin-bottom: 10px;
+          letter-spacing: 3px;
+          font-size: 40px;
+          font-weight: 200;
+          padding-left: 90px;
+          &:after {
+            content: '';
+            display: block;
+            width: 180px;
+            margin-top: 5px;
+            border-bottom: 1px solid #38aef0;
+          }
+        }
+        input[type='submit'] {
+          float: left;
+          margin-top: 20px;
+          color: #fff;
+          height: 50px;
+          width: 250px;
+          font-size: 20px;
+        }
+      }
+      &__right {
+        float: right;
+        width: 60%;
+        position: relative;
+        .field {
+          margin-bottom: 10px;
+          margin-right: 30px;
+          &__email {
+            padding-left: 10px;
+            margin-bottom: 20px;
+            width: 420px;
+            &__text {
+              height: 40px;
+              width: 100%;
+              background: transparent;
+              border: 2px solid rgba(0,0,0,0.6);
+              border-radius: 2px;
+              font-size: 15px;
+              font-weight: 400;
+              padding: 4px;
+              outline: none;
+            }
+          }
+        }
+      }
+      input[type='submit'] {
+        float: left;
+        margin: 20px 20px 20px 0;
+        color: #a18d6c;
+        background: #fff;
+        font-family: 'Exo', sans-serif;
+        height: 50px;
+        width: 200px;
+        font-size: 20px;
+        &:hover{
+          opacity: 0.8;
+        }
+        &:active{
+          opacity: 0.6;
+        }
+      }
+      .registration {
+        height: 70px;
+        line-height: 90px;
+        margin-right: 30px;
+        margin-bottom: 150px;
+        a {
+          color: #a18d6c;
+        }
+        &__new {
+          padding: 15px 60px;
+          font-size: 20px;
+          background: #fff;
+          font-family: 'Exo', sans-serif;
+          width: 40px;
+          border: 1.5px solid black;
+          &:hover{
+            opacity: 0.8;
+          }
+          &:active{
+            opacity: 0.6;
+          }
+        }
+      }
+      .session {
+        height: 70px;
+        line-height: 90px;
+        margin-right: 30px;
+        a {
+          color: #a18d6c;
+        }
+        &__new {
+          padding: 15px 60px;
+          font-size: 20px;
+          background: #fff;
+          font-family: 'Exo', sans-serif;
+          width: 40px;
+          border: 1.5px solid black;
+          &:hover{
+            opacity: 0.8;
+          }
+          &:active{
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+  }
+}

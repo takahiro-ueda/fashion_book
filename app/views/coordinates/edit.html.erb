@@ -17,10 +17,12 @@
     </div>
   </div>
 </header>
+<% breadcrumb :edit_coordinate %>
+<%= breadcrumbs separator: " &rsaquo; " %>
 <div class="contents">
   <div class="contents__coordinate">
     <div class="contents__coordinate__title">
-      <h2>コーディネート登録</h2>
+      <h2>コーディネート編集</h2>
     </div>
     <div class="contents__coordinate__edit">
     <%= form_with(model: @coordinate, class: :form, local: true) do |form| %>
