@@ -44,6 +44,7 @@
           <% @coordinates.each do |coordinate| %>
             <%= render partial: "coordinate", locals: { coordinate: @coordinate, coordinate: coordinate } %>
           <% end %>
+          <%= paginate(@coordinates) %>
         </div>
       </div>
     </div>
