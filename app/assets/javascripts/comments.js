@@ -30,7 +30,7 @@ $(document).on('turbolinks:load', ()=> {
       $('.contents__coordinate__show__left__comment__create__text__new__submit').prop('disabled', false);
     })
     .fail(function(){
-      alert('error');
+      alert("コメント送信に失敗しました");
     })
   })
 })
