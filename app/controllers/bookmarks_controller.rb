@@ -3,7 +3,7 @@ class BookmarksController < ApplicationController
 
   def index
     @bookmark = Bookmark.new
-    @bookmarks = Bookmark.includes(:coordinate, coordinate: :user).order(created_at: "DESC").limit(9)
+    @bookmarks = Bookmark.includes(:coordinate, coordinate: :user).order(created_at: "DESC").page(params[:page]).per(6)
   end
 
   def create
