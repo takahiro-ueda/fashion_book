@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
 
   def index
     @item = Item.new
-    @items = Item.includes(:user).order(created_at: "DESC").limit(9)
+    @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
     
   end
 

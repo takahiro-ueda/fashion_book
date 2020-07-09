@@ -6,7 +6,7 @@ class CoordinatesController < ApplicationController
 
   def index
     @coordinate = Coordinate.new
-    @coordinates = Coordinate.includes(:user).order(created_at: "DESC").limit(9)
+    @coordinates = Coordinate.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
     @likes = Like.where(user_id: current_user)
     @bookmarks = Bookmark.where(user_id: current_user)
   end
