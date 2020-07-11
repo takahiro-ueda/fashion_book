@@ -36,18 +36,18 @@
           <%= render partial: 'bookmarks/bookmark', locals: { post: @coordinate, posts: @coordinates, bookmarks: @bookmarks, bookmark: @bookmark } %> 
           <%= render partial: 'likes/like', locals: { post: @coordinate, posts: @coordinates, likes: @likes, like: @like } %> 
         </div>
-        <div class="contents__coordinate__show__left__comment">
+        <div class="comment">
           <ul>
-            <li class="contents__coordinate__show__left__comment__create">
-              <h3 class="contents__coordinate__show__left__comment__create__nickname"><%= @coordinate.user.nickname %>さんへのコメント</h3>
+            <li class="comment__create">
+              <h3 class="comment__create__nickname"><%= @coordinate.user.nickname %>さんへのコメント</h3>
             </li>
-            <div id="comments_area", class="contents__coordinate__show__left__comment__area">
-              <%= render partial: 'comments/index', locals: { comments: @comments, coordinate: @coordinate, coordinates: @coordinates } %>
+            <div id="comments_area", class="comment__area">
+              <%= render partial: 'comments/index', locals: { comments: @comments } %>
             </div>
           </ul>
           <% if user_signed_in? %>
-            <div class="contents__coordinate__show__left__comment__create">
-              <div class="contents__coordinate__show__left__comment__create__text">
+            <div class="comment__create">
+              <div class="comment__create__text">
                 <%= render partial: 'comments/form', locals: { comment: @comment, coordinate: @coordinate } %>
               </div>
             </div>

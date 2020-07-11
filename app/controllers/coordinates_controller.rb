@@ -57,7 +57,7 @@ class CoordinatesController < ApplicationController
     @hairstyle = @coordinate.hairstyle
     @comment = Comment.new
     #新着順で表示
-    @comments = @coordinate.comments.includes(:user).order(created_at: :desc)
+    @comments = @coordinate.comments.includes(:user).order(created_at: :asc)
     @like = 0
     @likes = Like.where(coordinate_id: params[:id])
     @bookmark = 0
