@@ -10,9 +10,10 @@ $(document).on('turbolinks:load', ()=> {
                         <span class="comment__area__container__current__box__text__date pull-right">
                           ${ comment.created_at }
                         </span>
-                        <div class="comment__area__container__current__box__text__destroy"></div>
-                        <div class="comment__area__container__current__box__text__destroy" data-index=${comment.id}>
-                          <i class="fa fa-trash" style="color: black;"></i>
+                        <link_to coordinate_comment_path(comment.coordinate_id, comment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか?' }, class: "comment__area__container__current__box__text__destroy">
+                          <link_to coordinate_comment_path(comment.coordinate_id, comment.id), method: :delete, remote: true, class: "comment__area__container__current__box__text__destroy" data-index=${comment.id}>
+                            <i class="fa fa-trash" style="color: black;"></i>
+                          </div>
                         </div>
                       </div>
                       <div class="comment__area__container__current__box__entry">
@@ -48,15 +49,5 @@ $(document).on('turbolinks:load', ()=> {
     .always(function(data){
       $('.comment__create__text__new__submit').prop('disabled', false);
     })
-  })
-  //削除ボタンをクリックすると発火するイベント
-  $(document).on("click", '.comment__area__container__current__box__text__destroy', function(){
-    //プレビュー要素を取得
-    var target_comment = $(this).parent().parent()
-    //プレビューを削除
-    target_comment.remove();
-    // //inputタグに入ったファイルを削除
-    // file_field.val("")
-    $('#comments_area')[0].reset();
   })
 })
