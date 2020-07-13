@@ -54,12 +54,12 @@
           <h2>お気に入り一覧</h2>
         </div>
         <div class="content__mypage__right__borad">
-          <% if @bookmarks.present? %>
-            <% @bookmarks.each do |bookmark| %>
+          <% @bookmarks.each do |bookmark| %>
+            <% if user_signed_in? && current_user.id == bookmark.user_id %>
               <%= render partial: "borad", locals: { coordinate: @coordinate, coordinates: @coordinates, bookmark: bookmark, bookmarks: @bookmarks } %>
-            <% end %>
-          <% else %>
-            <div class="contents__coordinate__index__right__borad__no">お気に入りに追加したコーディネートはありません</div>
+            <% else %>
+              <div class="contents__coordinate__index__right__borad__no">お気に入りに追加したコーディネートはありません</div>
+            <% end %> 
           <% end %>
           <%= paginate(@bookmarks) %>
         </div>

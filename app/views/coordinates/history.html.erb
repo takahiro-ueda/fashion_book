@@ -56,7 +56,9 @@
         <div class="content__mypage__right__history">
           <% if @histories.present? %>
             <% @histories.each do |history| %>
-              <%= render partial: "coordinates/history", locals: { coordinate: @coordinate, coordinates: @coordinates, history: history } %>
+              <% if user_signed_in? && current_user.id == history.user_id %>
+                <%= render partial: "coordinates/history", locals: { coordinate: @coordinate, coordinates: @coordinates, history: history } %>
+              <% end %>
             <% end %>
           <% else %>
             <div class="content__mypage__right__history__no">コーディネートの閲覧履歴はありません</div>
