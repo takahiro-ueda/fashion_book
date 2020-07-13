@@ -45,7 +45,9 @@
         </div>
         <div class="contents__item__index__right__list">
           <% @items.each do |item| %>
-            <%= render partial: "item", locals: { item: @item, item: item } %>
+            <% if user_signed_in? && current_user.id == item.user_id %>
+              <%= render partial: "item", locals: { item: @item, item: item } %>
+            <% end %>
           <% end %>
           <%= paginate(@items) %>
         </div>
