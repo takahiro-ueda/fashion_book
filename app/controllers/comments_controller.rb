@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to coordinate_path(params[:coordinate_id])  }
         format.json
       end
+      # render :index
       flash[:notice] = "コメントしました"
     else
       flash[:notice] = "コメントできませんでした"
@@ -19,10 +20,11 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to coordinate_path(params[:coordinate_id]), notice: 'Coordinate was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to coordinate_path(params[:coordinate_id]), notice: 'Coordinate was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
+    render :index
   end 
 
   private

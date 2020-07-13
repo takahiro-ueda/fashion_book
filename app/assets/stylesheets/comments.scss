@@ -1,4 +1,4 @@
-.contents__coordinate__show__left__comment {
+.comment {
   width: 85.5%;
   // margin-left: auto;
   margin-right: auto;
@@ -7,6 +7,7 @@
   border-bottom: 1px #ddd solid;
   border-right: 1px #ddd solid;
   border-left: 1px #ddd solid;
+  
   li {
     display: flex;
     font-size: 15px;
@@ -45,6 +46,7 @@
   }
   &__area {
     width: 100%;
+    overflow: scroll;
     &__count {
       display: flex;
       // margin-bottom: 20px;
@@ -55,26 +57,54 @@
       }
     }
     &__container {
-      &__box {
-        &__avatar {
-  
-        }
-        &__name{
-          font-size: 8px;
-        }
-        &__text {
-          display: flex;
-          justify-content: space-between;
-          &__date {
-            margin-left: 40px;
+      &__current {
+        &__box {
+          margin: 0 0 0 auto;
+          padding-right: 5px;
+          &__avatar {
+    
           }
-          &__destroy {
-            margin-left: 50px;
+          &__name{
+            font-size: 8px;
+          }
+          &__text {
+            display: flex;
+            justify-content: space-between;
+            &__date {
+              margin-left: 40px;
+            }
+            &__destroy {
+              margin-left: 50px;
+            }
+          }
+          &__entry {
+            border-bottom: solid 0.1px #e0e0e0;
+            margin-bottom: 5px;
           }
         }
-        &__entry {
-          border-bottom: solid 0.1px #e0e0e0;
-          margin-bottom: 5px;
+      }
+      &__other {
+        &__box {
+          &__avatar {
+    
+          }
+          &__name{
+            font-size: 8px;
+          }
+          &__text {
+            display: flex;
+            justify-content: space-between;
+            &__date {
+              margin-left: 40px;
+            }
+            &__destroy {
+              margin-left: 50px;
+            }
+          }
+          &__entry {
+            border-bottom: solid 0.1px #e0e0e0;
+            margin-bottom: 5px;
+          }
         }
       }
     }
