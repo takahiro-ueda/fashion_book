@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', ()=> {
                           ${ comment.created_at }
                         </span>
                         <div class="comment__area__container__current__box__text__destroy">
-                          <a href/coordinates/:coordinate_id/comments/${comment.id}, class="comment__area__container__current__box__text__destroy" >
+                          <a class="comment__area__container__current__box__text__destroy" href="${ comment.coordinate_link}", method: :delete, remote: true >
                             <i class="fa fa-trash" style="color: black;"></i>
                           </a>
                         </div>
@@ -41,7 +41,7 @@ $(document).on('turbolinks:load', ()=> {
       var html = buildHTML(data);
       $('#comments_area').append(html);
       $('form')[0].reset();
-      // $('#comments_area').animate({ scrollTop: $('#comments_area')[0].scrollHeight});
+      $('#comments_area').animate({ scrollTop: $('#comments_area')[0].scrollHeight});
     })
     .fail(function(){
       alert("コメント送信に失敗しました");
