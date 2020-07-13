@@ -42,7 +42,9 @@
         </div>
         <div class="contents__coordinate__index__right__list">
           <% @coordinates.each do |coordinate| %>
-            <%= render partial: "coordinate", locals: { coordinate: @coordinate, coordinate: coordinate } %>
+            <% if user_signed_in? && current_user.id == coordinate.user_id %>
+              <%= render partial: "coordinate", locals: { coordinate: @coordinate, coordinate: coordinate } %>
+            <% end %>
           <% end %>
           <%= paginate(@coordinates) %>
         </div>
