@@ -59,6 +59,32 @@
     &__container {
       &__current {
         &__box {
+          margin: 0 0 0 auto;
+          padding-right: 5px;
+          &__avatar {
+    
+          }
+          &__name{
+            font-size: 8px;
+          }
+          &__text {
+            display: flex;
+            justify-content: space-between;
+            &__date {
+              margin-left: 40px;
+            }
+            &__destroy {
+              margin-left: 50px;
+            }
+          }
+          &__entry {
+            border-bottom: solid 0.1px #e0e0e0;
+            margin-bottom: 5px;
+          }
+        }
+      }
+      &__other {
+        &__box {
           &__avatar {
     
           }
