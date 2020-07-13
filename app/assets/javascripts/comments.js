@@ -10,10 +10,10 @@ $(document).on('turbolinks:load', ()=> {
                         <span class="comment__area__container__current__box__text__date pull-right">
                           ${ comment.created_at }
                         </span>
-                        <link_to coordinate_comment_path(comment.coordinate_id, comment.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか?' }, class: "comment__area__container__current__box__text__destroy">
-                          <link_to coordinate_comment_path(comment.coordinate_id, comment.id), method: :delete, remote: true, class: "comment__area__container__current__box__text__destroy" data-index=${comment.id}>
+                        <div class="comment__area__container__current__box__text__destroy">
+                          <a href/coordinates/:coordinate_id/comments/${comment.id}, class="comment__area__container__current__box__text__destroy" >
                             <i class="fa fa-trash" style="color: black;"></i>
-                          </div>
+                          </a>
                         </div>
                       </div>
                       <div class="comment__area__container__current__box__entry">
@@ -41,7 +41,7 @@ $(document).on('turbolinks:load', ()=> {
       var html = buildHTML(data);
       $('#comments_area').append(html);
       $('form')[0].reset();
-      $('#comments_area').animate({ scrollTop: $('#comments_area')[0].scrollHeight});
+      // $('#comments_area').animate({ scrollTop: $('#comments_area')[0].scrollHeight});
     })
     .fail(function(){
       alert("コメント送信に失敗しました");

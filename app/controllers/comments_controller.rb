@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
         format.html { redirect_to coordinate_path(params[:coordinate_id])  }
         format.json
       end
+      # render :index
       flash[:notice] = "コメントしました"
     else
       flash[:notice] = "コメントできませんでした"
