@@ -7,6 +7,47 @@
           <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
         </div>
       </div>
+      <div class="pcHeader__headerInner__nav">
+        <ul class = "pcHeader__headerInner__nav__listLeft">
+          <li class = "pcHeader__headerInner__nav__listLeft__first">
+            <%= link_to "#" do %> 
+              カテゴリー
+            <% end%>
+            <ul class = "pcHeader__headerInner__nav__listLeft__first__parents">
+              <% @parents.each do |parent| %> 
+              <%# 親カテゴリの中身 %>
+                <li class = "pcHeader__headerInner__nav__listLeft__first__parents__parent">
+                  <%= link_to "#" do%> 
+                    <%= parent.name %> 
+                  <% end %>
+                  <%# 子カテゴリの大枠 %>
+                  <ul class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children">
+                    <% parent.children.each do |child| %> 
+                      <%# 子カテゴリの中身 %>
+                      <li class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child">
+                        <%= link_to "#" do %> 
+                          <%= child.name %> 
+                        <% end %>
+                        <%# 孫カテゴリの大枠 %>
+                        <ul class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren">
+                          <% child.children.each do |grandchild| %> 
+                            <%# 孫カテゴリの中身 %>
+                            <li class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren__grandchild">
+                              <%= link_to "#" do %> 
+                                <%= grandchild.name %> 
+                              <% end %>
+                            </li>
+                          <% end %>
+                        </ul>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </header>
@@ -31,12 +72,7 @@
                 <% end %>
               </li>
             </ul>
-            <h2 class="contents__item__index__left__side__list__menu">性別</h2>
             <h2 class="contents__item__index__left__side__list__menu">ブランド</h2>
-            <h2 class="contents__item__index__left__side__list__menu">カテゴリー</h2>
-            <%# <% @categories.each do |category| %>
-              <%# <p><%= link_to "#{category.name}", "items/:item_id/categories/#{category.id}" %></p> 
-            <%# <% end %>
             <h2 class="contents__item__index__left__side__list__menu">季節</h2>
             <h2 class="contents__item__index__left__side__list__menu">カラー</h2>
           </li>
