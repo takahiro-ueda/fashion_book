@@ -88,16 +88,87 @@
         &__first{
           text-decoration: none;
           padding: 0;
+          list-style: none;
+          &:hover{
+            .pcHeader__headerInner__nav__listLeft__first__parents {
+              .pcHeader__headerInner__nav__listLeft__first__parents__parent {
+                display: block;
+                height: 44px;
+                width: 220px;
+              }
+            }
+          }
+          &__parents{
+            margin-left: -10px;
+            position: absolute;
+            z-index: 1000;
+            font-weight: normal;
 
-          &__categories{
-            display: none;
+            &__parent{
+              width: 220px;
+              height: 0;
+              display: none;
+              padding-left: 10px;
+              background-color: white;
+
+              &:hover{
+                .pcHeader__headerInner__nav__listLeft__first__parents__parent__children{
+                  .pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child{
+                    display: block;
+                    height: 44px;
+                    width: 220px;
+                  }
+                }
+              }
+              &__children{
+                position: absolute;
+                top: 0;
+                left: 220px;
+                z-index: 1000;
+                height: 100%;
+                background-color: white;
+
+                &__child{
+                  width: 220px;
+                  height: 0;
+                  display: none;
+                  padding-left: 10px;
+                  background-color: white;
+
+                  &:hover{
+                    .pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren{
+                      .pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren__grandchild{
+                        display: block;
+                        height: 44px;
+                        width: 300px;
+                      }
+                    }
+                  }
+                  &__grandchildren{
+                    position: absolute;
+                    top: 0;
+                    left: 220px;
+                    z-index: 1000;
+                    height: 100%;
+                    background-color: white;
+
+                    &__grandchild{
+                      width: 300px;
+                      height: 0;
+                      display: none;
+                      padding-left: 10px;
+                      background-color: white;
+                    }
+                  }
+                }
+              }
+            }
           }
         }
         &__item{
           padding: 0 0 0 16px;
         }
       }
-
       &__listRight{
         display: flex;
         margin-left: auto;
