@@ -6,13 +6,12 @@ class ItemsController < ApplicationController
   # before_action :set_size, only: [:show, :destroy,:edit,:update]
   before_action :move_to_index, except: [:index, :show]
   # before_action :set_item_images, only: [:edit, :update]
-  before_action :set_category, only: :new
+  before_action :set_category, only: [:new, :index]
 
 
   def index
     @item = Item.new
     @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
-    # @categories = Category.parent.name
     @parents = Category.where(ancestry: nil)
   end
 

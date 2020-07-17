@@ -8,31 +8,31 @@
         </div>
       </div>
       <div class="pcHeader__headerInner__nav">
-        <ul class = "pcHeader__headerInner__nav__listLeft">
-          <li class = "pcHeader__headerInner__nav__listLeft__first">
+        <ul class = "pcHeader__headerInner__nav__item">
+          <li class = "pcHeader__headerInner__nav__item__first">
             <%= link_to "#" do %> 
               カテゴリー
             <% end%>
-            <ul class = "pcHeader__headerInner__nav__listLeft__first__parents">
+            <ul class = "pcHeader__headerInner__nav__item__first__parents">
               <% @parents.each do |parent| %> 
               <%# 親カテゴリの中身 %>
-                <li class = "pcHeader__headerInner__nav__listLeft__first__parents__parent">
-                  <%= link_to "#" do%> 
-                    <%= parent.name %> 
+                <li class = "pcHeader__headerInner__nav__item__first__parents__parent">
+                  <%= link_to "items/:item_id/categories/#{parent.id}" do%> 
+                    <%= parent.name %>
                   <% end %>
                   <%# 子カテゴリの大枠 %>
-                  <ul class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children">
+                  <ul class = "pcHeader__headerInner__nav__item__first__parents__parent__children">
                     <% parent.children.each do |child| %> 
                       <%# 子カテゴリの中身 %>
-                      <li class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child">
+                      <li class = "pcHeader__headerInner__nav__item__first__parents__parent__children__child">
                         <%= link_to "#" do %> 
-                          <%= child.name %> 
+                          <%= child.name %>
                         <% end %>
                         <%# 孫カテゴリの大枠 %>
-                        <ul class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren">
+                        <ul class = "pcHeader__headerInner__nav__item__first__parents__parent__children__child__grandchildren">
                           <% child.children.each do |grandchild| %> 
                             <%# 孫カテゴリの中身 %>
-                            <li class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren__grandchild">
+                            <li class = "pcHeader__headerInner__nav__item__first__parents__parent__children__child__grandchildren__grandchild">
                               <%= link_to "#" do %> 
                                 <%= grandchild.name %> 
                               <% end %>
@@ -47,7 +47,7 @@
             </ul>
           </li>
         </ul>
-        <%= link_to "ブランド", '#', class:"pcHeader__headerInner__nav__listLeft__item" %>
+        <%= link_to "ブランド", '#', class:"pcHeader__headerInner__nav__item__brand" %>
       </div>
     </div>
   </div>
@@ -60,19 +60,24 @@
       <div class="contents__item__index__left">
         <ul class="contents__item__index__left__side">
           <li class="contents__item__index__left__side__list">
-          <%= link_to 'マイページ', user_path(current_user.id), class: "contents__item__index__left__side__list__menu" %>
-            <ul>
-              <li>
-                <%= link_to items_path, class: "contents__item__index__left__side__list__menu__tag" do %>
-                  アイテム一覧<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to new_item_path, class: "contents__item__index__left__side__list__menu__tag" do %>
-                  アイテム登録<%= fa_icon("angle-right") %>
-                <% end %>
-              </li>
-            </ul>
+            <%= link_to 'マイページ', user_path(current_user.id), class: "contents__item__index__left__side__list__menu" %>
+              <ul>
+                <li>
+                  <%= link_to items_path, class: "contents__item__index__left__side__list__menu__tag" do %>
+                    アイテム一覧<%= fa_icon("angle-right") %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_item_path, class: "contents__item__index__left__side__list__menu__tag" do %>
+                    アイテム登録<%= fa_icon("angle-right") %>
+                  <% end %>
+                </li>
+              </ul>
+            <div class="contents__item__index__left__side__list__category">性別&趣味<br>
+              <% @parents.each do |parent| %>
+                <%= link_to "#{parent.name}", "items/:item_id/categories/#{parent.id}", class: "contents__item__index__left__side__list__category__tag" %>
+              <% end %>
+            </div>
             <h2 class="contents__item__index__left__side__list__menu">ブランド</h2>
             <h2 class="contents__item__index__left__side__list__menu">季節</h2>
             <h2 class="contents__item__index__left__side__list__menu">カラー</h2>

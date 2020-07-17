@@ -31,9 +31,12 @@
                 <% end %>
               </li>
             </ul>
-            <h2 class="contents__item__index__left__side__list__menu">性別</h2>
+            <div class="contents__item__index__left__side__list__category">性別&趣味<br>
+              <% @parents.each do |parent| %>
+                <%= link_to "#{parent.name}", "items/:item_id/categories/#{parent.id}", class: "contents__item__index__left__side__list__category__tag" %>
+              <% end %>
+            </div>
             <h2 class="contents__item__index__left__side__list__menu">ブランド</h2>
-            <h2 class="contents__item__index__left__side__list__menu">カテゴリー</h2>
             <h2 class="contents__item__index__left__side__list__menu">季節</h2>
             <h2 class="contents__item__index__left__side__list__menu">カラー</h2>
           </li>
@@ -41,12 +44,12 @@
       </div>
       <div class="contents__item__index__right">
         <div class="contents__item__index__right__seach">
-          <h2>アイテム一覧</h2>
+          <h2>カテゴリ別一覧</h2>
         </div>
         <div class="contents__item__index__right__list">
           <% @items.each do |item| %>
             <% if user_signed_in? && current_user.id == item.user_id %>
-              <%= render partial: "item", locals: { item: @item, item: item } %>
+              <%= render partial: "items/item", locals: { item: @item, item: item } %>
             <% end %>
           <% end %>
           <%= paginate(@items) %>
