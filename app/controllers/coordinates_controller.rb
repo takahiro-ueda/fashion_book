@@ -13,7 +13,6 @@ class CoordinatesController < ApplicationController
 
   def new
     @coordinate = Coordinate.new
-    # @item.item_images.new
   end
 
   def create
@@ -29,7 +28,6 @@ class CoordinatesController < ApplicationController
     if @coordinate.save
       redirect_to coordinates_path(id: current_user)
     else
-      # @item.item_images.new
       render :new
     end
   end

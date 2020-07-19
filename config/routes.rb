@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   end
 
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    member do
+      get 'season', to: 'items#season'
+    end
     collection do # 新規用（new) usr:items/newのため
       get 'category_children', defaults: { format: 'json' }
       get 'category_grandchildren', defaults: { format: 'json' }

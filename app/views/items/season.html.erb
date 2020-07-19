@@ -33,22 +33,26 @@
             </ul>
             <div class="contents__item__index__left__side__list__category">性別&趣味<br>
               <% @parents.each do |parent| %>
-                <%= link_to "#{parent.name}", item_category_path(parent.id), class: "contents__item__index__left__side__list__category__tag" %>
+                <%= link_to "#{parent.name}", "items/:item_id/categories/#{parent.id}", class: "contents__item__index__left__side__list__category__tag" %>
               <% end %>
             </div>
             <h2 class="contents__item__index__left__side__list__menu">ブランド</h2>
-            <h2 class="contents__item__index__left__side__list__menu">季節</h2>
+            <div class="contents__item__index__left__side__list__menu">季節<br>
+              <% @seasons.each do |season| %>
+                <%= link_to "#{season.name}", season_item_path(season.id), class: "contents__item__index__left__side__list__category__tag" %>
+              <% end %>
+            </div>
             <h2 class="contents__item__index__left__side__list__menu">カラー</h2>
           </li>
         </ul>
       </div>
       <div class="contents__item__index__right">
         <div class="contents__item__index__right__seach">
-          <%= @category.name %>アイテム一覧
+          <%= @title %>アイテム一覧
         </div>
         <div class="contents__item__index__right__list">
           <% @items.each do |item| %>
-            <% if user_signed_in? && current_user.id == item.category_id %>
+            <% if current_user.id == item.user_id && item.season_id %>
               <%= render partial: "items/item", locals: { item: @item, item: item } %>
             <% end %>
           <% end %>
