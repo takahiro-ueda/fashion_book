@@ -92,18 +92,19 @@ class ItemsController < ApplicationController
   end
 
   def season
-    if params[:season_id]
-      # Categoryのデータベースのテーブルから一致するidを取得
-      @season = Season.find(params[:season_id])
-      # category_idと紐づく投稿を取得
-      @items = @season.items.order(created_at: :desc).page(params[:page]).per(9)
-    else
-      # 投稿すべてを取得
-      @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
-    end
+    # if params[:season_id]
+    #   # Categoryのデータベースのテーブルから一致するidを取得
+    #   @season = Season.find_by(params[:id])
+    #   # category_idと紐づく投稿を取得
+    #   @items = @season.items.order(created_at: :desc).page(params[:page]).per(9)
+    # else
+    #   # 投稿すべてを取得
+    #   @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
+    # end
+    @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
     @seasons = Season.all
-    @title = @items.season.name
     @parents = Category.where(ancestry: nil)
+    # @title = item.season.name
   end
 
 
