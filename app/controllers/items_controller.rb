@@ -133,8 +133,8 @@ class ItemsController < ApplicationController
   
     # 孫カテゴリーが選択された後に動くアクション
     def category_size
-      @category_grandchildren = Category.find("#{params[:grandchild_id]}").children #孫カテゴリーを取得
-      if related_size_parent = @category_grandchildren.items_sizes[0] #孫カテゴリーと紐付くサイズ（親）があれば取得
+      @category_sized = Category.find("#{params[:grandchild_id]}").children #孫カテゴリーを取得
+      if related_size_parent = @category_sized.items_sizes[0] #孫カテゴリーと紐付くサイズ（親）があれば取得
         @category_size = related_size_parent.children #紐づいたサイズ（親）の子供の配列を取得
       else
         @category_grandchildren = Category.find("#{params[:grandchild_id]}").parent #孫カテゴリーの親を取得

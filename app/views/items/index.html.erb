@@ -17,25 +17,19 @@
               <% @parents.each do |parent| %> 
               <%# 親カテゴリの中身 %>
                 <li class = "pcHeader__headerInner__nav__item__first__parents__parent">
-                  <%= link_to "items/:item_id/categories/#{parent.id}" do%> 
-                    <%= parent.name %>
-                  <% end %>
+                  <%= link_to "#{parent.name}", "items/:item_id/categories/#{parent.id}" %> 
                   <%# 子カテゴリの大枠 %>
                   <ul class = "pcHeader__headerInner__nav__item__first__parents__parent__children">
                     <% parent.children.each do |child| %> 
                       <%# 子カテゴリの中身 %>
                       <li class = "pcHeader__headerInner__nav__item__first__parents__parent__children__child">
-                        <%= link_to "#" do %> 
-                          <%= child.name %>
-                        <% end %>
+                        <%= link_to "#{child.name}", "items/:item_id/categories/#{child.id}" %> 
                         <%# 孫カテゴリの大枠 %>
                         <ul class = "pcHeader__headerInner__nav__item__first__parents__parent__children__child__grandchildren">
                           <% child.children.each do |grandchild| %> 
                             <%# 孫カテゴリの中身 %>
                             <li class = "pcHeader__headerInner__nav__item__first__parents__parent__children__child__grandchildren__grandchild">
-                              <%= link_to "#" do %> 
-                                <%= grandchild.name %> 
-                              <% end %>
+                              <%= link_to "#{grandchild.name}", "items/:item_id/categories/#{grandchild.id}" %> 
                             </li>
                           <% end %>
                         </ul>
