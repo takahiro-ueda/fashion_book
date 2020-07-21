@@ -1,24 +1,23 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, except: [:index, :new, :create]
-  before_action :set_item, only: [:show, :destroy,:edit,:update]
+  before_action :set_item, only: [:show, :destroy, :edit, :update]
   # before_action :set_size, except: [:index, :new, :create]
   # before_action :set_size, only: [:show, :destroy,:edit,:update]
   before_action :move_to_index, except: [:index, :show]
-  # before_action :set_item_images, only: [:edit, :update]
-  before_action :set_category, only: :new
+  before_action :set_category, only: [:new, :index]
 
 
   def index
     @item = Item.new
     @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
-    
+    @parents = Category.where(ancestry: nil)
+    @seasons = Season.all
   end
 
   def new
     @item = Item.new
     # @item.category_size.build
-    # @item.item_images.new
     #セレクトボックスの初期値設定
     @category_parent_array = ["---"]
     #データベースから、親カテゴリーのみ抽出し、配列化
@@ -92,11 +91,26 @@ class ItemsController < ApplicationController
     end
   end
 
+  def season
+    # if params[:season_id]
+    #   # Categoryのデータベースのテーブルから一致するidを取得
+    #   @season = Season.find_by(params[:id])
+    #   # category_idと紐づく投稿を取得
+    #   @items = @season.items.order(created_at: :desc).page(params[:page]).per(9)
+    # else
+    #   # 投稿すべてを取得
+    #   @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
+    # end
+    @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
+    @seasons = Season.all
+    @parents = Category.where(ancestry: nil)
+    # @title = item.season.name
+  end
+
 
   private
 
   def set_category  
-    # @parents = Category.where(ancestry: nil)
     # @category = Category.all.order("id ASC").limit(8) # categoryの親を取得
     def category_children 
       respond_to do |format| 
@@ -119,8 +133,8 @@ class ItemsController < ApplicationController
   
     # 孫カテゴリーが選択された後に動くアクション
     def category_size
-      @category_grandchildren = Category.find("#{params[:grandchild_id]}").children #孫カテゴリーを取得
-      if related_size_parent = @category_grandchildren.items_sizes[0] #孫カテゴリーと紐付くサイズ（親）があれば取得
+      @category_sized = Category.find("#{params[:grandchild_id]}").children #孫カテゴリーを取得
+      if related_size_parent = @category_sized.items_sizes[0] #孫カテゴリーと紐付くサイズ（親）があれば取得
         @category_size = related_size_parent.children #紐づいたサイズ（親）の子供の配列を取得
       else
         @category_grandchildren = Category.find("#{params[:grandchild_id]}").parent #孫カテゴリーの親を取得
@@ -145,7 +159,6 @@ class ItemsController < ApplicationController
       :category_children_id,
       :category_grandchildren_id,
       # :category_size_id
-      # item_images_attributes: [:src, :_destroy, :id]
       ).merge(user_id: current_user.id)
   end
 
@@ -160,10 +173,6 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
-  # def set_item_images
-  #   @item_images = @item.item_images
-  # end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?

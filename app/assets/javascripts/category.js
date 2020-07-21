@@ -149,7 +149,7 @@ $(function(){
       .done(function(sizes){
         $('#size_wrapper').remove(); //孫が変更された時、サイズ欄以下を削除する
         // $('#brand_wrapper').remove();
-        $('.size_box').val('');
+        $('.contents__item__new__size').val('');
         $('#size_box').css('display', 'block');
         if (sizes.length != 0) {
         var insertHTML = '';
@@ -169,19 +169,19 @@ $(function(){
     } else {
       console.log('サイズ取得失敗')
       $('#size_wrapper').remove(); //孫カテゴリーが初期値になった時、サイズ欄以下を削除する
-      $('.size_box').val('');
+      $('.contents__item__new__size').val('');
       $('#size_box').css('display', 'none');
     }
   });
   //孫カテゴリー選択によるイベント発火
-  $(document).on('change', '#grandchildren_box', function() {
-    var productcategory = $('#grandchildren_category option:selected').data('category');
-    if (productcategory != "") {
-      $('.size_box').val('');
-      $('#size_box').css('display', 'block');
-    } else {
-      $('.size_box').val('');
-      $('#size_box').css('display', 'none');
-    }
-  });
+  // $(document).on('change', '#grandchildren_box', function() {
+  //   var productcategory = $('#grandchildren_category option:selected').data('category');
+  //   if (productcategory != "") {
+  //     $('.contents__item__new__size').val('');
+  //     $('#size_box').css('display', 'block');
+  //   } else {
+  //     $('.contents__item__new__size').val('');
+  //     $('#size_box').css('display', 'none');
+  //   }
+  // });
 });

@@ -1,0 +1,61 @@
+<header>
+  <div class ="pcHeader">
+    <div class="pcHeader__headerInner">
+      <div class="pcHeader__headerInner__mainHeader">
+        <div class="pcHeader__headerInner__mainHeader__title">
+          <%= link_to "Fashion Book", '/', class: "pcHeader__headerInner__mainHeader__title__main" %>
+          <div class="pcHeader__headerInner__mainHeader__title__sub">毎日の服選びをおしゃれで楽に</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<% breadcrumb :index_item %>
+<%= breadcrumbs separator: " &rsaquo; " %>
+<div class="contents">
+  <div class="contents__item">
+    <div class="contents__item__index">
+      <div class="contents__item__index__left">
+        <ul class="contents__item__index__left__side">
+          <li class="contents__item__index__left__side__list">
+          <%= link_to 'マイページ', user_path(current_user.id), class: "contents__item__index__left__side__list__menu" %>
+            <ul>
+              <li>
+                <%= link_to items_path, class: "contents__item__index__left__side__list__menu__tag" do %>
+                  アイテム一覧<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_item_path, class: "contents__item__index__left__side__list__menu__tag" do %>
+                  アイテム登録<%= fa_icon("angle-right") %>
+                <% end %>
+              </li>
+            </ul>
+            <div class="contents__item__index__left__side__list__category">性別&趣味<br>
+              <% @parents.each do |parent| %>
+                <%= link_to "#{parent.name}", item_category_path(parent.id), class: "contents__item__index__left__side__list__category__tag" %>
+              <% end %>
+            </div>
+            <h2 class="contents__item__index__left__side__list__menu">ブランド</h2>
+            <h2 class="contents__item__index__left__side__list__menu">季節</h2>
+            <h2 class="contents__item__index__left__side__list__menu">カラー</h2>
+          </li>
+        </ul>
+      </div>
+      <div class="contents__item__index__right">
+        <div class="contents__item__index__right__seach">
+          <%= @category.name %>アイテム一覧
+        </div>
+        <div class="contents__item__index__right__list">
+          <% @items.each do |item| %>
+            <% if user_signed_in? && current_user.id == item.category_id %>
+              <%= render partial: "items/item", locals: { item: @item, item: item } %>
+            <% end %>
+          <% end %>
+          <%= paginate(@items) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: 'top/footer' %>

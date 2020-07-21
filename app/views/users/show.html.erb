@@ -15,14 +15,46 @@
               = image_tag 'icon-search 1.png', height: '100%', width: '100%', alt: 'search' %>
       </div>
       <div class="pcHeader__headerInner__nav">
-        <div class ="pcHeader__headerInner__nav__listLeft">
-          <%= link_to '#', class:"pcHeader__headerInner__nav__listLeft__first" do %>カテゴリー
-            <ul class = "pcHeader__headerInner__nav__listLeft__first__categories">
-              <li class = "pcHeader__headerInner__nav__listLeft__first__categories__category">大カテゴリー</li>
+        <ul class = "pcHeader__headerInner__nav__listLeft">
+          <li class = "pcHeader__headerInner__nav__listLeft__first">
+            <%= link_to "#" do %> 
+              カテゴリー
+            <% end%>
+            <ul class = "pcHeader__headerInner__nav__listLeft__first__parents">
+              <% @parents.each do |parent| %> 
+              <%# 親カテゴリの中身 %>
+                <li class = "pcHeader__headerInner__nav__listLeft__first__parents__parent">
+                  <%= link_to "#" do%> 
+                    <%= parent.name %> 
+                  <% end %>
+                  <%# 子カテゴリの大枠 %>
+                  <ul class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children">
+                    <% parent.children.each do |child| %> 
+                      <%# 子カテゴリの中身 %>
+                      <li class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child">
+                        <%= link_to "#" do %> 
+                          <%= child.name %> 
+                        <% end %>
+                        <%# 孫カテゴリの大枠 %>
+                        <ul class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren">
+                          <% child.children.each do |grandchild| %> 
+                            <%# 孫カテゴリの中身 %>
+                            <li class = "pcHeader__headerInner__nav__listLeft__first__parents__parent__children__child__grandchildren__grandchild">
+                              <%= link_to "#" do %> 
+                                <%= grandchild.name %> 
+                              <% end %>
+                            </li>
+                          <% end %>
+                        </ul>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
             </ul>
-          <% end %>
-          <%= link_to "ブランド", '#', class:"pcHeader__headerInner__nav__listLeft__item" %>
-        </div>
+          </li>
+        </ul>
+        <%= link_to "ブランド", '#', class:"pcHeader__headerInner__nav__listLeft__item" %>
         <div class = "pcHeader__headerInner__nav__listRight">
           <% if user_signed_in? %>
             <%= link_to "マイページ", user_path(current_user.id), class:"pcHeader__headerInner__nav__listRight"%>
