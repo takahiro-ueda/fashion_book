@@ -355,7 +355,7 @@ category_size = CategorySize.create({category_id: women_shoes.children.ids,items
 category_size = CategorySize.create({category_id: women_other.children.ids,items_size_id:clothes.id})
 
 
-white = Color.create(name: 'ホワイト')
+white = Color.create(name: "ホワイト")
 black = Color.create(name: "ブラック")
 gray = Color.create(name: "グレー")
 brown = Color.create(name: "ブラウン")

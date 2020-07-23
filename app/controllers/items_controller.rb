@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
     @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
     @parents = Category.where(ancestry: nil)
     @seasons = Season.all
+    @colors = Color.all
   end
 
   def new
@@ -92,21 +93,20 @@ class ItemsController < ApplicationController
   end
 
   def season
-    # if params[:season_id]
-    #   # Categoryのデータベースのテーブルから一致するidを取得
-    #   @season = Season.find_by(params[:id])
-    #   # category_idと紐づく投稿を取得
-    #   @items = @season.items.order(created_at: :desc).page(params[:page]).per(9)
-    # else
-    #   # 投稿すべてを取得
-    #   @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
-    # end
-    @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
-    @seasons = Season.all
+    @seasons = Season.includes(:item, item: :user).page(params[:page]).per(9).order(created_at: "DESC")
+    @items = Item.all
     @parents = Category.where(ancestry: nil)
+    @colors = Color.all
     # @title = item.season.name
   end
 
+  def color
+    @colors = Color.includes(:item, item: :user).order(created_at: "DESC")
+    @items = Item.all.page(params[:page]).per(9)
+    @parents = Category.where(ancestry: nil)
+    @seasons = Season.all
+    # @title = @items.color.name
+  end
 
   private
 

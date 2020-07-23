@@ -174,14 +174,14 @@ $(function(){
     }
   });
   //孫カテゴリー選択によるイベント発火
-  // $(document).on('change', '#grandchildren_box', function() {
-  //   var productcategory = $('#grandchildren_category option:selected').data('category');
-  //   if (productcategory != "") {
-  //     $('.contents__item__new__size').val('');
-  //     $('#size_box').css('display', 'block');
-  //   } else {
-  //     $('.contents__item__new__size').val('');
-  //     $('#size_box').css('display', 'none');
-  //   }
-  // });
+  $(document).on('change', '#grandchildren_box', function() {
+    var productcategory = $('#grandchildren_category option:selected').data('category');
+    if (productcategory != "") {
+      $('.contents__item__new__size').val('');
+      $('#size_box').css('display', 'block');
+    } else {
+      $('.contents__item__new__size').val('');
+      $('#size_box').css('display', 'none');
+    }
+  });
 });

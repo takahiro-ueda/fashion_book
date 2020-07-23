@@ -1,0 +1,19 @@
+<div class="contents__item__index__right__list__tag">
+  <div class="contents__item__index__right__list__tag__image">
+    <% if color.item.image.present? %>
+      <%= link_to image_tag("#{color.item.image }", height: "280px"), item_path(item.id) %>
+    <% else %>
+      <%= link_to image_tag("/Unknown.png", height: "280px"), item_path(color.item.id) %>
+    <% end %>
+    <div class="contents__item__index__right__list__tag__image__price">
+      ￥<%= color.item.price %>
+    </div>
+  </div>
+  <div class="contents__item__index__right__list__tag__low">
+    <div class="contents__item__index__right__list__tag__low__brand">
+      <span>ブランド：</span>
+      <%= color.item.brand.name %>
+    </div>
+    <%= link_to item.name, item_path(color.item.id), class: "contents__item__index__right__list__tag__low__name" %>
+  </div>
+</div>

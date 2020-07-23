@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     collection do
       get 'season', to: 'items#season'
+      get 'color', to: 'items#color'
+      get 'brand', to: 'items#brand'
     end
     collection do # 新規用（new) usr:items/newのため
       get 'category_children', defaults: { format: 'json' }
