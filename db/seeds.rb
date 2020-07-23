@@ -370,3 +370,8 @@ orange = Color.create(name: "オレンジ")
 silver = Color.create(name: "シルバー")
 gold = Color.create(name: "ゴールド")
 other_color = Color.create(name: "その他")
+
+spring = Season.create(name: '春')
+summer = Season.create(name: '夏')
+autumn = Season.create(name: '秋')
+winter = Season.create(name: '冬')
