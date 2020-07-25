@@ -1,3 +1,5 @@
 class Color < ApplicationRecord
-  has_many :item
+  has_one :item
+
+  validates :name, presence: true
 end

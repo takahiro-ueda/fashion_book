@@ -32,9 +32,10 @@ class ItemsController < ApplicationController
     if user_signed_in?
       @item.user_id = current_user.id
     end
-    category = Category.find(item_params[:category_id])
+    # color = Color.find(item_params[:color_id])
+    # season = Season.find(item_params[:season_id])
     # size = ItemsSize.find(size_params[:category_size_id])
-    @item = category.items.create(item_params)
+    # @item = category.items.create(item_params)
     unless @item.valid?
       flash.now[:alert] = @item.errors.full_messages
       @item.image
@@ -93,7 +94,7 @@ class ItemsController < ApplicationController
   end
 
   def season
-    @seasons = Season.includes(:item, item: :user).page(params[:page]).per(9).order(created_at: "DESC")
+    @seasons = Season.includes(:item, item: :user).order(created_at: "DESC").page(params[:page]).per(9)
     @items = Item.all
     @parents = Category.where(ancestry: nil)
     @colors = Color.all
@@ -101,8 +102,8 @@ class ItemsController < ApplicationController
   end
 
   def color
-    @colors = Color.includes(:item, item: :user).order(created_at: "DESC")
-    @items = Item.all.page(params[:page]).per(9)
+    @colors = Color.includes(:item, item: :user).order(created_at: "DESC").page(params[:page]).per(9)
+    @item = Item.all
     @parents = Category.where(ancestry: nil)
     @seasons = Season.all
     # @title = @items.color.name

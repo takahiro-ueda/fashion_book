@@ -47,15 +47,19 @@
       </div>
       <div class="contents__item__index__right">
         <div class="contents__item__index__right__seach">
-          <%=  %>アイテム一覧
+          <%=  @title %>アイテム一覧
         </div>
         <div class="contents__item__index__right__list">
-          <% @colors.each do |color| %>
-            <% if user_signed_in? && current_user.id %>
-              <%= render partial: "items/color", locals: { item: @item, item: @items, color: color } %>
+          <% if @colors.present? %>
+            <% @colors.each do |color| %>
+              <% if user_signed_in? && current_user.id %>
+                <%= render partial: "items/color", locals: { item: item, color: color } %>
+              <% end %>
             <% end %>
+            <%= paginate(@colors) %>
+          <% else %>
+            <div class="content__mypage__right__history__no">カラーアイテムはありません</div>
           <% end %>
-          <%= paginate(@items) %>
         </div>
       </div>
     </div>
