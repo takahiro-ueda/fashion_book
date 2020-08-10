@@ -53,7 +53,7 @@
           <% if @colors.present? %>
             <% @colors.each do |color| %>
               <% if user_signed_in? && current_user.id %>
-                <%= render partial: "items/color", locals: { item: item, color: color } %>
+                <%= render partial: "items/color", locals: { item: @item, items: @items, colors: @colors, color: color } %>
               <% end %>
             <% end %>
             <%= paginate(@colors) %>

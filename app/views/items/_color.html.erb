@@ -1,6 +1,6 @@
 <div class="contents__item__index__right__list__tag">
   <div class="contents__item__index__right__list__tag__image">
-    <% if color.item.image.present? %>
+    <% if color.items.image.present? %>
       <%= link_to image_tag("#{color.item.image }", height: "280px"), item_path(item.id) %>
     <% else %>
       <%= link_to image_tag("/Unknown.png", height: "280px"), item_path(color.item.id) %>

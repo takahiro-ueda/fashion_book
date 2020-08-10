@@ -102,7 +102,7 @@ class ItemsController < ApplicationController
   end
 
   def color
-    @colors = Color.includes(:item, item: :user).order(created_at: "DESC").page(params[:page]).per(9)
+    @colors = Color.includes(:items, items: :user).order(created_at: "DESC").page(params[:page]).per(9)
     @item = Item.all
     @parents = Category.where(ancestry: nil)
     @seasons = Season.all

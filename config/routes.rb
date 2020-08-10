@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     end
     resources :categories, only: [:show]
   end
-
+  
   resources :coordinates do
     collection do
       get 'history', to: 'coordinates#history'
