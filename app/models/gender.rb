@@ -7,7 +7,5 @@ class Gender < ActiveHash::Base
     { id: 4, name: 'KIDS(boy)' },
     { id: 5, name: 'BABY' },
 
-    # 必須項目のため空のバリューを用意
-    { id: 6, name: '', group: '' }
   ]
 end

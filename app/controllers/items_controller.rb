@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
     @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
     @parents = Category.where(ancestry: nil)
     @seasons = Season.all
+    @colors = Color.all
   end
 
   def new
@@ -31,9 +32,10 @@ class ItemsController < ApplicationController
     if user_signed_in?
       @item.user_id = current_user.id
     end
-    category = Category.find(item_params[:category_id])
+    # color = Color.find(item_params[:color_id])
+    # season = Season.find(item_params[:season_id])
     # size = ItemsSize.find(size_params[:category_size_id])
-    @item = category.items.create(item_params)
+    # @item = category.items.create(item_params)
     unless @item.valid?
       flash.now[:alert] = @item.errors.full_messages
       @item.image
@@ -92,21 +94,20 @@ class ItemsController < ApplicationController
   end
 
   def season
-    # if params[:season_id]
-    #   # Categoryのデータベースのテーブルから一致するidを取得
-    #   @season = Season.find_by(params[:id])
-    #   # category_idと紐づく投稿を取得
-    #   @items = @season.items.order(created_at: :desc).page(params[:page]).per(9)
-    # else
-    #   # 投稿すべてを取得
-    #   @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
-    # end
-    @items = Item.includes(:user).order(created_at: "DESC").page(params[:page]).per(9)
-    @seasons = Season.all
+    @seasons = Season.includes(:item, item: :user).order(created_at: "DESC").page(params[:page]).per(9)
+    @items = Item.all
     @parents = Category.where(ancestry: nil)
+    @colors = Color.all
     # @title = item.season.name
   end
 
+  def color
+    @colors = Color.includes(:items, items: :user).order(created_at: "DESC").page(params[:page]).per(9)
+    @item = Item.all
+    @parents = Category.where(ancestry: nil)
+    @seasons = Season.all
+    # @title = @items.color.name
+  end
 
   private
 

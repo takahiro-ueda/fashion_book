@@ -67,18 +67,17 @@
                   <% end %>
                 </li>
               </ul>
-            <div class="contents__item__index__left__side__list__category">性別&趣味<br>
-              <% @parents.each do |parent| %>
-                <%= link_to "#{parent.name}", "items/:item_id/categories/#{parent.id}", class: "contents__item__index__left__side__list__category__tag" %>
-              <% end %>
-            </div>
             <h2 class="contents__item__index__left__side__list__menu">ブランド</h2>
             <div class="contents__item__index__left__side__list__menu">季節<br>
               <% @seasons.each do |season| %>
                 <%= link_to "#{season.name}", season_items_path, class: "contents__item__index__left__side__list__category__tag" %>
               <% end %>
             </div>
-            <h2 class="contents__item__index__left__side__list__menu">カラー</h2>
+            <div class="contents__item__index__left__side__list__menu">カラー<br>
+              <% @colors.each do |color| %>
+                <%= link_to "#{color.name}", color_items_path, class: "contents__item__index__left__side__list__category__tag" %>
+              <% end %>
+            </div>
           </li>
         </ul>
       </div>
